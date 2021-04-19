@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # coding: utf-8
+
 print("========================GANDHI BOT 1.0.0=======================")
 # ===SETTINGS===
 maxSzerda = 255 # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
