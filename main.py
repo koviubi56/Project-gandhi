@@ -2,12 +2,12 @@
 # coding: utf-8
 
 try:
-    szerdak -= 1
+    db["szerdak"] -= 1
 except:
-    szerdak = 0
+    db["szerdak"] = 0
 else:
-    if szerdak < 1:
-        szerdak = 0
+    if db["szerdak"] < 1:
+        db["szerdak"] = 0
 finally:
     inSet = False
 
@@ -84,25 +84,24 @@ while True:
                 pass
 
             if plus > 0:
-                global szerdak
-                szerdak += plus
+                db["szerdak"] += plus
                 await message.channel.send(f"+{plus} szerda")
 
             if msg.startswith('56'):
-                await message.channel.send('Szerdák száma: ' + str(szerdak))
+                await message.channel.send('Szerdák száma: ' + str(db["szerdak"]))
 
             if msg.startswith('admin.projectgandhi'):
-                szerdak = 0
+                db["szerdak"] = 0
 
             if msg.startswith('stop.projectgandhi'):
-                await message.channel.send(f'Szerdák: {str(szerdak)}')
+                await message.channel.send(f'Szerdák: {str(db["szerdak"])}')
                 print("Stopping...")
                 exit()
 
             global inSet
             if inSet == True:
                 inSet = False
-                szerdak = msg
+                db["szerdak"] = msg
 
             if msg.startswith('set.projectgandhi'):
                 await message.channel.send('K!')
