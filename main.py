@@ -75,7 +75,7 @@ while True:
                     if plus > maxSzerda:
                         print("TÚL SOK SZERDA!")
                         await message.channel.send(f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
-                        await message.channel.send("|| Megjegyzés magamnak: set parancs ||")
+                        await message.channel.send("f|| Megjegyzés magamnak: *set*; szerdák: {str(db[szerdak])} ||")
                         plus = 0
                         break
                     if betu.lower() == "s":
