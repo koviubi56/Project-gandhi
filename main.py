@@ -2,6 +2,24 @@
 # coding: utf-8
 
 try:
+    from replit import db
+except Exception as e:
+    print("[ERROR]")
+    print("Error when importin db from replit: " + str(e))
+    print("Trying again...")
+    for e2 in range(5):
+        try:
+            from replit import db
+        except:
+            if e2 < 4:
+                print(f"[ERROR {e2} ]")
+            elif e2 >= 4:
+                print("*** CRITICAL ERROR! ***")
+                print("We can't import db from replit after 6 tries.")
+                print("The bot CAN'T work without it.")
+                print("Stopping...")
+                exit()
+try:
     db["szerdak"] -= 1
 except:
     db["szerdak"] = 0
@@ -16,7 +34,6 @@ while True:
     try:
         import os
         import discord
-        from replit import db
         print("========================GANDHI BOT 1.1.0=======================")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
@@ -110,6 +127,6 @@ while True:
         client.run(os.environ['BOT_TOKEN'])
     except Exception as e:
         print("\n\n")
-        print("*** ERROR! ***")
+        print("[ERROR]")
         print("Error code: " + str(e))
         print("Restarting...")
