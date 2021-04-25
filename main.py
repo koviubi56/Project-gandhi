@@ -24,8 +24,7 @@ try:
 except:
     db["szerdak"] = 0
 else:
-    if db["szerdak"] < 1:
-        db["szerdak"] = 0
+    db["szerdak"] += 1
 finally:
     inSet = False
 
