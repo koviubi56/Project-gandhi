@@ -16,6 +16,7 @@ while True:
     try:
         import os
         import discord
+        from replit import db
         print("========================GANDHI BOT 1.1.0=======================")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
@@ -23,7 +24,7 @@ while True:
         # ---SETTINGS---
 
         """
-        ISC License"
+        ISC License
         Copyright (c) Koviubi56 (koviubi#4465)
         Permission to use, copy, modify, and/or distribute this software for any
         purpose with or without fee is hereby granted, provided that the above
