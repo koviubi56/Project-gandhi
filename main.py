@@ -33,7 +33,7 @@ while True:
     try:
         import os
         import discord
-        print("========================GANDHI BOT 1.1.0=======================")
+        print("========================GANDHI BOT 1.2.0=======================")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 255
