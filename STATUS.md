@@ -1,6 +1,6 @@
 A bot jelenleg
 
-**ONLINE**
+**OFFLINE**
 =
 
 ---
