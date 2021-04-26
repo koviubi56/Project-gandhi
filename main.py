@@ -36,7 +36,11 @@ while True:
         print('{:=^63}'.format('GANDHI BOT 1.3.0-beta'))
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
-        maxSzerda = 255
+        maxSzerda = 510
+        # Verzió
+        version = "1.3.0"
+        # Bármi más? "-beta.1"?
+        pre = "-beta"
         # ---SETTINGS---
 
         client = discord.Client()
@@ -54,6 +58,7 @@ while True:
             plus = 0
             msg = message.content.lower()
 
+            # szerda keresés
             try:
                 for i, betu in enumerate(msg):
                     if plus > maxSzerda:
@@ -89,17 +94,17 @@ while True:
                 db["szerdak"] += plus
                 await message.channel.send(f"+{plus} szerda")
 
+            # 56
             if msg.startswith('56'):
                 await message.channel.send(f'Szerdák száma: {str(db["szerdak"])}')
 
-            if msg.startswith('admin.projectgandhi'):
-                db["szerdak"] = 0
-
+            # stop
             if msg.startswith('stop.projectgandhi'):
                 await message.channel.send(f'Szerdák: {str(db["szerdak"])}')
                 print("Stopping...")
                 exit()
 
+            # set
             global inSet
             if inSet == True:
                 inSet = False
