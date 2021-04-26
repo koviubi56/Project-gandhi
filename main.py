@@ -33,7 +33,7 @@ while True:
     try:
         import os
         import discord
-        print('{:=^63}'.format('GANDHI BOT 1.3.0-beta'))
+        import random
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
@@ -42,6 +42,8 @@ while True:
         # Bármi más? "-beta.1"?
         pre = "-beta"
         # ---SETTINGS---
+
+        print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
 
         client = discord.Client()
 
@@ -95,7 +97,7 @@ while True:
                 await message.channel.send(f"+{plus} szerda")
 
             # 56
-            if msg.startswith('56'):
+            if msg == '56':
                 await message.channel.send(f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
@@ -113,6 +115,25 @@ while True:
             if msg.startswith('set.projectgandhi'):
                 await message.channel.send('K!')
                 inSet = True
+
+            # 8ball
+            if msg == "56!8ball":
+                lista8 = [
+                    "ez pokolian nem", 
+                    "őszintén szólva nem érdekel lol", 
+                    "nem vagyok benne biztos, de te biztos, hogy hülye vagy", 
+                    "igen???", 
+                    "amikor növesztessz egy agysejtet, akkor igen", 
+                    "nem!!!!", 
+                    "lol szó szerint nem", 
+                    "a fenébe! nem.", 
+                    "persze miért ne", 
+                    "nem lmfao",
+                    "persze, engem se érdekel jobban",
+                    "Trump színe narancssárga?",
+                    "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal"
+                    ]
+                await message.channel.send(lista8[random.randrange(len(lista8))])
 
         client.run(os.environ['BOT_TOKEN'])
     except Exception as e:
