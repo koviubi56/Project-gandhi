@@ -5,7 +5,7 @@ try:
     from replit import db
 except Exception as e:
     print("[ERROR]")
-    print("Error when importin db from replit: " + str(e))
+    print(f"Error when importin db from replit: {str(e)}")
     print("Trying again...")
     for e2 in range(5):
         try:
@@ -33,7 +33,7 @@ while True:
     try:
         import os
         import discord
-        print("=======================GANDHI BOT 1.2.0=======================")
+        print('{:=^63}'.format('GANDHI BOT 1.3.0-beta'))
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 255
@@ -90,7 +90,7 @@ while True:
                 await message.channel.send(f"+{plus} szerda")
 
             if msg.startswith('56'):
-                await message.channel.send('Szerdák száma: ' + str(db["szerdak"]))
+                await message.channel.send(f'Szerdák száma: {str(db["szerdak"])}')
 
             if msg.startswith('admin.projectgandhi'):
                 db["szerdak"] = 0
@@ -113,5 +113,5 @@ while True:
     except Exception as e:
         print("\n\n")
         print("[ERROR]")
-        print("Error code: " + str(e))
+        print(f"Error code: {str(e)}")
         print("Restarting...")
