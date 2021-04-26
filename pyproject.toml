@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "repl_python3_Project-gandhi"
-version = "0.1.0"
-description = ""
+name = "Project-gandhi"
+version = "1.2.0"
+description = "A discord bot"
 authors = ["koviubi56 <>"]
 license = "MPL-2.0"
 
