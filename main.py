@@ -7,6 +7,9 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
+from logging import log
+
+
 try:
     from replit import db
 except Exception as e:
@@ -41,6 +44,10 @@ while True:
         import discord
         import random
         import dc
+        import logging
+        logging.basicConfig(
+            level=logging.DEBUG, format="%(name)s  %(level)s  %(pathname)s  %(lineno)s  %(msg)s  %(args)s  %(exc_info)s  %(func)s  %(sinfo)s")
+        logging.DEBUG("hi")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
