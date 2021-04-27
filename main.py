@@ -47,7 +47,8 @@ while True:
             level=logging.INFO, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
 
-        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
+        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
+            szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
 
         try:
             x = type(db["szerdak"])
@@ -159,8 +160,16 @@ while True:
 
             # makeBackup
             if dc.cmd(os.environ['KEY'], "makebackup", msg):
-                logging.warning("{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
-                logging.warning("MOST:szerdak = {szerda}; backup = {bu}".format(szerda=db["szerdak"], bu=db["backup"]))
+                logging.warning(
+                    "{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
+                print("MOST:szerdak = {szerda}; backup = {bu}".format(
+                    szerda=db["szerdak"], bu=db["backup"]))
+                print("LESZ: backup = {}".format(str(
+                    {
+                        "szerdak": db["szerdak"],
+                        "time": time.asctime()
+                    }
+                )))
                 db["backup"] = {}
 
             # 8ball
