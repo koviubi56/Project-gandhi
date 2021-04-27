@@ -44,7 +44,7 @@ while True:
         print("=====")
         import logging
         logging.basicConfig(
-            level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
+            level=logging.INFO, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
 
         logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
@@ -58,14 +58,6 @@ while True:
         except Exception as e:
             print(f"NOT_PROBLEM0 error: {e}")
             db["szerdak"] = 0
-        else:
-            try:
-                db["szerdak"] += 1
-            except TypeError as e:
-                print(f"NOT_PROBLEM1 error: {e}")
-                print("np1:type:db = {}".format(str(type(db["szerdak"]))))
-                print("np1:db = {}".format(str(db["szerdak"])))
-                db["szerdak"] = 0
         finally:
             inSet = False
 
@@ -154,7 +146,7 @@ while True:
             global inSet
             if inSet == True:
                 inSet = False
-                db["szerdak"] = content
+                db["szerdak"] = int(content)
                 logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(
                     most=db["szerdak"], bu=str(db["backup"])))
 
@@ -163,10 +155,12 @@ while True:
                 inSet = True
                 backup()
                 logging.warning(
-                    "Valaki be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(db["szerdak"]))
+                    "{} be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
-            # resetbackup
-            if dc.cmd(os.environ['KEY'], "resetbackup", msg):
+            # makeBackup
+            if dc.cmd(os.environ['KEY'], "makebackup", msg):
+                logging.warning("{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
+                logging.warning("MOST:szerdak = {szerda}; backup = {bu}".format(szerda=db["szerdak"], bu=db["backup"]))
                 db["backup"] = {}
 
             # 8ball
