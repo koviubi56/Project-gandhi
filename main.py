@@ -178,7 +178,7 @@ while True:
                     "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
                 await dc.send(msg, """Backup: 
                               ```json
-                              {}
+{}
                               ```""".format(str(db["backup"])))
 
             # 8ball
