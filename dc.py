@@ -7,14 +7,14 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
 import discord
 
 
-def send(msg, text):
+async def send(msg, text):
     """Send a message
 
     Args:
         msg (dict): The message that discord gave
         text (str): The text. It can be "this"; or f"this {x}"; or "this {}".format("x")
     """
-    msg.channel.send(text)
+    await msg.channel.send(text)
 
 
 def cmd(prefix, command, msg):
