@@ -47,7 +47,7 @@ while True:
         # Verzió
         version = "1.3.0"
         # Bármi más? "-beta.1"?
-        pre = "-beta"
+        pre = "-beta.2"
         # ---SETTINGS---
 
         print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
