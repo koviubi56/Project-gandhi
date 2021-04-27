@@ -40,6 +40,7 @@ while True:
         import os
         import discord
         import random
+        import dc
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
@@ -125,22 +126,22 @@ while True:
             # 8ball
             if msg == "56!8ball":
                 lista8 = [
-                    "ez%20pokolian%20nem", 
-                    "őszintén%20szólva%20nem%20érdekel%20lol", 
-                    "nem%20vagyok%20benne%20biztos,%20de te biztos,%20hogy%20hülye%20vagy", 
-                    "igen???", 
-                    "amikor%20növesztessz%20egy%20agysejtet,%20akkor%20igen", 
-                    "nem!!!!", 
-                    "lol%20szó%20szerint%20nem", 
-                    "a%20fenébe!%20nem.", 
-                    "persze%20miért%20ne", 
+                    "ez%20pokolian%20nem",
+                    "őszintén%20szólva%20nem%20érdekel%20lol",
+                    "nem%20vagyok%20benne%20biztos,%20de te biztos,%20hogy%20hülye%20vagy",
+                    "igen???",
+                    "amikor%20növesztessz%20egy%20agysejtet,%20akkor%20igen",
+                    "nem!!!!",
+                    "lol%20szó%20szerint%20nem",
+                    "a%20fenébe!%20nem.",
+                    "persze%20miért%20ne",
                     "nem%20lmfao",
                     "persze,%20engem%20se%20érdekel%20jobban",
                     "Trump%20színe%20narancssárga?",
                     "én%20egy%208ball%20labda%20vagyok,%20nem%20foglalkozok%20a%20szar%20labdáiddal",
                     "biztos%20forrásból%20tudom:%20nem",
                     "biztos%20forrásból%20tudom:%20igen"
-                    ]
+                ]
                 # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
                 await message.channel.send("https://embed.rauf.wtf/?&author={}&color=171A1B".format(
                     lista8[
