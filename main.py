@@ -16,6 +16,7 @@ while True:
         import dc
         from logging import *
         import logging
+        logging = logging.getLogger(__name__)
         logging.basicConfig(
             level=logging.debug, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
 
@@ -66,7 +67,8 @@ while True:
             print('This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.')
 
             import logging
-            logging.basicConfig(level=logging.DEBUG, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
+            logging.basicConfig(
+                level=logging.DEBUG, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
 
