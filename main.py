@@ -2,8 +2,8 @@
 # coding: utf-8
 
 """
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
-If a copy of the MPL was not distributed with this file, 
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
@@ -14,11 +14,11 @@ while True:
         import discord
         import random
         import dc
-        from logging import *
+        print("=====")
         import logging
         logging = logging.getLogger(__name__)
         logging.basicConfig(
-            level=logging.debug, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
+            level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
 
         try:
             from replit import db
@@ -64,12 +64,16 @@ while True:
 
         @client.event
         async def on_ready():
+            print("-----")
             print('This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.')
 
+<< << << < HEAD
             import logging
             logging.basicConfig(
                 level=logging.DEBUG, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
 
+== == == =
+>>>>>> > 17b7a70f8bae0b8589204ce34a259b305fdecc58
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
 
         @client.event
