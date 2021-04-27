@@ -65,14 +65,14 @@ while True:
                 return
 
             plus = 0
-            msg = message.content.lower()
+            msg = message
 
             # szerda keresés
             try:
                 for i, betu in enumerate(msg):
                     if plus > maxSzerda:
                         print("TÚL SOK SZERDA!")
-                        await message.channel.send(f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
+                        dc.send(msg, f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
                         await message.channel.send("f|| Megjegyzés magamnak: *set*; szerdák: {str(db[szerdak])} ||")
                         plus = 0
                         break
