@@ -66,22 +66,25 @@ while True:
 
             plus = 0
             msg = message
+            content = msg.content
 
             # szerda keresés
             try:
-                for i, betu in enumerate(msg):
+                for i, betu in enumerate(content):
                     if plus > maxSzerda:
                         print("TÚL SOK SZERDA!")
-                        dc.send(msg, f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
-                        dc.send(msg, f"|| Megjegyzés magamnak: *set*; szerdák: {str(db[szerdak])} ||")
+                        dc.send(
+                            msg, f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
+                        dc.send(
+                            msg, f"|| Megjegyzés magamnak: *set*; szerdák: {str(db[szerdak])} ||")
                         plus = 0
                         break
                     if betu.lower() == "s":
-                        if msg[i + 1] == "z":
-                            if msg[i + 2] == "e":
-                                if msg[i + 3] == "r":
-                                    if msg[i + 4] == "d":
-                                        if msg[i + 5] == "a" or msg[i + 5] == "á":
+                        if content[i + 1] == "z":
+                            if content[i + 2] == "e":
+                                if content[i + 3] == "r":
+                                    if content[i + 4] == "d":
+                                        if content[i + 5] == "a" or content[i + 5] == "á":
                                             plus += 1
                                             continue
                                         else:
@@ -104,11 +107,11 @@ while True:
                 dc.send(msg, f"+{plus} szerda")
 
             # 56
-            if msg == '56':
+            if content == '56':
                 dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
-            if msg.startswith('stop.projectgandhi'):
+            if content.startswith('stop.projectgandhi'):
                 dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
                 print("Stopping...")
                 exit()
@@ -117,14 +120,14 @@ while True:
             global inSet
             if inSet == True:
                 inSet = False
-                db["szerdak"] = msg
+                db["szerdak"] = content
 
-            if msg.startswith('set.projectgandhi'):
+            if content.startswith('set.projectgandhi'):
                 dc.send(msg, 'K!')
                 inSet = True
 
             # 8ball
-            if msg == "56!8ball":
+            if content == "56!8ball":
                 lista8 = [
                     "ez%20pokolian%20nem",
                     "őszintén%20szólva%20nem%20érdekel%20lol",
