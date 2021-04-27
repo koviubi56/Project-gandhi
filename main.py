@@ -47,8 +47,7 @@ while True:
             level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
 
-        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
-            szerdak=str(db["szerdak"])), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"])))
+        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"])), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"])))
 
         try:
             x = type(db["szerdak"])
