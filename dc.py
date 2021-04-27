@@ -24,7 +24,7 @@ async def send(msg, text):
         logging.info("Üzenet elküldve!")
 
 
-def cmd(prefix, command, msg):
+def cmd(msg, prefix, command):
     """Checks if the msg is a command
 
     Args:

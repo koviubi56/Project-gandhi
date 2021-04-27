@@ -138,7 +138,7 @@ while True:
                 await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
-            if dc.cmd(os.environ['KEY'], 'stop', msg):
+            if dc.cmd(msg, os.environ['KEY'], 'stop'):
                 await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
                 logging.info("Stopping...")
                 exit()
@@ -151,7 +151,7 @@ while True:
                 logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(
                     most=db["szerdak"], bu=str(db["backup"])))
 
-            if dc.cmd(os.environ['KEY'], 'set', msg):
+            if dc.cmd(msg, os.environ['KEY'], 'set'):
                 await dc.send(msg, 'K!')
                 inSet = True
                 backup()
@@ -159,7 +159,7 @@ while True:
                     "{} be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
             # makeBackup
-            if dc.cmd(os.environ['KEY'], "makebackup", msg):
+            if dc.cmd(msg, os.environ['KEY'], "makebackup"):
                 logging.warning(
                     "{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
                 print("MOST:szerdak = {szerda}; backup = {bu}".format(
@@ -172,8 +172,14 @@ while True:
                 )))
                 db["backup"] = {}
 
+            # getBackup
+            if dc.cmd(msg, prefix, "getbackup"):
+                logging.info(
+                    "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
+                await dc.send(msg, "Backup: {}".format(str(db["backup"])))
+
             # 8ball
-            if dc.cmd(prefix, "8ball", msg):
+            if dc.cmd(msg, prefix, "8ball"):
                 lista8 = [
                     "ez%20pokolian%20nem",
                     "őszintén%20szólva%20nem%20érdekel%20lol",
