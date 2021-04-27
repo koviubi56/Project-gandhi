@@ -7,6 +7,15 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
+def backup():
+    if type(db["backup"]) is None:
+        db["backup"] = []
+
+    db["backup"].append = {
+        "szerdak": db["szerdak"],
+        "time": time.asctime()
+    }
+
 while True:
     print("Starting...")
     try:
@@ -23,6 +32,8 @@ while True:
 
         try:
             from replit import db
+            if type(db["backup"]) is None:
+                db["backup"] = []
         except Exception as e:
             logging.error(
                 f"Nem sikerült a db-t importálni a replit-ből: {str(e)}")
@@ -39,7 +50,10 @@ while True:
                         logging.info("Leállítás...")
                         exit()
         try:
-            db["szerdak"] -= 1
+            x = type(db["szerdak"])
+            if x is None:
+                backup()
+                db["szerdak"] = 0
         except:
             db["szerdak"] = 0
         else:
@@ -138,7 +152,7 @@ while True:
             if dc.cmd(os.environ['KEY'], 'set', msg):
                 await dc.send(msg, 'K!')
                 inSet = True
-                db["backup"] = {"szerdak": db["szerdak"], "time": time.asctime()}
+                backup()
                 logging.warning("Valaki be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(db["szerdak"]))
 
             # 8ball
