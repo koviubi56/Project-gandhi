@@ -21,7 +21,7 @@ async def send(msg, text):
     except Exception as e:
         logging.error(str(e))
     else:
-        logging.info("Message sent!")
+        logging.info("Üzenet elküldve!")
 
 
 def cmd(prefix, command, msg):

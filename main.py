@@ -23,8 +23,9 @@ while True:
         try:
             from replit import db
         except Exception as e:
-            logging.error(f"Error when importin db from replit: {str(e)}")
-            logging.info("Trying again...")
+            logging.error(
+                f"Nem sikerült a db-t importálni a replit-ből: {str(e)}")
+            logging.info("Újrapróbálkozás...")
             for e2 in range(5):
                 try:
                     from replit import db
@@ -33,8 +34,8 @@ while True:
                         logging.error(f"[ERROR {e2} ]")
                     elif e2 >= 4:
                         logging.critical(
-                            "We can't import db from replit after 6 tries. The bot CAN'T work without it.")
-                        logging.info("Stopping...")
+                            "Nem sikerült importálni 6 alkalommal se. A bot e nélkül NEM működik.")
+                        logging.info("Leállítás...")
                         exit()
         try:
             db["szerdak"] -= 1
@@ -169,4 +170,5 @@ while True:
     except Exception as e:
         print("\n\n")
         logging.error(f"Error code: {str(e)}")
-        logging.info("Restarting...")
+        logging.info("Újraindítás...")
+        continue
