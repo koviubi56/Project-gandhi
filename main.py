@@ -41,9 +41,12 @@ while True:
         import discord
         import random
         import dc
+        from logging import *
         import logging
-        logging.basicConfig(level=logging.DEBUG)
-        logging.info("hi")
+        logging.basicConfig(level=logging.ERROR, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
+        # logging.basicConfig(level=logging.DEBUG, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
+
+        logging.info("Starting...")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
@@ -61,8 +64,9 @@ while True:
 
         @client.event
         async def on_ready():
+            logging.basicConfig(level=logging.DEBUG, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
             print('This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.')
-            print('Bejelentkezve: "{0.user}"'.format(client))
+            logging.debug('Bejelentkezve: "{0.user}"'.format(client))
 
         @client.event
         async def on_message(message):
