@@ -68,7 +68,7 @@ while True:
         # Verzió
         version = "1.3.0"
         # Bármi más? "-beta.1"?
-        pre = "-beta.2"
+        pre = "-beta.3"
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
@@ -176,10 +176,16 @@ while True:
             if dc.cmd(msg, prefix, "getbackup"):
                 logging.warning(
                     "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# ! README: A {} .:!DIREKT!:. van ott, és úgy !
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 await dc.send(msg, """Backup: 
                               ```json
 {}
                               ```""".format(str(db["backup"])))
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# ! README: A {} .:!DIREKT!:. van ott, és úgy !
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             # 8ball
             if dc.cmd(msg, prefix, "8ball"):
