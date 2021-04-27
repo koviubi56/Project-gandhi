@@ -77,7 +77,8 @@ while True:
                         print("TÚL SOK SZERDA!")
                         dc.send(
                             msg, f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
-                        dc.send(msg, f"|| Megjegyzés magamnak: *set*; szerdák: {str(db["szerdak"])} ||")
+                        dc.send(
+                            msg, "|| Megjegyzés magamnak: *set*; szerdák: {szerdak} ||".format(szerdak=str(db["szerdak"])))
                         plus = 0
                         break
                     if betu.lower() == "s":
