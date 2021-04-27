@@ -5,7 +5,7 @@ try:
     from replit import db
 except Exception as e:
     print("[ERROR]")
-    print("Error when importin db from replit: " + str(e))
+    print(f"Error when importin db from replit: {str(e)}")
     print("Trying again...")
     for e2 in range(5):
         try:
@@ -33,32 +33,23 @@ while True:
     try:
         import os
         import discord
-        print("========================GANDHI BOT 1.2.0=======================")
+        import random
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
-        maxSzerda = 255
+        maxSzerda = 510
+        # Verzió
+        version = "1.3.0"
+        # Bármi más? "-beta.1"?
+        pre = "-beta"
         # ---SETTINGS---
 
-        """
-        ISC License
-        Copyright (c) Koviubi56 (koviubi#4465)
-        Permission to use, copy, modify, and/or distribute this software for any
-        purpose with or without fee is hereby granted, provided that the above
-        copyright notice and this permission notice appear in all copies.
-        THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-        WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-        MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-        ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-        WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-        ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-        OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-        """
+        print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
 
         client = discord.Client()
 
         @client.event
         async def on_ready():
-            print('THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.')
+            print('This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.')
             print('Bejelentkezve: "{0.user}"'.format(client))
 
         @client.event
@@ -69,6 +60,7 @@ while True:
             plus = 0
             msg = message.content.lower()
 
+            # szerda keresés
             try:
                 for i, betu in enumerate(msg):
                     if plus > maxSzerda:
@@ -104,17 +96,17 @@ while True:
                 db["szerdak"] += plus
                 await message.channel.send(f"+{plus} szerda")
 
-            if msg.startswith('56'):
-                await message.channel.send('Szerdák száma: ' + str(db["szerdak"]))
+            # 56
+            if msg == '56':
+                await message.channel.send(f'Szerdák száma: {str(db["szerdak"])}')
 
-            if msg.startswith('admin.projectgandhi'):
-                db["szerdak"] = 0
-
+            # stop
             if msg.startswith('stop.projectgandhi'):
                 await message.channel.send(f'Szerdák: {str(db["szerdak"])}')
                 print("Stopping...")
                 exit()
 
+            # set
             global inSet
             if inSet == True:
                 inSet = False
@@ -124,9 +116,37 @@ while True:
                 await message.channel.send('K!')
                 inSet = True
 
+            # 8ball
+            if msg == "56!8ball":
+                lista8 = [
+                    "ez%20pokolian%20nem", 
+                    "őszintén%20szólva%20nem%20érdekel%20lol", 
+                    "nem%20vagyok%20benne%20biztos,%20de te biztos,%20hogy%20hülye%20vagy", 
+                    "igen???", 
+                    "amikor%20növesztessz%20egy%20agysejtet,%20akkor%20igen", 
+                    "nem!!!!", 
+                    "lol%20szó%20szerint%20nem", 
+                    "a%20fenébe!%20nem.", 
+                    "persze%20miért%20ne", 
+                    "nem%20lmfao",
+                    "persze,%20engem%20se%20érdekel%20jobban",
+                    "Trump%20színe%20narancssárga?",
+                    "én%20egy%208ball%20labda%20vagyok,%20nem%20foglalkozok%20a%20szar%20labdáiddal",
+                    "biztos%20forrásból%20tudom:%20nem",
+                    "biztos%20forrásból%20tudom:%20igen",
+                    ]
+                # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
+                await message.channel.send("https://embed.rauf.wtf/?&author={}&color=171A1B".format(
+                    lista8[
+                        random.randrange(
+                            len(lista8)
+                        )
+                    ])
+                )
+
         client.run(os.environ['BOT_TOKEN'])
     except Exception as e:
         print("\n\n")
         print("[ERROR]")
-        print("Error code: " + str(e))
+        print(f"Error code: {str(e)}")
         print("Restarting...")
