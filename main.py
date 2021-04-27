@@ -42,9 +42,6 @@ while True:
         import random
         import dc
         from logging import *
-        import logging
-        logging.basicConfig(level=logging.debug, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
-        logging.info("Starting...")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
@@ -56,13 +53,18 @@ while True:
         prefix = "56!"
         # ---SETTINGS---
 
-        print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
-
         client = discord.Client()
+
+        for _ in range(80):
+            print("\n")
+        print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
 
         @client.event
         async def on_ready():
             print('This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.')
+
+            import logging
+            logging.basicConfig(level=logging.DEBUG, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
 
