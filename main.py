@@ -16,9 +16,9 @@ while True:
         import dc
         print("=====")
         import logging
-        logging = logging.getLogger(__name__)
         logging.basicConfig(
             level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
+        logging = logging.getLogger(__name__)
 
         try:
             from replit import db
