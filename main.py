@@ -133,7 +133,7 @@ while True:
                     "Trump%20színe%20narancssárga?",
                     "én%20egy%208ball%20labda%20vagyok,%20nem%20foglalkozok%20a%20szar%20labdáiddal",
                     "biztos%20forrásból%20tudom:%20nem",
-                    "biztos%20forrásból%20tudom:%20igen",
+                    "biztos%20forrásból%20tudom:%20igen"
                     ]
                 # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
                 await message.channel.send("https://embed.rauf.wtf/?&author={}&color=171A1B".format(
@@ -141,8 +141,8 @@ while True:
                         random.randrange(
                             len(lista8)
                         )
-                    ])
-                )
+                    ]
+                ))
 
         client.run(os.environ['BOT_TOKEN'])
     except Exception as e:
