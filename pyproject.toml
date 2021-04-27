@@ -1,9 +1,11 @@
 [tool.poetry]
-name = "repl_python3_Project-gandhi"
-version = "0.1.0"
-description = ""
+name = "Project-gandhi"
+version = "1.2.0"
+description = "A discord bot"
 authors = ["koviubi56 <>"]
 license = "MPL-2.0"
+homepage = "https://gandhibot.betteruptime.com/"
+keywords = ["python", "discord", "bot", "discord.py", "python3"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -15,3 +17,7 @@ replit = "^3.0.0"
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
+[tool.poetry.urls]
+"Status" = "https://gandhibot.betteruptime.com/"
+"Status 2" = "https://stats.uptimerobot.com/0EM17T29k6"
