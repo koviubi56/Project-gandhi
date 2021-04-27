@@ -119,24 +119,29 @@ while True:
             # 8ball
             if msg == "56!8ball":
                 lista8 = [
-                    "ez pokolian nem", 
-                    "őszintén szólva nem érdekel lol", 
-                    "nem vagyok benne biztos, de te biztos, hogy hülye vagy", 
+                    "ez%20pokolian%20nem", 
+                    "őszintén%20szólva%20nem%20érdekel%20lol", 
+                    "nem%20vagyok%20benne%20biztos,%20de te biztos,%20hogy%20hülye%20vagy", 
                     "igen???", 
-                    "amikor növesztessz egy agysejtet, akkor igen", 
+                    "amikor%20növesztessz%20egy%20agysejtet,%20akkor%20igen", 
                     "nem!!!!", 
-                    "lol szó szerint nem", 
-                    "a fenébe! nem.", 
-                    "persze miért ne", 
-                    "nem lmfao",
-                    "persze, engem se érdekel jobban",
-                    "Trump színe narancssárga?",
-                    "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
-                    "biztos forrásból tudom: nem",
-                    "biztos forrásból tudom: igen",
+                    "lol%20szó%20szerint%20nem", 
+                    "a%20fenébe!%20nem.", 
+                    "persze%20miért%20ne", 
+                    "nem%20lmfao",
+                    "persze,%20engem%20se%20érdekel%20jobban",
+                    "Trump%20színe%20narancssárga?",
+                    "én%20egy%208ball%20labda%20vagyok,%20nem%20foglalkozok%20a%20szar%20labdáiddal",
+                    "biztos%20forrásból%20tudom:%20nem",
+                    "biztos%20forrásból%20tudom:%20igen",
                     ]
-                await message.channel.send(
-                    f" :8ball: {lista8[random.randrange(len(lista8))]}"
+                # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
+                await message.channel.send("https://embed.rauf.wtf/?&author={}&color=171A1B".format(
+                    lista8[
+                        random.randrange(
+                            len(lista8)
+                        )
+                    ])
                 )
 
         client.run(os.environ['BOT_TOKEN'])
