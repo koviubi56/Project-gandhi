@@ -174,7 +174,7 @@ while True:
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
-                logging.info(
+                logging.warning(
                     "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
                 await dc.send(msg, "Backup: {}".format(str(db["backup"])))
 
