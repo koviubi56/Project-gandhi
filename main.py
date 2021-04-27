@@ -131,9 +131,13 @@ while True:
                     "nem lmfao",
                     "persze, engem se érdekel jobban",
                     "Trump színe narancssárga?",
-                    "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal"
+                    "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
+                    "biztos forrásból tudom: nem",
+                    "biztos forrásból tudom: igen",
                     ]
-                await message.channel.send(lista8[random.randrange(len(lista8))])
+                await message.channel.send(
+                    f" :8ball: {lista8[random.randrange(len(lista8))]}"
+                )
 
         client.run(os.environ['BOT_TOKEN'])
     except Exception as e:
