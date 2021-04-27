@@ -48,6 +48,8 @@ while True:
         version = "1.3.0"
         # Bármi más? "-beta.1"?
         pre = "-beta.2"
+        # Prefix
+        prefix = "56!"
         # ---SETTINGS---
 
         print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
@@ -127,7 +129,7 @@ while True:
                 inSet = True
 
             # 8ball
-            if content == "56!8ball":
+            if dc.cmd(prefix, "8ball", msg):
                 lista8 = [
                     "ez%20pokolian%20nem",
                     "őszintén%20szólva%20nem%20érdekel%20lol",
