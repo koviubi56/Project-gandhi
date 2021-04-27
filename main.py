@@ -101,15 +101,15 @@ while True:
 
             if plus > 0:
                 db["szerdak"] += plus
-                await message.channel.send(f"+{plus} szerda")
+                dc.send(msg, f"+{plus} szerda")
 
             # 56
             if msg == '56':
-                await message.channel.send(f'Szerdák száma: {str(db["szerdak"])}')
+                dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
             if msg.startswith('stop.projectgandhi'):
-                await message.channel.send(f'Szerdák: {str(db["szerdak"])}')
+                dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
                 print("Stopping...")
                 exit()
 
@@ -120,7 +120,7 @@ while True:
                 db["szerdak"] = msg
 
             if msg.startswith('set.projectgandhi'):
-                await message.channel.send('K!')
+                dc.send(msg, 'K!')
                 inSet = True
 
             # 8ball
@@ -143,7 +143,7 @@ while True:
                     "biztos%20forrásból%20tudom:%20igen"
                 ]
                 # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
-                await message.channel.send("https://embed.rauf.wtf/?&author={}&color=171A1B".format(
+                dc.send(msg, "https://embed.rauf.wtf/?&author={}&color=171A1B".format(
                     lista8[
                         random.randrange(
                             len(lista8)
