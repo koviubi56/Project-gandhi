@@ -44,7 +44,7 @@ while True:
         import logging
         logging.basicConfig(
             level=logging.DEBUG, format="%(name)s  %(level)s  %(pathname)s  %(lineno)s  %(msg)s  %(args)s  %(exc_info)s  %(func)s  %(sinfo)s")
-        logging.debug("hi")
+        logging.info("hi")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
