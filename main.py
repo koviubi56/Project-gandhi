@@ -113,7 +113,7 @@ while True:
                 await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
-            if content.startswith('stop.projectgandhi'):
+            if dc.cmd(os.environ['KEY'], 'stop', msg):
                 await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
                 print("Stopping...")
                 exit()
@@ -124,7 +124,7 @@ while True:
                 inSet = False
                 db["szerdak"] = content
 
-            if content.startswith('set.projectgandhi'):
+            if dc.cmd(os.environ['KEY'], 'set', msg):
                 await dc.send(msg, 'K!')
                 inSet = True
 
