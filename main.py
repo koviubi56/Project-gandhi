@@ -23,22 +23,10 @@ while True:
         import random
         import dc
         import time
-        print("=====")
-        import logging
-        logging.basicConfig(
-            level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
-        logging = logging.getLogger(__name__)
-
-        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
-            szerdak=str(db["szerdak"])),
-            szerdakT=str(type(db["szerdak"])),
-            bu=str(db["backup"]),
-            buT=str(type(db["backup"]))
-        )
-
         try:
             from replit import db
         except Exception as e:
+            import logging
             logging.error(
                 f"Nem sikerült a db-t importálni a replit-ből: {str(e)}")
             logging.info("Újrapróbálkozás...")
@@ -53,6 +41,19 @@ while True:
                             "Nem sikerült importálni 6 alkalommal se. A bot e nélkül NEM működik.")
                         logging.info("Leállítás...")
                         exit()
+        print("=====")
+        import logging
+        logging.basicConfig(
+            level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
+        logging = logging.getLogger(__name__)
+
+        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
+            szerdak=str(db["szerdak"])),
+            szerdakT=str(type(db["szerdak"])),
+            bu=str(db["backup"]),
+            buT=str(type(db["backup"]))
+        )
+
         try:
             x = type(db["szerdak"])
             if x is None:
