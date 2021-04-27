@@ -75,9 +75,9 @@ while True:
                 for i, betu in enumerate(content):
                     if plus > maxSzerda:
                         print("TÚL SOK SZERDA!")
-                        dc.send(
+                        await dc.send(
                             msg, f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
-                        dc.send(
+                        await dc.send(
                             msg, "|| Megjegyzés magamnak: *set*; szerdák: {szerdak} ||".format(szerdak=str(db["szerdak"])))
                         plus = 0
                         break
@@ -106,15 +106,15 @@ while True:
 
             if plus > 0:
                 db["szerdak"] += plus
-                dc.send(msg, f"+{plus} szerda")
+                await dc.send(msg, f"+{plus} szerda")
 
             # 56
             if content == '56':
-                dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
+                await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
             if content.startswith('stop.projectgandhi'):
-                dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
+                await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
                 print("Stopping...")
                 exit()
 
@@ -125,7 +125,7 @@ while True:
                 db["szerdak"] = content
 
             if content.startswith('set.projectgandhi'):
-                dc.send(msg, 'K!')
+                await dc.send(msg, 'K!')
                 inSet = True
 
             # 8ball
@@ -148,7 +148,7 @@ while True:
                     "biztos%20forrásból%20tudom:%20igen"
                 ]
                 # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
-                dc.send(msg, "https://embed.rauf.wtf/?&author={}&color=171A1B".format(
+                await dc.send(msg, "https://embed.rauf.wtf/?&author={}&color=171A1B".format(
                     lista8[
                         random.randrange(
                             len(lista8)
