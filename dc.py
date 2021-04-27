@@ -5,6 +5,8 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
 import discord
+import logging
+logging = logging.getLogger(__name__)
 
 
 async def send(msg, text):
@@ -14,7 +16,12 @@ async def send(msg, text):
         msg (dict): The message that discord gave
         text (str): The text. It can be "this"; or f"this {x}"; or "this {}".format("x")
     """
-    await msg.channel.send(text)
+    try:
+        await msg.channel.send(text)
+    except Exception as e:
+        logging.error(str(e))
+    else:
+        logging.info("Message sent!")
 
 
 def cmd(prefix, command, msg):
@@ -33,12 +40,14 @@ def cmd(prefix, command, msg):
     # // else:
     return False
 
+
 def bar(max):
     global dcmax
     global dcbar
     dcmax = max
     dcbar = 0
     print(f"0%")
+
 
 def barp():
     global dcmax
