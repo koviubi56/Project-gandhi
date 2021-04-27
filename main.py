@@ -27,6 +27,10 @@ while True:
             level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
 
+
+        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"])))
+
+
         try:
             from replit import db
         except Exception as e:
