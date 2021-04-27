@@ -7,11 +7,13 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
+
 def backup():
     db["backup"] = {
         "szerdak": db["szerdak"],
         "time": time.asctime()
     }
+
 
 while True:
     print("Starting...")
@@ -27,9 +29,12 @@ while True:
             level=logging.INFO, format="[%(name)s %(asctime)s %(levelname)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
 
-
-        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"])))
-
+        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
+            szerdak=str(db["szerdak"])),
+            szerdakT=str(type(db["szerdak"])),
+            bu=str(db["backup"]),
+            buT=str(type(db["backup"]))
+        )
 
         try:
             from replit import db
@@ -154,13 +159,15 @@ while True:
             if inSet == True:
                 inSet = False
                 db["szerdak"] = content
-                logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(most=db["szerdak"], bu=str(db["backup"])))
+                logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(
+                    most=db["szerdak"], bu=str(db["backup"])))
 
             if dc.cmd(os.environ['KEY'], 'set', msg):
                 await dc.send(msg, 'K!')
                 inSet = True
                 backup()
-                logging.warning("Valaki be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(db["szerdak"]))
+                logging.warning(
+                    "Valaki be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(db["szerdak"]))
 
             # resetbackup
             if dc.cmd(os.environ['KEY'], "resetbackup", msg):
