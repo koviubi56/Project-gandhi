@@ -1,21 +1,9 @@
 A bot jelenleg
 
-<!-- 
-![Online](online.PNG)
-**ONLINE** 19:40-19:30
-=
--->
-![Offline](offline.png) 
-**OFFLINE**
-=
-
----
 <!--
-
-Legközelebb ekkor lesz leállítva:
-
-xyz
--
+![Online](https://betteruptime.com/assets/status_pages/operational_small-da9ff2fc30b3886ee7a3c8f15a12c3e9d33658fafbd6b2a3759c5bfe2a47c90b.png)
+# **ONLINE**
 -->
 
-[![Better Uptime Badge](https://betteruptime.com/status-badges/v1/monitor/6xn9.svg)](https://betteruptime.com/?utm_source=status_badge)
+![Offline](https://betteruptime.com/assets/status_pages/downtime_small-a1acbab3ccad870edea8900adf9e65e0436674e2bf88ff51fd56a96ed70b26e0.png) 
+# **OFFLINE**
