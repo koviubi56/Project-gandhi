@@ -32,3 +32,17 @@ def cmd(prefix, command, msg):
         return True
     # // else:
     return False
+
+def bar(max):
+    global dcmax
+    global dcbar
+    dcmax = max
+    dcbar = 0
+    print(f"0%")
+
+def barp():
+    global dcmax
+    global dcbar
+    onep = dcmax / 100
+    dcbar += 1
+    print("{}%".format(dcbar / onep))
