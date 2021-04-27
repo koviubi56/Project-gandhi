@@ -176,7 +176,10 @@ while True:
             if dc.cmd(msg, prefix, "getbackup"):
                 logging.warning(
                     "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
-                await dc.send(msg, "Backup: {}".format(str(db["backup"])))
+                await dc.send(msg, """Backup: 
+                              ```json
+                              {}
+                              ```""".format(str(db["backup"])))
 
             # 8ball
             if dc.cmd(msg, prefix, "8ball"):
