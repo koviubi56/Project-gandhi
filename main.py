@@ -106,7 +106,7 @@ while True:
 
             if plus > 0:
                 db["szerdak"] += plus
-                await dc.send(msg, f"+{plus} szerda")
+                await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=db["szerdak"]))
 
             # 56
             if content == '56':
