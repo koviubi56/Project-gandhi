@@ -43,7 +43,7 @@ while True:
         import dc
         import logging
         logging.basicConfig(
-            level=logging.DEBUG, format="%(name)s  %(level)s  %(pathname)s  %(lineno)s  %(msg)s  %(args)s  %(exc_info)s  %(func)s  %(sinfo)s")
+            level=logging.DEBUG, format="%(name)s  %(pathname)s  %(lineno)s  %(msg)s  %(args)s  %(exc_info)s  %(func)s  %(sinfo)s")
         logging.info("hi")
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
