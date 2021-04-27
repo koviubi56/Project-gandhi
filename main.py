@@ -8,10 +8,7 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
 def backup():
-    if type(db["backup"]) is None:
-        db["backup"] = []
-
-    db["backup"].append = {
+    db["backup"] = {
         "szerdak": db["szerdak"],
         "time": time.asctime()
     }
@@ -32,8 +29,6 @@ while True:
 
         try:
             from replit import db
-            if type(db["backup"]) is None:
-                db["backup"] = []
         except Exception as e:
             logging.error(
                 f"Nem sikerült a db-t importálni a replit-ből: {str(e)}")
@@ -52,12 +47,20 @@ while True:
         try:
             x = type(db["szerdak"])
             if x is None:
+                print("Type of x: ".format(str(type(x))))
                 backup()
                 db["szerdak"] = 0
-        except:
+        except Exception as e:
+            print(f"NOT_PROBLEM0 error: {e}")
             db["szerdak"] = 0
         else:
-            db["szerdak"] += 1
+            try:
+                db["szerdak"] += 1
+            except TypeError as e:
+                print(f"NOT_PROBLEM1 error: {e}")
+                print("np1:type:db = {}".format(str(type(db["szerdak"]))))
+                print("np1:db = {}".format(str(db["szerdak"])))
+                db["szerdak"] = 0
         finally:
             inSet = False
 
@@ -147,13 +150,17 @@ while True:
             if inSet == True:
                 inSet = False
                 db["szerdak"] = content
-                logging.info("Szerda beállítva! Mostani szerda: {most}  Régi ({rIdo}) szerda: {r}".format(most=db["szerdak"], rIdo=db["backup"]["time"], r=db["backup"].szerdak))
+                logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(most=db["szerdak"], bu=str(db["backup"])))
 
             if dc.cmd(os.environ['KEY'], 'set', msg):
                 await dc.send(msg, 'K!')
                 inSet = True
                 backup()
                 logging.warning("Valaki be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(db["szerdak"]))
+
+            # resetbackup
+            if dc.cmd(os.environ['KEY'], "resetbackup", msg):
+                db["backup"] = {}
 
             # 8ball
             if dc.cmd(prefix, "8ball", msg):
