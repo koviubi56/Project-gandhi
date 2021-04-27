@@ -14,6 +14,7 @@ while True:
         import discord
         import random
         import dc
+        import time
         print("=====")
         import logging
         logging.basicConfig(
@@ -132,10 +133,13 @@ while True:
             if inSet == True:
                 inSet = False
                 db["szerdak"] = content
+                logging.info("Szerda beállítva! Mostani szerda: {most}  Régi ({rIdo}) szerda: {r}".format(most=db["szerdak"], rIdo=db["backup"].time, r=db["backup"].szerdak))
 
             if dc.cmd(os.environ['KEY'], 'set', msg):
                 await dc.send(msg, 'K!')
                 inSet = True
+                db["backup"] = {"szerdak": db["szerdak"], "time": time.asctime()}
+                logging.warning("Valaki be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(db["szerdak"]))
 
             # 8ball
             if dc.cmd(prefix, "8ball", msg):
