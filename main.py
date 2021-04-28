@@ -34,24 +34,8 @@ while True:
         import random
         import dc
         import time
-        try:
-            from replit import db
-        except Exception as e:
-            import logging
-            logging.error(
-                f"Nem sikerült a db-t importálni a replit-ből: {str(e)}")
-            logging.info("Újrapróbálkozás...")
-            for e2 in range(5):
-                try:
-                    from replit import db
-                except:
-                    if e2 < 4:
-                        logging.error(f"[ERROR {e2} ]")
-                    elif e2 >= 4:
-                        logging.critical(
-                            "Nem sikerült importálni 6 alkalommal se. A bot e nélkül NEM működik.")
-                        logging.info("Leállítás...")
-                        exit()
+        from replit import db
+
         print("=====")
         import logging
         logging.basicConfig(
@@ -170,7 +154,7 @@ Your values become your destiny.""",
 **56**: Kiírja az eddig számolt szerdákat
 **{prefix}8ball**: 8ball/8labda
                               """)
-                
+
                 await dc.send(msg, """És ne feledd:
 > "{}"
     ― Mahatma Gandhi
