@@ -259,9 +259,9 @@ Your values become your destiny.""",
 # ! README: A {} .:!DIREKT!:. van ott, és úgy !
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 await dc.send(msg, """Backup: 
-                              ```json
+```json
 {}
-                              ```""".format(str(db["backup"])))
+```""".format(str(db["backup"])))
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # ! README: A {} .:!DIREKT!:. van ott, és úgy !
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
