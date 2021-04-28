@@ -135,7 +135,8 @@ Your values become your destiny.""",
             msg = message
             content = msg.content
 
-            print(str(content))
+            print(
+                f"MSG: \"{content}\"; BY: \"msg.author\"; CH: \"{msg.channel}\"")
 
             # hjelp
             if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi" or content == "<@!753651550047436902>":
