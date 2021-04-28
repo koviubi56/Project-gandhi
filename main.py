@@ -35,7 +35,7 @@ while True:
         import dc
         import time
         from replit import db
-        print("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
+        print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
             szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
 
         print("=====")
@@ -51,7 +51,7 @@ while True:
                 backup()
                 db["szerdak"] = 0
         except Exception as e:
-            print(f"NOT_PROBLEM0 error: {e}")
+            print(f"NOT_PROBLEM0 error: \"{e}\"")
             db["szerdak"] = 0
         finally:
             inSet = False
@@ -215,7 +215,7 @@ Your values become your destiny.""",
             if inSet == True:
                 inSet = False
                 db["szerdak"] = int(content)
-                logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(
+                logging.info("Szerda beállítva! Mostani szerda: \"{most}\"  Backup: \"{bu}\"".format(
                     most=db["szerdak"], bu=str(db["backup"])))
 
             if dc.cmd(msg, os.environ["KEY"], "set"):
@@ -223,26 +223,26 @@ Your values become your destiny.""",
                 inSet = True
                 backup()
                 logging.warning(
-                    "{} be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
+                    "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
             # makeBackup
             if dc.cmd(msg, os.environ["KEY"], "makebackup"):
                 logging.warning(
-                    "{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
-                print("MOST:szerdak = {szerda}; backup = {bu}".format(
+                    "\"{}\" szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
+                print("MOST:szerdak = \"{szerda}\"; backup = \"{bu}\"".format(
                     szerda=db["szerdak"], bu=db["backup"]))
                 BUlesz = db["backup"]
                 BUlesz["CMDbackup"] = {
                     "szerdak": db["szerdak"],
                     "time": time.asctime()
                 }
-                print("LESZ: backup = {}".format(str(BUlesz)))
+                print("LESZ: backup = \"{}\"".format(str(BUlesz)))
                 db["backup"] = {}
 
             # resetBackup
             if dc.cmd(msg, os.environ["KEY"], "resetbackup"):
                 logging.warning(
-                    "{} resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
+                    "\"{}\" resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
                 print("MOST: backup = \"{}\"".format(str(db["backup"])))
                 print("LESZ: backup = \"{}\"".format(str(
                     {"CMDbackup": {}, "AUTObackup": {}}
@@ -256,7 +256,7 @@ Your values become your destiny.""",
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
                 logging.warning(
-                    "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
+                    "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
                 await dc.send(msg, """Backup: 
 ```json
 {}
@@ -299,6 +299,6 @@ Your values become your destiny.""",
 
     except Exception as e:
         print("\n\n")
-        logging.error(f"Error code: {str(e)}")
+        logging.error(f"Error code: \"{str(e)}\"")
         logging.info("Újraindítás...")
         continue
