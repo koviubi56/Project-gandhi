@@ -171,7 +171,7 @@ while True:
                     }
                 )))
                 db["backup"] = {"szerdak": db["szerdak"], "time": time.asctime()}
-                dc.send(msg, "Backup kész!")
+                await dc.send(msg, "Backup kész!")
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
