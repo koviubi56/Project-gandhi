@@ -8,10 +8,12 @@ title 60 sec
 timeout /T 60
 
 title Pull...
+echo ===PULL===
 color 17
 git pull
 
 title Push...
+echo ===PUSH===
 color 47
 git push
 
