@@ -180,10 +180,17 @@ while True:
 
             # resetBackup
             if dc.cmd(msg, os.environ['KEY'], "resetbackup"):
+                logging.warning(
+                    "{} resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
+                print("MOST: backup = \"{}\"".format(str(db["backup"])))
+                print("LESZ: backup = \"{}\"".format(str(
+                    {"CMDbackup": {}, "AUTObackup": {}}
+                )))
                 db["backup"] = {
                     "CMDbackup": {},
                     "AUTObackup": {}
                 }
+                dc.send(msg, "Kész!")
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
