@@ -281,7 +281,7 @@ Your values become your destiny.""",
                         "biztos forrásból tudom: nem",
                         "biztos forrásból tudom: igen",
                         "egy szőrszálamnak több IQ-ja van te barom",
-                        "még egy hüje kérdés bedoblak tehén tápnak :tehen:"
+                        "még egy hüje kérdés bedoblak tehén tápnak <:tehen:694837305101516840>"
                     ]
                     embed8ball = discord.Embed()
                     #       0123456789
