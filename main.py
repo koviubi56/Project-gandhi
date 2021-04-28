@@ -229,12 +229,12 @@ Your values become your destiny.""",
                     "{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
                 print("MOST:szerdak = {szerda}; backup = {bu}".format(
                     szerda=db["szerdak"], bu=db["backup"]))
-                print("LESZ: backup = {}".format(str(
-                    {
-                        "szerdak": db["szerdak"],
-                        "time": time.asctime()
-                    }
-                )))
+                BUlesz = db["backup"]
+                BUlesz["CMDbackup"] = {
+                    "szerdak": db["szerdak"],
+                    "time": time.asctime()
+                }
+                print("LESZ: backup = {}".format(str(BUlesz)))
                 db["backup"] = {}
 
             # resetBackup
