@@ -290,7 +290,9 @@ Your values become your destiny.""",
                 # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
                 embed8ball = discord.Embed(description=random.choice(lista8))
                 embed8ball.add_field(name="NÉM", value="VELLYÚ", inline=False)
-                embed8ball.add_field(name="2NÉM2", value="2VELLYÚ2", inline=False)
+                embed8ball.add_field(
+                    name="2NÉM2", value="2VELLYÚ2", inline=False)
+                embed8ball.add_field(name="3NÉM3", value="3VELLYÚ3")
                 await dc.embed(msg, embed8ball)
         """
         embedVar = discord.Embed(title="Title", description="Desc", color=0x00ff00)
