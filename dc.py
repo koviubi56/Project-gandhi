@@ -21,7 +21,8 @@ async def send(msg, text):
     except Exception as e:
         logging.error(str(e))
     else:
-        logging.info("Üzenet elküldve!")
+        logging.info("Üzenet elküldve! (CH: {ch}; MSG: {msg})".format(
+            ch=msg.channel, msg=text))
 
 
 async def embed(msg, embedVar):
@@ -36,7 +37,7 @@ async def embed(msg, embedVar):
     except Exception as e:
         logging.error(str(e))
     else:
-        logging.info("Embed elküldve!")
+        logging.info("Embed elküldve! (CH: {})".format(msg.channel))
 
 
 def cmd(msg, prefix, command):
@@ -54,19 +55,3 @@ def cmd(msg, prefix, command):
         return True
     # // else:
     return False
-
-
-def bar(max):
-    global dcmax
-    global dcbar
-    dcmax = max
-    dcbar = 0
-    print(f"0%")
-
-
-def barp():
-    global dcmax
-    global dcbar
-    onep = dcmax / 100
-    dcbar += 1
-    print("{}%".format(dcbar / onep))
