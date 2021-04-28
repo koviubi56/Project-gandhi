@@ -90,6 +90,50 @@ while True:
             print("\n")
         print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
 
+        gandhi = [
+            "Be the change that you wish to see in the world.",
+            "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+            "An eye for an eye will only make the whole world blind.",
+            "Happiness is when what you think, what you say, and what you do are in harmony.",
+            "When I despair, I remember that all through history the way of truth and love have always won. There have been tyrants and murderers, and for a time, they can seem invincible, but in the end, they always fall. Think of it--always.",
+            "The weak can never forgive. Forgiveness is the attribute of the strong.",
+            "Where there is love there is life.",
+            "Prayer is not asking. It is a longing of the soul. It is daily admission of one's weakness. It is better in prayer to have a heart without words than words without a heart.",
+            "I like your Christ, I do not like your Christians. Your Christians are so unlike your Christ.",
+            "Freedom is not worth having if it does not include the freedom to make mistakes.",
+            "Nobody can hurt me without my permission.",
+            "God has no religion.",
+            "Hate the sin, love the sinner.",
+            "I will not let anyone walk through my mind with their dirty feet.",
+            """Your beliefs become your thoughts,
+Your thoughts become your words,
+Your words become your actions,
+Your actions become your habits,
+Your habits become your values,
+Your values become your destiny.""",
+            "You must not lose faith in humanity. Humanity is like an ocean; if a few drops of the ocean are dirty, the ocean does not become dirty.",
+            "The best way to find yourself is to lose yourself in the service of others.",
+            """Let the first act of every morning be to make the following resolve for the day:
+
+- I shall not fear anyone on Earth.
+- I shall fear only God.
+- I shall not bear ill will toward anyone.
+- I shall not submit to injustice from anyone.
+- I shall conquer untruth by truth. And in resisting untruth, I shall put up with all suffering.""",
+            "The future depends on what you do today.”",
+            "A man is but the product of his thoughts. What he thinks, he becomes.",
+            "To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer.",
+            "The greatness of a nation and its moral progress can be judged by the way its animals are treated.",
+            "Man often becomes what he believes himself to be. If I keep on saying to myself that I cannot do a certain thing, it is possible that I may end by really becoming incapable of doing it. On the contrary, if I have the belief that I can do it, I shall surely acquire the capacity to do it even if I may not have it at the beginning.",
+            "Each night, when I go to sleep, I die. And the next morning, when I wake up, I am reborn.",
+            "Earth provides enough to satisfy every man's needs, but not every man's greed.",
+            "What difference does it make to the dead, the orphans and the homeless, whether the mad destruction is wrought under the name of totalitarianism or in the holy name of liberty or democracy?",
+            "To believe in something, and not to live it, is dishonest.",
+            "There are people in the world so hungry, that God cannot appear to them except in the form of bread.",
+            "It is unwise to be too sure of one's own wisdom. It is healthy to be reminded that the strongest might weaken and the wisest might err.",
+            "Whatever you do will be insignificant, but it is very important that you do it."
+        ]
+
         @client.event
         async def on_ready():
             print("-----")
@@ -126,6 +170,11 @@ while True:
 **56**: Kiírja az eddig számolt szerdákat
 **{prefix}8ball*: 8ball/8labda
                               """)
+                
+                await dc.send(msg, """És ne feledd:
+> "{}"
+    ― Mahatma Gandhi
+""".format(random.choice(gandhi)))
 
             # szerda keresés
             try:
