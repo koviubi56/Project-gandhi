@@ -288,7 +288,7 @@ Your values become your destiny.""",
                     await dc.embed(msg, embed8ball)
                 else:
                     await dc.send(msg, ":(")
-                    await dc.send(msg, f"Így használd: `{prefix}8ball `<KÉRDÉS>")
+                    await dc.send(msg, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
                     await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
 
         client.run(os.environ["BOT_TOKEN"])
