@@ -8,9 +8,6 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
 
-from _typeshed import FileDescriptor
-
-
 def backup(type):
     if type == "CMD":
         db["backup"]["CMDbackup"] = {
