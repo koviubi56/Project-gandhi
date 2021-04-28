@@ -8,6 +8,9 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
 
+from _typeshed import FileDescriptor
+
+
 def backup(type):
     if type == "CMD":
         db["backup"]["CMDbackup"] = {
@@ -271,30 +274,33 @@ Your values become your destiny.""",
             # 8ball
             if dc.cmd(msg, prefix, "8ball"):
                 lista8 = [
-                    "ez%20pokolian%20nem",
-                    "őszintén%20szólva%20nem%20érdekel%20lol",
-                    "nem%20vagyok%20benne%20biztos,%20de te biztos,%20hogy%20hülye%20vagy",
+                    "ez pokolian nem",
+                    "őszintén szólva nem érdekel lol",
+                    "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
                     "igen???",
-                    "amikor%20növesztessz%20egy%20agysejtet,%20akkor%20igen",
+                    "amikor növesztessz egy agysejtet, akkor igen",
                     "nem!!!!",
-                    "lol%20szó%20szerint%20nem",
-                    "a%20fenébe!%20nem.",
-                    "persze%20miért%20ne",
-                    "nem%20lmfao",
-                    "persze,%20engem%20se%20érdekel%20jobban",
-                    "Trump%20színe%20narancssárga?",
-                    "én%20egy%208ball%20labda%20vagyok,%20nem%20foglalkozok%20a%20szar%20labdáiddal",
-                    "biztos%20forrásból%20tudom:%20nem",
-                    "biztos%20forrásból%20tudom:%20igen"
+                    "lol szó szerint nem",
+                    "a fenébe! nem.",
+                    "persze miért ne",
+                    "nem lmfao",
+                    "persze, engem se érdekel jobban",
+                    "Trump színe narancssárga?",
+                    "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
+                    "biztos forrásból tudom: nem",
+                    "biztos forrásból tudom: igen"
                 ]
                 # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
-                await dc.send(msg, "https://embed.rauf.wtf/?&author={}&color=171A1B".format(
-                    lista8[
-                        random.randrange(
-                            len(lista8)
-                        )
-                    ]
-                ))
+                embed8ball = discord.Embed(description=random.choice(lista8))
+                embed8ball.add_field(name="NÉM", value="VELLYÚ", inline=False)
+                embed8ball.add_field(name="2NÉM2", value="2VELLYÚ2", inline=False)
+                await dc.embed(msg, embed8ball)
+        """
+        embedVar = discord.Embed(title="Title", description="Desc", color=0x00ff00)
+        embedVar.add_field(name="Field1", value="hi", inline=False)
+        embedVar.add_field(name="Field2", value="hi2", inline=False)
+        await message.channel.send(embed=embedVar)
+        """
 
         client.run(os.environ["BOT_TOKEN"])
 

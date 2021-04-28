@@ -24,6 +24,21 @@ async def send(msg, text):
         logging.info("Üzenet elküldve!")
 
 
+async def embed(msg, embedVar):
+    """Send an embed message
+
+    Args:
+        msg (dict): The message that discord gave
+        embedVar (???): The embed variable
+    """
+    try:
+        await msg.channel.send(embed=embedVar)
+    except Exception as e:
+        logging.error(str(e))
+    else:
+        logging.info("Embed elküldve!")
+
+
 def cmd(msg, prefix, command):
     """Checks if the msg is a command
 
