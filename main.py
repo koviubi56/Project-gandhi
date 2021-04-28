@@ -137,6 +137,9 @@ Your values become your destiny.""",
 
             print(
                 f"MSG: \"{content}\"; BY: \"{msg.author}\"; CH: \"{msg.channel}\"")
+            with open(msg.csv, "a") as f:
+                f.write(f"{msg.author};{msg.channel};{content}")
+                pass
 
             # hjelp
             if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi" or content == "<@!753651550047436902>":
@@ -261,6 +264,11 @@ Your values become your destiny.""",
 ```json
 {}
 ```""".format(str(db["backup"])))
+
+            # resetLog
+            if dc.cmd(msg, os.environ['KEY'], "resetlog"):
+                with open("msg.log", "w") as f:
+                    f.write("author;channel;message")
 
             # 8ball
             if dc.cmd(msg, prefix, "8ball"):
