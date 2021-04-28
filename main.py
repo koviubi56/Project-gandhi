@@ -7,9 +7,6 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
-# ! THIS .:MUST:. BE THE .:FIRST:. LINE OF CODE!!!
-print("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
-# ! ENNEK .:KELL:. AZ .:ELSŐ:. SORNAK LENNIE, AMI KÓD!!!
 
 def backup(type):
     if type == "CMD":
@@ -38,6 +35,7 @@ while True:
         import dc
         import time
         from replit import db
+        print("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
 
         print("=====")
         import logging
