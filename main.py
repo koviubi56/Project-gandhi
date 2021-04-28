@@ -35,7 +35,8 @@ while True:
         import dc
         import time
         from replit import db
-        print("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
+        print("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
+            szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
 
         print("=====")
         import logging
@@ -276,7 +277,9 @@ Your values become your destiny.""",
                         "Trump színe narancssárga?",
                         "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
                         "biztos forrásból tudom: nem",
-                        "biztos forrásból tudom: igen"
+                        "biztos forrásból tudom: igen",
+                        "egy szőrszálamnak több IQ-ja van te barom",
+                        "még egy hüje kérdés bedoblak tehén tápnak :tehen:"
                     ]
                     embed8ball = discord.Embed()
                     #       0123456789
