@@ -137,7 +137,7 @@ Your values become your destiny.""",
 
             print(
                 f"MSG: \"{content}\"; BY: \"{msg.author}\"; CH: \"{msg.channel}\"")
-            with open(msg.csv, "a") as f:
+            with open("msg.csv", "a") as f:
                 f.write(f"{msg.author};{msg.channel};{content}")
                 pass
 
