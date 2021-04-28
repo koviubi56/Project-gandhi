@@ -135,6 +135,8 @@ Your values become your destiny.""",
             plus = 0
             msg = message
             content = msg.content
+            if bool(os.environ["SPY"]):
+                print(content)
 
             # hjelp
             if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi":
