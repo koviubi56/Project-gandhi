@@ -15,10 +15,15 @@ def backup(type):
             "time": time.asctime()
         }
     elif type == "AUTO":
-        db["backup"]["AUTObackup"] = {
-            "szerdak": db["szerdak"],
-            "time": time.asctime()
-        }
+        try:
+            db["backup"]["AUTObackup"] = {
+                "szerdak": db["szerdak"],
+                "time": time.asctime()
+            }
+        except Exception as e:
+            logging.error(str(e))
+        else:
+            logging.info("AutoBackup kész!")
 
 
 while True:
@@ -91,6 +96,8 @@ while True:
             print('This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.')
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
+
+            backup("AUTO")
 
         @client.event
         async def on_message(message):
