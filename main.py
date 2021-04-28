@@ -249,7 +249,7 @@ Your values become your destiny.""",
                     "CMDbackup": {},
                     "AUTObackup": {}
                 }
-                dc.send(msg, "Kész!")
+                await dc.send(msg, "Kész!")
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
