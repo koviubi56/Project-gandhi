@@ -7,6 +7,9 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
+# ! THIS .:MUST:. BE THE .:FIRST:. LINE OF CODE!!!
+print("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
+# ! ENNEK .:KELL:. AZ .:ELSŐ:. SORNAK LENNIE, AMI KÓD!!!
 
 def backup(type):
     if type == "CMD":
@@ -41,9 +44,6 @@ while True:
         logging.basicConfig(
             level=logging.INFO, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
-
-        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
-            szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
 
         try:
             x = type(db["szerdak"])
