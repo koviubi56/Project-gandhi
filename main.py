@@ -287,19 +287,12 @@ Your values become your destiny.""",
                     "biztos forrásból tudom: nem",
                     "biztos forrásból tudom: igen"
                 ]
-                # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
-                embed8ball = discord.Embed(description=random.choice(lista8))
-                embed8ball.add_field(name="NÉM", value="VELLYÚ", inline=False)
+                embed8ball = discord.Embed()
+                #       0123456789
+                # PREFIX8ball xyz
                 embed8ball.add_field(
-                    name="2NÉM2", value="2VELLYÚ2", inline=False)
-                embed8ball.add_field(name="3NÉM3", value="3VELLYÚ3")
+                    name=content[len(prefix) + 6:], value=random.choice(lista8))
                 await dc.embed(msg, embed8ball)
-        """
-        embedVar = discord.Embed(title="Title", description="Desc", color=0x00ff00)
-        embedVar.add_field(name="Field1", value="hi", inline=False)
-        embedVar.add_field(name="Field2", value="hi2", inline=False)
-        await message.channel.send(embed=embedVar)
-        """
 
         client.run(os.environ["BOT_TOKEN"])
 
