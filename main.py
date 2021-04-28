@@ -108,6 +108,22 @@ while True:
             msg = message
             content = msg.content
 
+            # hjelp
+            if dc.cmd(msg, prefix, "hjelp"):
+                if random.randrange(3) == 0:
+                    await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                elif random.randrange(3) == 1:
+                    await dc.send(msg, "Lottószámok (hatos lottó): || {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                elif random.randrange(3) == 1:
+                    await dc.send(msg, "Lottószámok (skandináv lottó): || {} {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36)))
+                
+                await dc.send(msg, f""" **Prefix**: {prefix}
+**Verzió**: {version}{pre}
+**__Parancsok__**: 
+**56**: Kiírja az eddig számolt szerdákat
+**{prefix}8ball*: 8ball/8labda
+                              """)
+
             # szerda keresés
             try:
                 for i, betu in enumerate(content):
