@@ -139,7 +139,7 @@ Your values become your destiny.""",
                 print(content)
 
             # hjelp
-            if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi":
+            if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi" or content == "<@!753651550047436902>":
                 if content == "@Gandhi":
                     await dc.send(msg, "Úgy látom valaki megidézett!")
 
