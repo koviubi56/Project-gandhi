@@ -255,42 +255,41 @@ Your values become your destiny.""",
             if dc.cmd(msg, prefix, "getbackup"):
                 logging.warning(
                     "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# ! README: A {} .:!DIREKT!:. van ott, és úgy !
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 await dc.send(msg, """Backup: 
 ```json
 {}
 ```""".format(str(db["backup"])))
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# ! README: A {} .:!DIREKT!:. van ott, és úgy !
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             # 8ball
             if dc.cmd(msg, prefix, "8ball"):
-                lista8 = [
-                    "ez pokolian nem",
-                    "őszintén szólva nem érdekel lol",
-                    "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
-                    "igen???",
-                    "amikor növesztessz egy agysejtet, akkor igen",
-                    "nem!!!!",
-                    "lol szó szerint nem",
-                    "a fenébe! nem.",
-                    "persze miért ne",
-                    "nem lmfao",
-                    "persze, engem se érdekel jobban",
-                    "Trump színe narancssárga?",
-                    "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
-                    "biztos forrásból tudom: nem",
-                    "biztos forrásból tudom: igen"
-                ]
-                embed8ball = discord.Embed()
-                #       0123456789
-                # PREFIX8ball xyz
-                embed8ball.add_field(
-                    name=content[len(prefix) + 6:], value=random.choice(lista8))
-                await dc.embed(msg, embed8ball)
+                if len(content) > len(prefix) + len("8ball "):
+                    lista8 = [
+                        "ez pokolian nem",
+                        "őszintén szólva nem érdekel lol",
+                        "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
+                        "igen???",
+                        "amikor növesztessz egy agysejtet, akkor igen",
+                        "nem!!!!",
+                        "lol szó szerint nem",
+                        "a fenébe! nem.",
+                        "persze miért ne",
+                        "nem lmfao",
+                        "persze, engem se érdekel jobban",
+                        "Trump színe narancssárga?",
+                        "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
+                        "biztos forrásból tudom: nem",
+                        "biztos forrásból tudom: igen"
+                    ]
+                    embed8ball = discord.Embed()
+                    #       0123456789
+                    # PREFIX8ball xyz
+                    embed8ball.add_field(
+                        name=content[len(prefix) + 6:], value=random.choice(lista8))
+                    await dc.embed(msg, embed8ball)
+                else:
+                    await dc.send(msg, ":(")
+                    await dc.send(msg, f"Így használd: `{prefix}8ball `<KÉRDÉS>")
+                    await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
 
         client.run(os.environ["BOT_TOKEN"])
 
