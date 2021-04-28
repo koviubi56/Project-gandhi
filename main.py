@@ -72,7 +72,7 @@ while True:
 
         for _ in range(80):
             print("\n")
-        print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
+        print("{:=^63}".format(f"GANDHI BOT {version}{pre}"))
 
         gandhi = [
             "Be the change that you wish to see in the world.",
@@ -199,11 +199,11 @@ Your values become your destiny.""",
                 await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=db["szerdak"]))
 
             # 56
-            if content == '56':
+            if content == "56":
                 await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
-            if dc.cmd(msg, os.environ['KEY'], 'stop'):
+            if dc.cmd(msg, os.environ["KEY"], "stop"):
                 await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
                 logging.info("Stopping...")
                 exit()
@@ -216,15 +216,15 @@ Your values become your destiny.""",
                 logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(
                     most=db["szerdak"], bu=str(db["backup"])))
 
-            if dc.cmd(msg, os.environ['KEY'], 'set'):
-                await dc.send(msg, 'K!')
+            if dc.cmd(msg, os.environ["KEY"], "set"):
+                await dc.send(msg, "K!")
                 inSet = True
                 backup()
                 logging.warning(
                     "{} be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
             # makeBackup
-            if dc.cmd(msg, os.environ['KEY'], "makebackup"):
+            if dc.cmd(msg, os.environ["KEY"], "makebackup"):
                 logging.warning(
                     "{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
                 print("MOST:szerdak = {szerda}; backup = {bu}".format(
@@ -238,7 +238,7 @@ Your values become your destiny.""",
                 db["backup"] = {}
 
             # resetBackup
-            if dc.cmd(msg, os.environ['KEY'], "resetbackup"):
+            if dc.cmd(msg, os.environ["KEY"], "resetbackup"):
                 logging.warning(
                     "{} resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
                 print("MOST: backup = \"{}\"".format(str(db["backup"])))
@@ -294,7 +294,7 @@ Your values become your destiny.""",
                     ]
                 ))
 
-        client.run(os.environ['BOT_TOKEN'])
+        client.run(os.environ["BOT_TOKEN"])
 
     except Exception as e:
         print("\n\n")
