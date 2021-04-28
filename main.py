@@ -135,6 +135,8 @@ Your values become your destiny.""",
             msg = message
             content = msg.content
 
+            print(str(content))
+
             # hjelp
             if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi" or content == "<@!753651550047436902>":
                 if content == "@Gandhi":
