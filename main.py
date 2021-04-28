@@ -168,7 +168,7 @@ Your values become your destiny.""",
 **Verzió**: {version}{pre}
 **__Parancsok__**: 
 **56**: Kiírja az eddig számolt szerdákat
-**{prefix}8ball*: 8ball/8labda
+**{prefix}8ball**: 8ball/8labda
                               """)
                 
                 await dc.send(msg, """És ne feledd:
