@@ -8,11 +8,17 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
 
-def backup():
-    db["backup"] = {
-        "szerdak": db["szerdak"],
-        "time": time.asctime()
-    }
+def backup(type):
+    if type == "CMD":
+        db["backup"]["CMDbackup"] = {
+            "szerdak": db["szerdak"],
+            "time": time.asctime()
+        }
+    elif type == "AUTO":
+        db["backup"]["AUTObackup"] = {
+            "szerdak": db["szerdak"],
+            "time": time.asctime()
+        }
 
 
 while True:
@@ -171,6 +177,13 @@ while True:
                     }
                 )))
                 db["backup"] = {}
+
+            # resetBackup
+            if dc.cmd(msg, os.environ['KEY'], "resetbackup"):
+                db["backup"] = {
+                    "CMDbackup": {},
+                    "AUTObackup": {}
+                }
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
