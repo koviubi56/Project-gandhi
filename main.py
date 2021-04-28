@@ -109,14 +109,17 @@ while True:
             content = msg.content
 
             # hjelp
-            if dc.cmd(msg, prefix, "hjelp"):
+            if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi":
+                if content == "@Gandhi":
+                    await dc.send(msg, "Úgy látom valaki megidézett!")
+
                 if random.randrange(3) == 0:
                     await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                 elif random.randrange(3) == 1:
                     await dc.send(msg, "Lottószámok (hatos lottó): || {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                 elif random.randrange(3) == 1:
                     await dc.send(msg, "Lottószámok (skandináv lottó): || {} {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36)))
-                
+
                 await dc.send(msg, f""" **Prefix**: {prefix}
 **Verzió**: {version}{pre}
 **__Parancsok__**: 
