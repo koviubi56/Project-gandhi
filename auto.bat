@@ -8,11 +8,14 @@ title 60 sec
 timeout /T 60
 
 title Pull...
+color 17
 git pull
 timeout /T 3
 
 title Push...
+color 47
 git push
 timeout /T 3
 
+color 07
 goto 1
