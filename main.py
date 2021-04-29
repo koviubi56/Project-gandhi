@@ -8,7 +8,7 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
 
-def backup(type):
+def backup(type, get=False):
     if type == "CMD":
         db["backup"]["CMDbackup"] = {
             "szerdak": db["szerdak"],
@@ -22,8 +22,13 @@ def backup(type):
             }
         except Exception as e:
             logging.error(str(e))
+            return False
         else:
             logging.info("AutoBackup kész!")
+            if get:
+                return db["backup"]
+            else:
+                return True
 
 
 while True:
@@ -357,7 +362,7 @@ Your values become your destiny.""",
         client.run(os.environ["BOT_TOKEN"])
 
     except Exception as e:
-        print("\n\n")
-        logging.error(f"Error code: \"{str(e)}\"")
-        logging.info("Újraindítás...")
+        print("\n\n[ERROR]")
+        print(f"Error code: \"{str(e)}\"")
+        print("Újraindítás...")
         continue
