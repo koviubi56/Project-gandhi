@@ -209,8 +209,14 @@ Your values become your destiny.""",
             # stop
             if dc.cmd(msg, os.environ["KEY"], "stop"):
                 await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
-                logging.info("Stopping...")
-                exit()
+                logging.info("Creating backup...")
+                try:
+                    backup("AUTO")
+                except Exception as e:
+                    logging.error(f"Can't create backup! Error code: {e}")
+                else:
+                    logging.info("Stopping...")
+                    exit()
 
             # set
             global inSet
