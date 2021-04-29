@@ -275,7 +275,7 @@ Your values become your destiny.""",
             if dc.cmd(msg, prefix, "getbackup"):
                 logging.warning(
                     "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
-                await dc.send(msg, """Backup: 
+                await dc.send(msg, """Backup:
 ```json
 {}
 ```""".format(str(db["backup"])))
