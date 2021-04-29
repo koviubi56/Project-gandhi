@@ -73,6 +73,9 @@ while True:
             print("\n")
         print("{:=^63}".format(f"GANDHI BOT {version}{pre}"))
 
+        inGtn = False
+        gtNum = 0
+
         gandhi = [
             "Be the change that you wish to see in the world.",
             "Live as if you were to die tomorrow. Learn as if you were to live forever.",
@@ -135,7 +138,8 @@ Your values become your destiny.""",
             msg = message
             content = msg.content
 
-            print(f"MSG: \"{content}\"; BY: \"{msg.author}\"; CH: \"{msg.channel}\"")
+            print(
+                f"MSG: \"{content}\"; BY: \"{msg.author}\"; CH: \"{msg.channel}\"")
             with open("msg.csv", "a") as f:
                 f.write(f"\n{msg.author};{msg.channel};{content}")
                 pass
@@ -295,7 +299,7 @@ Your values become your destiny.""",
                         "biztos forrásból tudom: nem",
                         "biztos forrásból tudom: igen",
                         "egy szőrszálamnak több IQ-ja van te barom",
-                        "még egy hüje kérdés bedoblak tehén tápnak", # TEHEN EMOTIKON
+                        "még egy hüje kérdés bedoblak tehén tápnak",  # TEHEN EMOTIKON
                         # ˇ1.3.0-beta.4
                         "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
                         "igen!!!!",
@@ -316,6 +320,27 @@ Your values become your destiny.""",
                     await dc.send(msg, "Írjál má' kérdést te hónaljszagú ogre!")
                     await dc.send(msg, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
                     await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
+
+            # guessTheNumber
+            if inGtn:
+                if int(content) == int(gtNum):
+                    inGtn = False
+                    await dc.send(msg, "Jippí!")
+                    await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                elif int(content) > int(gtNum):
+                    await dc.send(msg, "Kisebb!")
+                elif int(content) < int(gtNum):
+                    await dc.send(msg, "Nagyobb!")
+
+            if dc.cmd(msg, prefix, "gtn"):
+                if len(content) <= len(prefix) + len("gtn") + 1:
+                    await dc.send(msg, "Mennyi legyen a max szám? He?!")
+                    await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
+                    await dc.send(msg, f"PL: `{prefix}gtn 756`")
+                else:
+                    gtNum = random.randrange(1, content[len(prefix)+4])
+                    inGtn = True
+                    await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
         client.run(os.environ["BOT_TOKEN"])
 
