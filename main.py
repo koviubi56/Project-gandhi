@@ -322,6 +322,7 @@ Your values become your destiny.""",
                     await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
 
             # guessTheNumber
+            # //global gtNum; inGtn
             if inGtn:
                 if int(content) == int(gtNum):
                     inGtn = False
@@ -338,6 +339,7 @@ Your values become your destiny.""",
                     await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
                     await dc.send(msg, f"PL: `{prefix}gtn 756`")
                 else:
+                    global gtNum; inGtn
                     gtNum = random.randrange(1, content[len(prefix)+4])
                     inGtn = True
                     await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
