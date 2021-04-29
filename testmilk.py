@@ -14,12 +14,10 @@ class TestMain(unittest.TestCase):
         bu = main.backup("AUTO", True)
         self.assertEqual(bu["AUTObackup"]["szerdak"], db["szerdak"])
 
-"""
     def test_backup_equal(self):
         old = db["backup"]
         new = main.backup("AUTO", True)
         self.assertNotEqual(old, new)
-"""
 
 if __name__ == '__main__':
     unittest.main()
