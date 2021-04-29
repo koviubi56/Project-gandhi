@@ -61,8 +61,8 @@ while True:
         maxSzerda = 510
         # Verzió
         version = "1.3.0"
-        # Bármi más? "-beta.1"?
-        pre = "-beta.3"
+        # Bármi más? PL: "-beta.1"?
+        pre = "-beta.4"
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
@@ -290,7 +290,16 @@ Your values become your destiny.""",
                         "biztos forrásból tudom: nem",
                         "biztos forrásból tudom: igen",
                         "egy szőrszálamnak több IQ-ja van te barom",
-                        "még egy hüje kérdés bedoblak tehén tápnak :tehen:"
+                        "még egy hüje kérdés bedoblak tehén tápnak", # TEHEN EMOTIKON
+                        # ˇ1.3.0-beta.4
+                        "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
+                        "igen!!!!",
+                        "igen, idióta"
+                        "nem, idióta",
+                        "a fené(k)be!!",
+                        "nem???",
+                        """> {}
+- Gandhi""".format(random.choice(gandhi))
                     ]
                     embed8ball = discord.Embed()
                     #       0123456789
