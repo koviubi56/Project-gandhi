@@ -237,6 +237,12 @@ Your values become your destiny.""",
                 logging.warning(
                     "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
+            # 5py
+            if dc.cmd(msg, os.environ["KEY"], "5py"):
+                logging.warning(f"{msg.author} resetelni akarja a 5py-t!")
+                with open("msg.csv", "w") as f:
+                    f.write("AUTHOR;CHANNEL;MESSAGE")
+
             # makeBackup
             if dc.cmd(msg, os.environ["KEY"], "makebackup"):
                 logging.warning(
