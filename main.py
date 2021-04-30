@@ -353,7 +353,7 @@ Your values become your destiny.""",
                     await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
                     await dc.send(msg, f"PL: `{prefix}gtn 756`")
                 else:
-                    gtNum = random.randrange(1, int(content[len(prefix) + 4]))
+                    gtNum = random.randrange(1, int(content[len(prefix) + 4:]))
                     logging.info(
                         f"gtNum = \"{gtNum}\"; prefix = \"{prefix}\"; len of prefix = \"{len(prefix)}\"; content = \"{content}\"; i think max number = \"{int(content[len(prefix) + 4])}\"")
                     inGtn = True
