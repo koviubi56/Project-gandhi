@@ -174,7 +174,7 @@ Your values become your destiny.""",
 
                 await dc.send(msg, f""" **Prefix**: {prefix}
 **Verzió**: {version}{pre}
-**__Parancsok__**: 
+**__Parancsok__**:
 **56**: Kiírja az eddig számolt szerdákat
 **{prefix}8ball**: 8ball/8labda
                               """)
