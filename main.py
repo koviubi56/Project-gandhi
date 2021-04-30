@@ -271,7 +271,9 @@ Your values become your destiny.""",
                     "time": time.asctime()
                 }
                 print("LESZ: backup = \"{}\"".format(str(BUlesz)))
-                db["backup"] = {}
+                backup("CMD")
+                logging.info("Backup kész!")
+                await dc.send(msg, "Backup kész!")
 
             # resetBackup
             if dc.cmd(msg, os.environ["KEY"], "resetbackup"):
