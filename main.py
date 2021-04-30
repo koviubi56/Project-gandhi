@@ -7,17 +7,6 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
-def database(what):
-    """Database of replit
-
-    Args:
-        what (str): The name of the database
-
-    Returns:
-        ANY: The databse
-    """
-    return db[what]
-
 
 def backup(type, get=False):
     if type == "CMD":
