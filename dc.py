@@ -21,7 +21,23 @@ async def send(msg, text):
     except Exception as e:
         logging.error(str(e))
     else:
-        logging.info("Üzenet elküldve!")
+        logging.info("Üzenet elküldve! (CH: \"{ch}\"; MSG: \"{msg}\")".format(
+            ch=msg.channel, msg=text))
+
+
+async def embed(msg, embedVar):
+    """Send an embed message
+
+    Args:
+        msg (dict): The message that discord gave
+        embedVar (???): The embed variable
+    """
+    try:
+        await msg.channel.send(embed=embedVar)
+    except Exception as e:
+        logging.error(str(e))
+    else:
+        logging.info("Embed elküldve! (CH: \"{}\")".format(msg.channel))
 
 
 def cmd(msg, prefix, command):
@@ -35,23 +51,7 @@ def cmd(msg, prefix, command):
     Returns:
         [type]: [description]
     """
-    if msg.content.lower().startswith(prefix.lower() + command.lower()):
+    if msg["content"].lower().startswith(prefix.lower() + command.lower()):
         return True
     # // else:
     return False
-
-
-def bar(max):
-    global dcmax
-    global dcbar
-    dcmax = max
-    dcbar = 0
-    print(f"0%")
-
-
-def barp():
-    global dcmax
-    global dcbar
-    onep = dcmax / 100
-    dcbar += 1
-    print("{}%".format(dcbar / onep))

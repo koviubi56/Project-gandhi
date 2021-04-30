@@ -7,12 +7,39 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
+def database(what):
+    """Database of replit
 
-def backup():
-    db["backup"] = {
-        "szerdak": db["szerdak"],
-        "time": time.asctime()
-    }
+    Args:
+        what (str): The name of the database
+
+    Returns:
+        ANY: The databse
+    """
+    return db[what]
+
+
+def backup(type, get=False):
+    if type == "CMD":
+        db["backup"]["CMDbackup"] = {
+            "szerdak": db["szerdak"],
+            "time": time.asctime()
+        }
+    elif type == "AUTO":
+        try:
+            db["backup"]["AUTObackup"] = {
+                "szerdak": db["szerdak"],
+                "time": time.asctime()
+            }
+        except Exception as e:
+            logging.error(str(e))
+            return False
+        else:
+            logging.info("AutoBackup kész!")
+            if get:
+                return db["backup"]
+            else:
+                return True
 
 
 while True:
@@ -23,32 +50,15 @@ while True:
         import random
         import dc
         import time
-        try:
-            from replit import db
-        except Exception as e:
-            import logging
-            logging.error(
-                f"Nem sikerült a db-t importálni a replit-ből: {str(e)}")
-            logging.info("Újrapróbálkozás...")
-            for e2 in range(5):
-                try:
-                    from replit import db
-                except:
-                    if e2 < 4:
-                        logging.error(f"[ERROR {e2} ]")
-                    elif e2 >= 4:
-                        logging.critical(
-                            "Nem sikerült importálni 6 alkalommal se. A bot e nélkül NEM működik.")
-                        logging.info("Leállítás...")
-                        exit()
+        from replit import db
+        print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
+            szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
+
         print("=====")
         import logging
         logging.basicConfig(
             level=logging.INFO, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
-
-        logging.info("szerdak = {szerdak}; type(szerdak) = {szerdakT}; backup = {bu}; type(backup) = {buT}".format(
-            szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
 
         try:
             x = type(db["szerdak"])
@@ -57,7 +67,7 @@ while True:
                 backup()
                 db["szerdak"] = 0
         except Exception as e:
-            print(f"NOT_PROBLEM0 error: {e}")
+            print(f"NOT_PROBLEM0 error: \"{e}\"")
             db["szerdak"] = 0
         finally:
             inSet = False
@@ -67,8 +77,8 @@ while True:
         maxSzerda = 510
         # Verzió
         version = "1.3.0"
-        # Bármi más? "-beta.1"?
-        pre = "-beta.3"
+        # Bármi más? PL: "-beta.1"?
+        pre = ""
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
@@ -77,7 +87,54 @@ while True:
 
         for _ in range(80):
             print("\n")
-        print('{:=^63}'.format(f'GANDHI BOT {version}{pre}'))
+        print("{:=^63}".format(f"GANDHI BOT {version}{pre}"))
+
+        inGtn = False
+        gtNum = 0
+
+        gandhi = [
+            "Be the change that you wish to see in the world.",
+            "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+            "An eye for an eye will only make the whole world blind.",
+            "Happiness is when what you think, what you say, and what you do are in harmony.",
+            "When I despair, I remember that all through history the way of truth and love have always won. There have been tyrants and murderers, and for a time, they can seem invincible, but in the end, they always fall. Think of it--always.",
+            "The weak can never forgive. Forgiveness is the attribute of the strong.",
+            "Where there is love there is life.",
+            "Prayer is not asking. It is a longing of the soul. It is daily admission of one's weakness. It is better in prayer to have a heart without words than words without a heart.",
+            "I like your Christ, I do not like your Christians. Your Christians are so unlike your Christ.",
+            "Freedom is not worth having if it does not include the freedom to make mistakes.",
+            "Nobody can hurt me without my permission.",
+            "God has no religion.",
+            "Hate the sin, love the sinner.",
+            "I will not let anyone walk through my mind with their dirty feet.",
+            """Your beliefs become your thoughts,
+Your thoughts become your words,
+Your words become your actions,
+Your actions become your habits,
+Your habits become your values,
+Your values become your destiny.""",
+            "You must not lose faith in humanity. Humanity is like an ocean; if a few drops of the ocean are dirty, the ocean does not become dirty.",
+            "The best way to find yourself is to lose yourself in the service of others.",
+            """Let the first act of every morning be to make the following resolve for the day:
+
+- I shall not fear anyone on Earth.
+- I shall fear only God.
+- I shall not bear ill will toward anyone.
+- I shall not submit to injustice from anyone.
+- I shall conquer untruth by truth. And in resisting untruth, I shall put up with all suffering.""",
+            "The future depends on what you do today.”",
+            "A man is but the product of his thoughts. What he thinks, he becomes.",
+            "To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer.",
+            "The greatness of a nation and its moral progress can be judged by the way its animals are treated.",
+            "Man often becomes what he believes himself to be. If I keep on saying to myself that I cannot do a certain thing, it is possible that I may end by really becoming incapable of doing it. On the contrary, if I have the belief that I can do it, I shall surely acquire the capacity to do it even if I may not have it at the beginning.",
+            "Each night, when I go to sleep, I die. And the next morning, when I wake up, I am reborn.",
+            "Earth provides enough to satisfy every man's needs, but not every man's greed.",
+            "What difference does it make to the dead, the orphans and the homeless, whether the mad destruction is wrought under the name of totalitarianism or in the holy name of liberty or democracy?",
+            "To believe in something, and not to live it, is dishonest.",
+            "There are people in the world so hungry, that God cannot appear to them except in the form of bread.",
+            "It is unwise to be too sure of one's own wisdom. It is healthy to be reminded that the strongest might weaken and the wisest might err.",
+            "Whatever you do will be insignificant, but it is very important that you do it."
+        ]
 
         @client.event
         async def on_ready():
@@ -85,6 +142,8 @@ while True:
             print('This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.')
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
+
+            backup("AUTO")
 
         @client.event
         async def on_message(message):
@@ -94,6 +153,36 @@ while True:
             plus = 0
             msg = message
             content = msg.content
+
+            print(
+                f"MSG: \"{content}\"; BY: \"{msg.author}\"; CH: \"{msg.channel}\"")
+            with open("msg.csv", "a") as f:
+                f.write(f"\n{msg.author};{msg.channel};{content}")
+                pass
+
+            # hjelp
+            if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi" or content == "<@!753651550047436902>":
+                if content == "@Gandhi":
+                    await dc.send(msg, "Úgy látom valaki megidézett!")
+
+                if random.randrange(1) == 0:
+                    await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                elif random.randrange(1) == 0:
+                    await dc.send(msg, "Lottószámok (hatos lottó): || {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                else:
+                    await dc.send(msg, "Lottószámok (skandináv lottó): || {} {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36)))
+
+                await dc.send(msg, f""" **Prefix**: {prefix}
+**Verzió**: {version}{pre}
+**__Parancsok__**: 
+**56**: Kiírja az eddig számolt szerdákat
+**{prefix}8ball**: 8ball/8labda
+                              """)
+
+                await dc.send(msg, """És ne feledd:
+> "{}"
+    ― Mahatma Gandhi
+""".format(random.choice(gandhi)))
 
             # szerda keresés
             try:
@@ -134,92 +223,159 @@ while True:
                 await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=db["szerdak"]))
 
             # 56
-            if content == '56':
+            if content == "56":
                 await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
-            if dc.cmd(msg, os.environ['KEY'], 'stop'):
+            if dc.cmd(msg, os.environ["KEY"], "stop"):
                 await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
-                logging.info("Stopping...")
-                exit()
+                logging.info("Creating backup...")
+                try:
+                    backup("AUTO")
+                except Exception as e:
+                    logging.error(f"Can't create backup! Error code: {e}")
+                else:
+                    logging.info("Stopping...")
+                    exit()
 
             # set
             global inSet
             if inSet == True:
                 inSet = False
                 db["szerdak"] = int(content)
-                logging.info("Szerda beállítva! Mostani szerda: {most}  Backup: {bu}".format(
+                logging.info("Szerda beállítva! Mostani szerda: \"{most}\"  Backup: \"{bu}\"".format(
                     most=db["szerdak"], bu=str(db["backup"])))
 
-            if dc.cmd(msg, os.environ['KEY'], 'set'):
-                await dc.send(msg, 'K!')
+            if dc.cmd(msg, os.environ["KEY"], "set"):
+                await dc.send(msg, "K!")
                 inSet = True
-                backup()
+                backup("AUTO")
                 logging.warning(
-                    "{} be akarja állítani a szerdák számát! Jelenleg {} szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
+                    "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
+
+            # 5py
+            if dc.cmd(msg, os.environ["KEY"], "5py"):
+                logging.warning(f"{msg.author} resetelni akarja a 5py-t!")
+                with open("msg.csv", "w") as f:
+                    f.write("AUTHOR;CHANNEL;MESSAGE")
 
             # makeBackup
-            if dc.cmd(msg, os.environ['KEY'], "makebackup"):
+            if dc.cmd(msg, os.environ["KEY"], "makebackup"):
                 logging.warning(
-                    "{} szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
-                print("MOST:szerdak = {szerda}; backup = {bu}".format(
+                    "\"{}\" szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
+                print("MOST:szerdak = \"{szerda}\"; backup = \"{bu}\"".format(
                     szerda=db["szerdak"], bu=db["backup"]))
-                print("LESZ: backup = {}".format(str(
-                    {
-                        "szerdak": db["szerdak"],
-                        "time": time.asctime()
-                    }
-                )))
-                db["backup"] = {"szerdak": db["szerdak"], "time": time.asctime()}
+                BUlesz = db["backup"]
+                BUlesz["CMDbackup"] = {
+                    "szerdak": db["szerdak"],
+                    "time": time.asctime()
+                }
+                print("LESZ: backup = \"{}\"".format(str(BUlesz)))
+                backup("CMD")
+                logging.info("Backup kész!")
                 await dc.send(msg, "Backup kész!")
+
+            # resetBackup
+            if dc.cmd(msg, os.environ["KEY"], "resetbackup"):
+                logging.warning(
+                    "\"{}\" resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
+                print("MOST: backup = \"{}\"".format(str(db["backup"])))
+                print("LESZ: backup = \"{}\"".format(str(
+                    {"CMDbackup": {}, "AUTObackup": {}}
+                )))
+                db["backup"] = {
+                    "CMDbackup": {},
+                    "AUTObackup": {}
+                }
+                await dc.send(msg, "Kész!")
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
                 logging.warning(
-                    "{} meg akarja nézni a biztonsági mentést!".format(msg.author))
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# ! README: A {} .:!DIREKT!:. van ott, és úgy !
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                await dc.send(msg, """Backup: 
-                              ```json
+                    "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
+                await dc.send(msg, """Backup:
+```json
 {}
-                              ```""".format(str(db["backup"])))
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# ! README: A {} .:!DIREKT!:. van ott, és úgy !
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+```""".format(str(db["backup"])))
+
+            # resetLog
+            if dc.cmd(msg, os.environ['KEY'], "resetlog"):
+                with open("msg.log", "w") as f:
+                    f.write("author;channel;message")
 
             # 8ball
             if dc.cmd(msg, prefix, "8ball"):
-                lista8 = [
-                    "ez%20pokolian%20nem",
-                    "őszintén%20szólva%20nem%20érdekel%20lol",
-                    "nem%20vagyok%20benne%20biztos,%20de te biztos,%20hogy%20hülye%20vagy",
-                    "igen???",
-                    "amikor%20növesztessz%20egy%20agysejtet,%20akkor%20igen",
-                    "nem!!!!",
-                    "lol%20szó%20szerint%20nem",
-                    "a%20fenébe!%20nem.",
-                    "persze%20miért%20ne",
-                    "nem%20lmfao",
-                    "persze,%20engem%20se%20érdekel%20jobban",
-                    "Trump%20színe%20narancssárga?",
-                    "én%20egy%208ball%20labda%20vagyok,%20nem%20foglalkozok%20a%20szar%20labdáiddal",
-                    "biztos%20forrásból%20tudom:%20nem",
-                    "biztos%20forrásból%20tudom:%20igen"
-                ]
-                # https://embed.rauf.wtf/?&author=%7B%7D&color=171A1B
-                await dc.send(msg, "https://embed.rauf.wtf/?&author={}&color=171A1B".format(
-                    lista8[
-                        random.randrange(
-                            len(lista8)
-                        )
+                if len(content) > len(prefix) + len("8ball "):
+                    lista8 = [
+                        "ez pokolian nem",
+                        "őszintén szólva nem érdekel lol",
+                        "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
+                        "igen???",
+                        "amikor növesztessz egy agysejtet, akkor igen",
+                        "nem!!!!",
+                        "lol szó szerint nem",
+                        "a fenébe! nem.",
+                        "persze miért ne",
+                        "nem lmfao",
+                        "persze, engem se érdekel jobban",
+                        "Trump színe narancssárga?",
+                        "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
+                        "biztos forrásból tudom: nem",
+                        "biztos forrásból tudom: igen",
+                        "egy szőrszálamnak több IQ-ja van te barom",
+                        "még egy hüje kérdés bedoblak tehén tápnak",  # TEHEN EMOTIKON
+                        # ˇ1.3.0-beta.4
+                        "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
+                        "igen!!!!",
+                        "igen, idióta"
+                        "nem, idióta",
+                        "a fené(k)be!!",
+                        "nem???",
+                        """> {}
+- Gandhi""".format(random.choice(gandhi))
                     ]
-                ))
+                    embed8ball = discord.Embed()
+                    #       0123456789
+                    # PREFIX8ball xyz
+                    embed8ball.add_field(
+                        name=content[len(prefix) + 6:], value=random.choice(lista8))
+                    await dc.embed(msg, embed8ball)
+                else:
+                    await dc.send(msg, "Írjál má' kérdést te hónaljszagú ogre!")
+                    await dc.send(msg, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
+                    await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
 
-        client.run(os.environ['BOT_TOKEN'])
+            # guessTheNumber
+            global inGtn
+            if inGtn:
+                global gtNum
+                if int(content) == int(gtNum):
+                    inGtn = False
+                    await dc.send(msg, "Jippí!")
+                    await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                elif int(content) > int(gtNum):
+                    await dc.send(msg, "Kisebb!")
+                elif int(content) < int(gtNum):
+                    await dc.send(msg, "Nagyobb!")
+
+            if dc.cmd(msg, prefix, "gtn"):
+                if len(content) <= len(prefix) + len("gtn") + 1:
+                    await dc.send(msg, "Mennyi legyen a max szám? He?!")
+                    await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
+                    await dc.send(msg, f"PL: `{prefix}gtn 756`")
+                else:
+                    gtNum = random.randrange(1, int(
+                        content[
+                            len(prefix) + 4
+                        ]
+                    ))
+                    inGtn = True
+                    await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
+
+        client.run(os.environ["BOT_TOKEN"])
 
     except Exception as e:
-        print("\n\n")
-        logging.error(f"Error code: {str(e)}")
-        logging.info("Újraindítás...")
+        print("\n\n[ERROR]")
+        print(f"Error code: \"{str(e)}\"")
+        print("Újraindítás...")
         continue
