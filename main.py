@@ -163,7 +163,7 @@ Your values become your destiny.""",
 
                 await dc.send(msg, f""" **Prefix**: {prefix}
 **Verzió**: {version}{pre}
-**__Parancsok__**: 
+**__Parancsok__**:
 **56**: Kiírja az eddig számolt szerdákat
 **{prefix}8ball**: 8ball/8labda
                               """)
@@ -353,11 +353,7 @@ Your values become your destiny.""",
                     await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
                     await dc.send(msg, f"PL: `{prefix}gtn 756`")
                 else:
-                    gtNum = random.randrange(1, int(
-                        content[
-                            len(prefix) + 4
-                        ]
-                    ))
+                    gtNum = random.randrange(1, int(content[len(prefix) + 4]))
                     inGtn = True
                     await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
