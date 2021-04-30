@@ -156,7 +156,7 @@ Your values become your destiny.""",
                 "hjelp",
 
                 "@Gandhi",
-                "@Gandhi#0952"
+                "@Gandhi#0952",
 
                 "<@753651550047436902>",
                 "<@!753651550047436902>"
