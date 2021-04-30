@@ -159,7 +159,8 @@ Your values become your destiny.""",
                 "@Gandhi#0952",
 
                 "<@753651550047436902>",
-                "<@!753651550047436902>"
+                "<@!753651550047436902>",
+                "<@&819912333241221161>"
             ]
             if content in gandhiHjelp:
                 if random.randrange(1) == 0:
