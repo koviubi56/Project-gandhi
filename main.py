@@ -150,7 +150,15 @@ Your values become your destiny.""",
                 pass
 
             # hjelp
-            if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi" or content == "<@!753651550047436902>":
+            gandhiHjelp = [
+                prefix + "hjelp",
+                prefix + "help",
+                "hjelp",
+                "@Gandhi",
+                "<@753651550047436902>",
+                "<@!753651550047436902>"
+            ]
+            if content in gandhiHjelp:
                 if random.randrange(1) == 0:
                     await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                 elif random.randrange(1) == 0:
