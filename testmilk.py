@@ -12,10 +12,10 @@ class TestMain(unittest.TestCase):
 
     def test_backup_realInfo(self):
         bu = main.backup("AUTO", True)
-        self.assertEqual(bu["AUTObackup"]["szerdak"], db["szerdak"])
+        self.assertEqual(bu["AUTObackup"]["szerdak"], main.database("szerdak"))
 
     def test_backup_equal(self):
-        old = db["backup"]
+        old = main.database("backup")
         new = main.backup("AUTO", True)
         self.assertNotEqual(old, new)
 
