@@ -51,7 +51,7 @@ def cmd(msg, prefix, command):
     Returns:
         [type]: [description]
     """
-    if msg["content"].lower().startswith(prefix.lower() + command.lower()):
+    if msg.content.lower().startswith(prefix.lower() + command.lower()):
         return True
     # // else:
     return False
