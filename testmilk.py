@@ -8,6 +8,7 @@ class TestDc(unittest.TestCase):
     def test_cmd(self):
         self.assertTrue(dc.cmd({"content":"56!testCommand"}, "56!", "testCommand"))
 
+
 class TestMain(unittest.TestCase):
 
     def test_backup_realInfo(self):
