@@ -151,9 +151,6 @@ Your values become your destiny.""",
 
             # hjelp
             if dc.cmd(msg, prefix, "hjelp") or content == "@Gandhi" or content == "<@!753651550047436902>":
-                if content == "@Gandhi":
-                    await dc.send(msg, "Úgy látom valaki megidézett!")
-
                 if random.randrange(1) == 0:
                     await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                 elif random.randrange(1) == 0:
@@ -166,6 +163,7 @@ Your values become your destiny.""",
 **__Parancsok__**:
 **56**: Kiírja az eddig számolt szerdákat
 **{prefix}8ball**: 8ball/8labda
+**{prefix}gtn**: Találd ki a számot!
                               """)
 
                 await dc.send(msg, """És ne feledd:
