@@ -154,7 +154,10 @@ Your values become your destiny.""",
                 prefix + "hjelp",
                 prefix + "help",
                 "hjelp",
+
                 "@Gandhi",
+                "@Gandhi#0952"
+
                 "<@753651550047436902>",
                 "<@!753651550047436902>"
             ]
