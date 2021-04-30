@@ -249,7 +249,7 @@ Your values become your destiny.""",
             if dc.cmd(msg, os.environ["KEY"], "set"):
                 await dc.send(msg, "K!")
                 inSet = True
-                backup()
+                backup("AUTO")
                 logging.warning(
                     "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
