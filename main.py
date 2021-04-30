@@ -7,6 +7,7 @@ If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 """
 
+
 def database(what):
     """Database of replit
 
@@ -364,11 +365,7 @@ Your values become your destiny.""",
                     await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
                     await dc.send(msg, f"PL: `{prefix}gtn 756`")
                 else:
-                    gtNum = random.randrange(1, int(
-                        content[
-                            len(prefix) + 4
-                        ]
-                    ))
+                    gtNum = random.randrange(1, int(content[len(prefix) + 4]))
                     inGtn = True
                     await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
