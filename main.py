@@ -181,18 +181,6 @@ Your values become your destiny.""",
                 """
                 embedHjelp = discord.Embed()
                 embedHjelp.add_field(
-                    name="Prefix",
-                    value=f"{prefix}"
-                )
-                embedHjelp.add_field(
-                    name="Verzió",
-                    value=f"{version}{pre}"
-                )
-                embedHjelp.add_field(
-                    name="__**Parancsok**__",
-                    value="{}".format(random.choice(gandhi))
-                )
-                embedHjelp.add_field(
                     name="8ball",
                     value=f"8ball/8labda\nSzintaxis: `{prefix}8ball `*<KÉRDÉS>*\nPL: `{prefix}8ball Szerda vanszk?`"
                 )
