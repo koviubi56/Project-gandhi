@@ -179,11 +179,33 @@ Your values become your destiny.""",
                 **{prefix}kagi**: :poop:
                               ")
                 """
+                embedHjelp = discord.Embed()
+                embedHjelp.add_field(
+                    name="Prefix",
+                    value=f"{prefix}"
+                )
+                embedHjelp.add_field(
+                    name="Verzió",
+                    value=f"{version}{pre}"
+                )
+                embedHjelp.add_field(
+                    name="__**Parancsok**__",
+                    value=""
+                )
+                embedHjelp.add_field(
+                    name="8ball",
+                    value=f"8ball/8labda\nSzintaxis: `{prefix}8ball `*<KÉRDÉS>*\nPL: `{prefix}8ball Szerda vanszk?`"
+                )
+                embedHjelp.add_field(
+                    name="gtn",
+                    value=f"Találd ki a számot\nSzintaxis: `{prefix}gtn `*<MAX SZÁM>*\nPL: `{prefix}gtn 756`"
+                )
+                embedHjelp.add_field(
+                    name="kagi",
+                    value=f":poop:\nSzintaxis: `{prefix}kagi`\nPL: `{prefix}kagi`"
+                )
 
-                await dc.send(msg, """És ne feledd:
-> "{}"
-    ― Mahatma Gandhi
-""".format(random.choice(gandhi)))
+                dc.embed(msg, embedHjelp)
 
             # szerda keresés
             try:
