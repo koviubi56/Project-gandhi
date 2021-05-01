@@ -182,15 +182,15 @@ Your values become your destiny.""",
                 embedHjelp = discord.Embed()
                 embedHjelp.add_field(
                     name="8ball",
-                    value=f"8ball/8labda\nSzintaxis: `{prefix}8ball `*<KÉRDÉS>*\nPL: `{prefix}8ball Szerda vanszk?`"
+                    value=f"8ball/8labda\n__Szintaxis__: `{prefix}8ball `*<KÉRDÉS>*\n__PL__: `{prefix}8ball Szerda vanszk?`"
                 )
                 embedHjelp.add_field(
                     name="gtn",
-                    value=f"Találd ki a számot\nSzintaxis: `{prefix}gtn `*<MAX SZÁM>*\nPL: `{prefix}gtn 756`"
+                    value=f"Találd ki a számot\n__Szintaxis__: `{prefix}gtn `*<MAX SZÁM>*\n__PL__: `{prefix}gtn 756`"
                 )
                 embedHjelp.add_field(
                     name="kagi",
-                    value=f":poop:\nSzintaxis: `{prefix}kagi`\nPL: `{prefix}kagi`"
+                    value=f":poop:\n__Szintaxis__: `{prefix}kagi`\n__PL__: `{prefix}kagi`"
                 )
 
                 await dc.embed(msg, embedHjelp)
