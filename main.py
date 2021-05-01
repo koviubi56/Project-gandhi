@@ -186,7 +186,7 @@ Your values become your destiny.""",
                 )
                 embedHjelp.add_field(
                     name="gtn",
-                    value=f"Találd ki a számot\nSzintaxis: `{prefix}gtn `*<MAX SZÁM>*\nPL: `{prefix}gtn 756`"
+                    value=f"Találd ki a számot\nSzintaxis: `{prefix}gtn `*<MAX SZÁM>*\nPL: `{prefix}gtn 756`"
                 )
                 embedHjelp.add_field(
                     name="kagi",
