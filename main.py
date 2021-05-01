@@ -190,7 +190,7 @@ Your values become your destiny.""",
                 )
                 embedHjelp.add_field(
                     name="__**Parancsok**__",
-                    value=""
+                    value=" "
                 )
                 embedHjelp.add_field(
                     name="8ball",
