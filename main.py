@@ -169,15 +169,16 @@ Your values become your destiny.""",
                     await dc.send(msg, "Lottószámok (hatos lottó): || {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                 else:
                     await dc.send(msg, "Lottószámok (skandináv lottó): || {} {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36)))
-
-                await dc.send(msg, f""" **Prefix**: {prefix}
-**Verzió**: {version}{pre}
-**__Parancsok__**:
-**56**: Kiírja az eddig számolt szerdákat
-**{prefix}8ball**: 8ball/8labda
-**{prefix}gtn**: Találd ki a számot
-**{prefix}kagi**: :poop:
-                              """)
+                """
+                await dc.send(msg, f" **Prefix**: {prefix}
+                **Verzió**: {version}{pre}
+                **__Parancsok__**:
+                **56**: Kiírja az eddig számolt szerdákat
+                **{prefix}8ball**: 8ball/8labda
+                **{prefix}gtn**: Találd ki a számot
+                **{prefix}kagi**: :poop:
+                              ")
+                """
 
                 await dc.send(msg, """És ne feledd:
 > "{}"
