@@ -205,7 +205,7 @@ Your values become your destiny.""",
                     value=f":poop:\nSzintaxis: `{prefix}kagi`\nPL: `{prefix}kagi`"
                 )
 
-                dc.embed(msg, embedHjelp)
+                await dc.embed(msg, embedHjelp)
 
             # szerda keresés
             try:
