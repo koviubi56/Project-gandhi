@@ -367,6 +367,10 @@ Your values become your destiny.""",
                     inGtn = True
                     await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
+            # kagi
+            if dc.cmd(msg, prefix, "kagi"):
+                await dc.send(msg, ":poop:")
+
         client.run(os.environ["BOT_TOKEN"])
 
     except Exception as e:
