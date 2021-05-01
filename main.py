@@ -175,7 +175,8 @@ Your values become your destiny.""",
 **__Parancsok__**:
 **56**: Kiírja az eddig számolt szerdákat
 **{prefix}8ball**: 8ball/8labda
-**{prefix}gtn**: Találd ki a számot!
+**{prefix}gtn**: Találd ki a számot
+**{prefix}kagi**: :poop:
                               """)
 
                 await dc.send(msg, """És ne feledd:
