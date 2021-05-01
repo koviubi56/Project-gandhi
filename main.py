@@ -182,11 +182,11 @@ Your values become your destiny.""",
                 embedHjelp = discord.Embed()
                 embedHjelp.add_field(
                     name="8ball",
-                    value=f"8ball/8labda\nSzintaxis: `{prefix}8ball `*<KÉRDÉS>*\nPL: `{prefix}8ball Szerda vanszk?`"
+                    value=f"8ball/8labda\nSzintaxis: `{prefix}8ball `*<KÉRDÉS>*\nPL: `{prefix}8ball Szerda vanszk?`"
                 )
                 embedHjelp.add_field(
                     name="gtn",
-                    value=f"Találd ki a számot\nSzintaxis: `{prefix}gtn `*<MAX SZÁM>*\nPL: `{prefix}gtn 756`"
+                    value=f"Találd ki a számot\nSzintaxis: `{prefix}gtn `*<MAX SZÁM>*\nPL: `{prefix}gtn 756`"
                 )
                 embedHjelp.add_field(
                     name="kagi",
