@@ -208,11 +208,6 @@ Your values become your destiny.""",
                                         if content[i + 5] == "a" or content[i + 5] == "á":
                                             plus += 1
                                             continue
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
                                         else:
                                             continue
                                     else:
@@ -223,10 +218,6 @@ Your values become your destiny.""",
                                 continue
                         else:
                             continue
-<<<<<<< HEAD
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
-=======
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
                     else:
                         continue
             except IndexError:
@@ -307,12 +298,7 @@ Your values become your destiny.""",
             if dc.cmd(msg, prefix, "getbackup"):
                 logging.warning(
                     "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
-                await dc.send(msg, """Backup:
-<<<<<<< HEAD
-<<<<<<< HEAD
-    =======
-                except IndexError:
-                    pass
+                await dc.send(msg, "Backup:\n```json\n{}\n```".format(str(db["backup"])))
 
                 if plus > 0:
                     db["szerdak"] += plus
