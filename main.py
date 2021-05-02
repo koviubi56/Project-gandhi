@@ -155,24 +155,6 @@ Your values become your destiny.""",
                     await dc.send(msg, "Lottószámok (hatos lottó): || {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                 else:
                     await dc.send(msg, "Lottószámok (skandináv lottó): || {} {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36)))
-                """
-                await dc.send(msg, f" **Prefix**: {prefix}
-                **Verzió**: {version}{pre}
-                **__Parancsok__**:
-                **56**: Kiírja az eddig számolt szerdákat
-                **{prefix}8ball**: 8ball/8labda
-                **{prefix}gtn**: Találd ki a számot
-                **{prefix}kagi**: :poop:
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                ")
-=======
-                              ")
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
-=======
-                              ")
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
-                """
                 embedHjelp = discord.Embed()
                 embedHjelp.add_field(
                     name="8ball",
@@ -258,12 +240,6 @@ Your values become your destiny.""",
                 logging.warning(
                     "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
-            # 5py
-            if dc.cmd(msg, os.environ["KEY"], "5py"):
-                logging.warning(f"{msg.author} resetelni akarja a 5py-t!")
-                with open("msg.csv", "w") as f:
-                    f.write("AUTHOR;CHANNEL;MESSAGE")
-
             # makeBackup
             if dc.cmd(msg, os.environ["KEY"], "makebackup"):
                 logging.warning(
@@ -296,174 +272,8 @@ Your values become your destiny.""",
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
-                logging.warning(
-                    "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
+                logging.warning("\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
                 await dc.send(msg, "Backup:\n```json\n{}\n```".format(str(db["backup"])))
-
-                if plus > 0:
-                    db["szerdak"] += plus
-                    await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=db["szerdak"]))
-
-                # 56
-                if content == "56":
-                    await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
-
-                # stop
-                if dc.cmd(msg, os.environ["KEY"], "stop"):
-                    await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
-                    logging.info("Creating backup...")
-                    try:
-                        backup("AUTO")
-                    except Exception as e:
-                        logging.error(f"Can't create backup! Error code: {e}")
-                    else:
-                        logging.info("Stopping...")
-                        exit()
-
-                # set
-                global inSet
-                if inSet == True:
-                    inSet = False
-                    db["szerdak"] = int(content)
-                    logging.info("Szerda beállítva! Mostani szerda: \"{most}\"  Backup: \"{bu}\"".format(
-                        most=db["szerdak"], bu=str(db["backup"])))
-
-                if dc.cmd(msg, os.environ["KEY"], "set"):
-                    await dc.send(msg, "K!")
-                    inSet = True
-                    backup("AUTO")
-                    logging.warning(
-                        "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
-
-                # 5py
-                if dc.cmd(msg, os.environ["KEY"], "5py"):
-                    logging.warning(f"{msg.author} resetelni akarja a 5py-t!")
-                    with open("msg.csv", "w") as f:
-                        f.write("AUTHOR;CHANNEL;MESSAGE")
-
-                # makeBackup
-                if dc.cmd(msg, os.environ["KEY"], "makebackup"):
-                    logging.warning(
-                        "\"{}\" szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
-                    print("MOST:szerdak = \"{szerda}\"; backup = \"{bu}\"".format(
-                        szerda=db["szerdak"], bu=db["backup"]))
-                    BUlesz = db["backup"]
-                    BUlesz["CMDbackup"] = {
-                        "szerdak": db["szerdak"],
-                        "time": time.asctime()
-                    }
-                    print("LESZ: backup = \"{}\"".format(str(BUlesz)))
-                    backup("CMD")
-                    logging.info("Backup kész!")
-                    await dc.send(msg, "Backup kész!")
-
-                # resetBackup
-                if dc.cmd(msg, os.environ["KEY"], "resetbackup"):
-                    logging.warning(
-                        "\"{}\" resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
-                    print("MOST: backup = \"{}\"".format(str(db["backup"])))
-                    print("LESZ: backup = \"{}\"".format(str(
-                        {"CMDbackup": {}, "AUTObackup": {}}
-                    )))
-                    db["backup"] = {
-                        "CMDbackup": {},
-                        "AUTObackup": {}
-                    }
-                    await dc.send(msg, "Kész!")
-
-                # getBackup
-                if dc.cmd(msg, prefix, "getbackup"):
-                    logging.warning(
-                        "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
-                    await dc.send(msg, ""Backup:\n
-    ```json\n
-    {}\n
-    ```""".format(str(db["backup"])))
-
-                # resetLog
-                if dc.cmd(msg, os.environ['KEY'], "resetlog"):
-                    with open("msg.log", "w") as f:
-                        f.write("author;channel;message")
-
-                # 8ball
-                if dc.cmd(msg, prefix, "8ball"):
-                    if len(content) > len(prefix) + len("8ball "):
-                        lista8 = [
-                            "ez pokolian nem",
-                            "őszintén szólva nem érdekel lol",
-                            "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
-                            "igen???",
-                            "amikor növesztessz egy agysejtet, akkor igen",
-                            "nem!!!!",
-                            "lol szó szerint nem",
-                            "a fenébe! nem.",
-                            "persze miért ne",
-                            "nem lmfao",
-                            "persze, engem se érdekel jobban",
-                            "Trump színe narancssárga?",
-                            "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
-                            "biztos forrásból tudom: nem",
-                            "biztos forrásból tudom: igen",
-                            "egy szőrszálamnak több IQ-ja van te barom",
-                            "még egy hüje kérdés bedoblak tehén tápnak",  # TEHEN EMOTIKON
-                            # ˇ1.3.0-beta.4
-                            "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
-                            "igen!!!!",
-                            "igen, idióta"
-                            "nem, idióta",
-                            "a fené(k)be!!",
-                            "nem???"
-                        ]
-                        embed8ball = discord.Embed()
-                        #       0123456789
-                        # PREFIX8ball xyz
-                        embed8ball.add_field(
-                            name=content[len(prefix) + 6:], value=random.choice(lista8))
-                        await dc.embed(msg, embed8ball)
-                    else:
-                        await dc.send(msg, "Írjál má' kérdést te hónaljszagú ogre!")
-                        await dc.send(msg, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
-                        await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
-
-                # guessTheNumber
-                global inGtn
-                if inGtn:
-                    global gtNum
-                    if int(content) == int(gtNum):
-                        inGtn = False
-                        await dc.send(msg, "Jippí!")
-                        await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
-                    elif int(content) > int(gtNum):
-                        await dc.send(msg, "Kisebb!")
-                    elif int(content) < int(gtNum):
-                        await dc.send(msg, "Nagyobb!")
-
-                if dc.cmd(msg, prefix, "gtn"):
-                    if len(content) <= len(prefix) + len("gtn") + 1:
-                        await dc.send(msg, "Mennyi legyen a max szám? He?!")
-                        await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
-                        await dc.send(msg, f"PL: `{prefix}gtn 756`")
-                    else:
-                        gtNum = random.randrange(1, int(content[len(prefix) + 4:]))
-                        inGtn = True
-                        await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
-
-                # kagi
-                if dc.cmd(msg, prefix, "kagi"):
-                    await dc.send(msg, ":poop:")
-
-            client.run(os.environ["BOT_TOKEN"])
-=======
-=======
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
-```json
-{}
-```""".format(str(db["backup"])))
-
-            # resetLog
-            if dc.cmd(msg, os.environ['KEY'], "resetlog"):
-                with open("msg.log", "w") as f:
-                    f.write("author;channel;message")
 
             # 8ball
             if dc.cmd(msg, prefix, "8ball"):
@@ -492,9 +302,7 @@ Your values become your destiny.""",
                         "igen, idióta"
                         "nem, idióta",
                         "a fené(k)be!!",
-                        "nem???",
-                        """> {}
-- Gandhi""".format(random.choice(gandhi))
+                        "nem???"
                     ]
                     embed8ball = discord.Embed()
                     #       0123456789
@@ -535,10 +343,6 @@ Your values become your destiny.""",
                 await dc.send(msg, ":poop:")
 
         client.run(os.environ["BOT_TOKEN"])
-<<<<<<< HEAD
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
-=======
->>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
 
     except Exception as e:
         print("\n\n[ERROR]")
