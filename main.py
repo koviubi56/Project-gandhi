@@ -286,65 +286,65 @@ Your values become your destiny.""",
                 elif int(content) < int(gtNum):
                     await dc.send(msg, "Nagyobb!")
 
-        @client.command()
-        async def getbackup(ctx):
-            logging.warning("Valaki meg akarja nézni a biztonsági mentést!")
-            await dc.send(ctx, "Backup:\n```json\n{}\n```".format(str(db["backup"])))
+            # getBackup
+            if dc.cmd(msg, prefix, "getbackup"):
+                logging.warning(
+                    "Valaki meg akarja nézni a biztonsági mentést!")
+                await dc.send(msg, "Backup:\n```json\n{}\n```".format(str(db["backup"])))
 
-        @client.command()
-        async def _8ball(ctx, kerdes):
-            if len(ctx.content) > len(prefix) + len("8ball "):
-                lista8 = [
-                    "ez pokolian nem",
-                    "őszintén szólva nem érdekel lol",
-                    "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
-                    "igen???",
-                    "amikor növesztessz egy agysejtet, akkor igen",
-                    "nem!!!!",
-                    "lol szó szerint nem",
-                    "a fenébe! nem.",
-                    "persze miért ne",
-                    "nem lmfao",
-                    "persze, engem se érdekel jobban",
-                    "Trump színe narancssárga?",
-                    "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
-                    "biztos forrásból tudom: nem",
-                    "biztos forrásból tudom: igen",
-                    "egy szőrszálamnak több IQ-ja van te barom",
-                    "még egy hüje kérdés bedoblak tehén tápnak",  # TEHEN EMOTIKON
-                    # ˇ1.3.0-beta.4
-                    "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
-                    "igen!!!!",
-                    "igen, idióta"
-                    "nem, idióta",
-                    "a fené(k)be!!",
-                    "nem???"
-                ]
-                embed8ball = discord.Embed()
-                #       0123456789
-                # PREFIX8ball xyz
-                embed8ball.add_field(name=ctx.content[len(
-                    prefix) + 6:], value=random.choice(lista8))
-                await dc.embed(ctx, embed8ball)
-            else:
-                await dc.send(ctx, "Írjál má' kérdést te hónaljszagú ogre!")
-                await dc.send(ctx, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
-                await dc.send(ctx, f"PL: `{prefix}8ball Szerda van?`")
+            # 8ball
+            if dc.cmd(msg, prefix, "8ball"):
+                if len(msg.content) > len(prefix) + len("8ball "):
+                    lista8 = [
+                        "ez pokolian nem",
+                        "őszintén szólva nem érdekel lol",
+                        "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
+                        "igen???",
+                        "amikor növesztessz egy agysejtet, akkor igen",
+                        "nem!!!!",
+                        "lol szó szerint nem",
+                        "a fenébe! nem.",
+                        "persze miért ne",
+                        "nem lmfao",
+                        "persze, engem se érdekel jobban",
+                        "Trump színe narancssárga?",
+                        "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
+                        "biztos forrásból tudom: nem",
+                        "biztos forrásból tudom: igen",
+                        "egy szőrszálamnak több IQ-ja van te barom",
+                        "még egy hüje kérdés bedoblak tehén tápnak",  # TEHEN EMOTIKON
+                        # ˇ1.3.0-beta.4
+                        "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
+                        "igen!!!!",
+                        "igen, idióta"
+                        "nem, idióta",
+                        "a fené(k)be!!",
+                        "nem???"
+                    ]
+                    embed8ball = discord.Embed()
+                    #       0123456789
+                    # PREFIX8ball xyz
+                    embed8ball.add_field(name=msg.content[len(
+                        prefix) + 6:], value=random.choice(lista8))
+                    await dc.embed(msg, embed8ball)
+                else:
+                    await dc.send(msg, "Írjál má' kérdést te hónaljszagú ogre!")
+                    await dc.send(msg, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
+                    await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
 
-        @client.command()
-        async def gtn(ctx, max):
-            if len(ctx.content) <= len(prefix) + len("gtn") + 1:
-                await dc.send(ctx, "Mennyi legyen a max szám? He?!")
-                await dc.send(ctx, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
-                await dc.send(ctx, f"PL: `{prefix}gtn 756`")
+            # gtn
+            if len(msg.content) <= len(prefix) + len("gtn") + 1:
+                await dc.send(msg, "Mennyi legyen a max szám? He?!")
+                await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
+                await dc.send(msg, f"PL: `{prefix}gtn 756`")
             else:
-                gtNum = random.randrange(1, int(ctx.content[len(prefix) + 4:]))
+                gtNum = random.randrange(1, int(msg.content[len(prefix) + 4:]))
                 inGtn = True
-                await dc.send(ctx, "A nyeremény a lottó számok. Hajrá!")
+                await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
-        @client.command()
-        async def kagi(ctx):
-            await dc.send(ctx, ":poop:")
+            # kagi
+            if dc.cmd(msg, prefix, "kagi"):
+                await dc.send(msg, ":poop:")
 
         client.run(os.environ["BOT_TOKEN"])
 
