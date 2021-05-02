@@ -19,7 +19,7 @@ async def send(msg, text):
     try:
         await msg.channel.send(text)
     except Exception as e:
-        logging.error(str(e))
+        logging.error("[ERROR] " + str(e))
     else:
         logging.info("Üzenet elküldve! (CH: \"{ch}\"; MSG: \"{msg}\")".format(
             ch=msg.channel, msg=text))
