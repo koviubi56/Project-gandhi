@@ -85,7 +85,7 @@ while True:
         prefix = "56!"
         # ---SETTINGS---
 
-        client = commands.Bot(command_prefix=prefix, help_command="help")
+        client = commands.Bot(command_prefix=prefix)
 
         for _ in range(80):
             print("\n")
