@@ -164,7 +164,11 @@ Your values become your destiny.""",
                 **{prefix}gtn**: Találd ki a számot
                 **{prefix}kagi**: :poop:
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 ")
+=======
+                              ")
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
 =======
                               ")
 >>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
@@ -205,7 +209,10 @@ Your values become your destiny.""",
                                             plus += 1
                                             continue
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
                                         else:
                                             continue
                                     else:
@@ -216,6 +223,9 @@ Your values become your destiny.""",
                                 continue
                         else:
                             continue
+<<<<<<< HEAD
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
+=======
 >>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
                     else:
                         continue
@@ -298,6 +308,7 @@ Your values become your destiny.""",
                 logging.warning(
                     "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
                 await dc.send(msg, """Backup:
+<<<<<<< HEAD
 <<<<<<< HEAD
     =======
                 except IndexError:
@@ -457,6 +468,8 @@ Your values become your destiny.""",
 
             client.run(os.environ["BOT_TOKEN"])
 =======
+=======
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
 ```json
 {}
 ```""".format(str(db["backup"])))
@@ -536,6 +549,9 @@ Your values become your destiny.""",
                 await dc.send(msg, ":poop:")
 
         client.run(os.environ["BOT_TOKEN"])
+<<<<<<< HEAD
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
+=======
 >>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
 
     except Exception as e:
