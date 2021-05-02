@@ -197,26 +197,16 @@ Your values become your destiny.""",
                             msg, "|| Megjegyzés magamnak: *set*; szerdák: {szerdak} ||".format(szerdak=str(db["szerdak"])))
                         plus = 0
                         break
-                    if betu.lower() == "s":
-                        if content[i + 1] == "z":
-                            if content[i + 2] == "e":
-                                if content[i + 3] == "r":
-                                    if content[i + 4] == "d":
-                                        if content[i + 5] == "a" or content[i + 5] == "á":
-                                            plus += 1
-                                            continue
-                                        else:
-                                            continue
-                                    else:
-                                        continue
-                                else:
-                                    continue
-                            else:
-                                continue
-                        else:
-                            continue
-                    else:
-                        continue
+                    if (
+                        betu.lower() == "s"
+                        and content[i + 1] == "z"
+                        and content[i + 2] == "e"
+                        and content[i + 3] == "r"
+                        and content[i + 4] == "d"
+                        and content[i + 5] in ["a", "á"]
+                    ):
+                        plus += 1
+                    continue
             except IndexError:
                 pass
 
