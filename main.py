@@ -143,12 +143,6 @@ Your values become your destiny.""",
             msg = message
             content = msg.content
 
-            print(
-                f"MSG: \"{content}\"; BY: \"{msg.author}\"; CH: \"{msg.channel}\"")
-            with open("msg.csv", "a") as f:
-                f.write(f"\n{msg.author};{msg.channel};{content}")
-                pass
-
             # hjelp
             gandhiHjelp = [
                 prefix + "hjelp",
