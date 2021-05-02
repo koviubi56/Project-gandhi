@@ -2,7 +2,7 @@
 name = "Project-gandhi"
 version = "1.2.0"
 description = "A discord bot"
-authors = ["koviubi56 <>"]
+authors = ["koviubi56 <k56gandhibot@hash.fyi>"]
 license = "MPL-2.0"
 homepage = "https://gandhibot.betteruptime.com/"
 keywords = ["python", "discord", "bot", "discord.py", "python3"]
