@@ -132,7 +132,7 @@ Your values become your destiny.""",
 
         @client.event
         async def on_ready():
-            await client.change_presence(activity=discord.Game("The quick brown fox jumps over the lazy dog"), status=discord.Status.online)
+            await client.change_presence(activity=discord.Game("Szőr"), status=discord.Status.online)
             print("-----")
             print("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.")
 
