@@ -78,9 +78,9 @@ while True:
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
         # Verzió
-        version = "1.4.0"
+        version = "1.3.0"
         # Bármi más? PL: "-beta.1"?
-        pre = "-beta.1"
+        pre = ""
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
