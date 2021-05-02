@@ -312,14 +312,18 @@ Your values become your destiny.""",
                         "biztos forrásból tudom: nem",
                         "biztos forrásból tudom: igen",
                         "egy szőrszálamnak több IQ-ja van te barom",
-                        "még egy hüje kérdés bedoblak tehén tápnak",  # TEHEN EMOTIKON
+                        "még egy hüje kérdés bedoblak tehén tápnak",
                         # ˇ1.3.0-beta.4
                         "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
                         "igen!!!!",
                         "igen, idióta",
                         "nem, idióta",
                         "a fené(k)be!!",
-                        "nem???"
+                        "nem???",
+                        # ˇ1.4.0-beta,1
+                        "π + 7^5 / 6",
+                        "-. . ...- . .-. / --. --- -. .- / --. .. ...- . / -.-- --- ..- / ..- .--. -.-.--",
+                        "4E 45 56 45 72 / 47 4F 4E 4E 41 / 4C 45 54 / 59 4F 55 / 44 4F 57 4E"
                     ]
                     embed8ball = discord.Embed()
                     #       0123456789
