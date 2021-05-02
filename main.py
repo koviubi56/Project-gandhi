@@ -48,6 +48,7 @@ while True:
     try:
         import os
         import discord
+        from discord.ext import commands
         import random
         import dc
         import time
@@ -84,7 +85,7 @@ while True:
         prefix = "56!"
         # ---SETTINGS---
 
-        client = discord.Client()
+        client = commands.Bot(command_prefix="56!", help_command="help")
 
         for _ in range(80):
             print("\n")
