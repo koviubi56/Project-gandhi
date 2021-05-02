@@ -117,7 +117,6 @@ Your values become your destiny.""",
         "It is unwise to be too sure of one's own wisdom. It is healthy to be reminded that the strongest might weaken and the wisest might err.",
         "Whatever you do will be insignificant, but it is very important that you do it."
     ]
-
         @client.event
         async def on_ready():
             print("-----")
@@ -164,7 +163,11 @@ Your values become your destiny.""",
                 **{prefix}8ball**: 8ball/8labda
                 **{prefix}gtn**: Találd ki a számot
                 **{prefix}kagi**: :poop:
+<<<<<<< HEAD
                                 ")
+=======
+                              ")
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
                 """
                 embedHjelp = discord.Embed()
                 embedHjelp.add_field(
@@ -201,6 +204,19 @@ Your values become your destiny.""",
                                         if content[i + 5] == "a" or content[i + 5] == "á":
                                             plus += 1
                                             continue
+<<<<<<< HEAD
+=======
+                                        else:
+                                            continue
+                                    else:
+                                        continue
+                                else:
+                                    continue
+                            else:
+                                continue
+                        else:
+                            continue
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
                     else:
                         continue
             except IndexError:
@@ -282,6 +298,7 @@ Your values become your destiny.""",
                 logging.warning(
                     "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
                 await dc.send(msg, """Backup:
+<<<<<<< HEAD
     =======
                 except IndexError:
                     pass
@@ -439,6 +456,87 @@ Your values become your destiny.""",
                     await dc.send(msg, ":poop:")
 
             client.run(os.environ["BOT_TOKEN"])
+=======
+```json
+{}
+```""".format(str(db["backup"])))
+
+            # resetLog
+            if dc.cmd(msg, os.environ['KEY'], "resetlog"):
+                with open("msg.log", "w") as f:
+                    f.write("author;channel;message")
+
+            # 8ball
+            if dc.cmd(msg, prefix, "8ball"):
+                if len(content) > len(prefix) + len("8ball "):
+                    lista8 = [
+                        "ez pokolian nem",
+                        "őszintén szólva nem érdekel lol",
+                        "nem vagyok benne biztos, de te biztos, hogy hülye vagy",
+                        "igen???",
+                        "amikor növesztessz egy agysejtet, akkor igen",
+                        "nem!!!!",
+                        "lol szó szerint nem",
+                        "a fenébe! nem.",
+                        "persze miért ne",
+                        "nem lmfao",
+                        "persze, engem se érdekel jobban",
+                        "Trump színe narancssárga?",
+                        "én egy 8ball labda vagyok, nem foglalkozok a szar labdáiddal",
+                        "biztos forrásból tudom: nem",
+                        "biztos forrásból tudom: igen",
+                        "egy szőrszálamnak több IQ-ja van te barom",
+                        "még egy hüje kérdés bedoblak tehén tápnak",  # TEHEN EMOTIKON
+                        # ˇ1.3.0-beta.4
+                        "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
+                        "igen!!!!",
+                        "igen, idióta"
+                        "nem, idióta",
+                        "a fené(k)be!!",
+                        "nem???",
+                        """> {}
+- Gandhi""".format(random.choice(gandhi))
+                    ]
+                    embed8ball = discord.Embed()
+                    #       0123456789
+                    # PREFIX8ball xyz
+                    embed8ball.add_field(
+                        name=content[len(prefix) + 6:], value=random.choice(lista8))
+                    await dc.embed(msg, embed8ball)
+                else:
+                    await dc.send(msg, "Írjál má' kérdést te hónaljszagú ogre!")
+                    await dc.send(msg, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
+                    await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
+
+            # guessTheNumber
+            global inGtn
+            if inGtn:
+                global gtNum
+                if int(content) == int(gtNum):
+                    inGtn = False
+                    await dc.send(msg, "Jippí!")
+                    await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                elif int(content) > int(gtNum):
+                    await dc.send(msg, "Kisebb!")
+                elif int(content) < int(gtNum):
+                    await dc.send(msg, "Nagyobb!")
+
+            if dc.cmd(msg, prefix, "gtn"):
+                if len(content) <= len(prefix) + len("gtn") + 1:
+                    await dc.send(msg, "Mennyi legyen a max szám? He?!")
+                    await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
+                    await dc.send(msg, f"PL: `{prefix}gtn 756`")
+                else:
+                    gtNum = random.randrange(1, int(content[len(prefix) + 4:]))
+                    inGtn = True
+                    await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
+
+            # kagi
+            if dc.cmd(msg, prefix, "kagi"):
+                await dc.send(msg, ":poop:")
+
+        client.run(os.environ["BOT_TOKEN"])
+>>>>>>> 338adbb692820fd539a33f9cf1fc85e8481887bf
 
     except Exception as e:
         print("\n\n[ERROR]")
