@@ -114,23 +114,25 @@ Your words become your actions,
 Your actions become your habits,
 Your habits become your values,
 Your values become your destiny.""",
-        "You must not lose faith in humanity. Humanity is like an ocean; if a few drops of the ocean are dirty, the ocean does not become dirty.",
-        "The best way to find yourself is to lose yourself in the service of others.",
-        "The future depends on what you do today.”",
-        "A man is but the product of his thoughts. What he thinks, he becomes.",
-        "To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer.",
-        "The greatness of a nation and its moral progress can be judged by the way its animals are treated.",
-        "Man often becomes what he believes himself to be. If I keep on saying to myself that I cannot do a certain thing, it is possible that I may end by really becoming incapable of doing it. On the contrary, if I have the belief that I can do it, I shall surely acquire the capacity to do it even if I may not have it at the beginning.",
-        "Each night, when I go to sleep, I die. And the next morning, when I wake up, I am reborn.",
-        "Earth provides enough to satisfy every man's needs, but not every man's greed.",
-        "What difference does it make to the dead, the orphans and the homeless, whether the mad destruction is wrought under the name of totalitarianism or in the holy name of liberty or democracy?",
-        "To believe in something, and not to live it, is dishonest.",
-        "There are people in the world so hungry, that God cannot appear to them except in the form of bread.",
-        "It is unwise to be too sure of one's own wisdom. It is healthy to be reminded that the strongest might weaken and the wisest might err.",
-        "Whatever you do will be insignificant, but it is very important that you do it."
-    ]
+            "You must not lose faith in humanity. Humanity is like an ocean; if a few drops of the ocean are dirty, the ocean does not become dirty.",
+            "The best way to find yourself is to lose yourself in the service of others.",
+            "The future depends on what you do today.”",
+            "A man is but the product of his thoughts. What he thinks, he becomes.",
+            "To give pleasure to a single heart by a single act is better than a thousand heads bowing in prayer.",
+            "The greatness of a nation and its moral progress can be judged by the way its animals are treated.",
+            "Man often becomes what he believes himself to be. If I keep on saying to myself that I cannot do a certain thing, it is possible that I may end by really becoming incapable of doing it. On the contrary, if I have the belief that I can do it, I shall surely acquire the capacity to do it even if I may not have it at the beginning.",
+            "Each night, when I go to sleep, I die. And the next morning, when I wake up, I am reborn.",
+            "Earth provides enough to satisfy every man's needs, but not every man's greed.",
+            "What difference does it make to the dead, the orphans and the homeless, whether the mad destruction is wrought under the name of totalitarianism or in the holy name of liberty or democracy?",
+            "To believe in something, and not to live it, is dishonest.",
+            "There are people in the world so hungry, that God cannot appear to them except in the form of bread.",
+            "It is unwise to be too sure of one's own wisdom. It is healthy to be reminded that the strongest might weaken and the wisest might err.",
+            "Whatever you do will be insignificant, but it is very important that you do it."
+        ]
+
         @client.event
         async def on_ready():
+            await client.change_presence(activity=discord.Game("The quick brown fox jumps over the lazy dog"), status=discord.Status.online)
             print("-----")
             print("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.")
 
@@ -284,7 +286,8 @@ Your values become your destiny.""",
 
             # getBackup
             if dc.cmd(msg, prefix, "getbackup"):
-                logging.warning("\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
+                logging.warning(
+                    "\"{}\" meg akarja nézni a biztonsági mentést!".format(msg.author))
                 await dc.send(msg, "Backup:\n```json\n{}\n```".format(str(db["backup"])))
 
             # 8ball
