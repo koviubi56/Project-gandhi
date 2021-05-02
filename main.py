@@ -316,7 +316,7 @@ Your values become your destiny.""",
                         # ˇ1.3.0-beta.4
                         "kérdezd meg később amikor nem leszek elfoglalva anyáddal",
                         "igen!!!!",
-                        "igen, idióta"
+                        "igen, idióta",
                         "nem, idióta",
                         "a fené(k)be!!",
                         "nem???"
