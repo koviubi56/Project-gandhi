@@ -235,7 +235,9 @@ Your values become your destiny.""",
                     "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
 
             # makeBackup
-            if dc.cmd(msg, os.environ["KEY"], "makebackup"):
+            if dc.cmd(msg, os.environ["KEY"], [
+                ["makebackup", True]
+            ]):
                 logging.warning(
                     "\"{}\" szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
                 print("MOST:szerdak = \"{szerda}\"; backup = \"{bu}\"".format(
