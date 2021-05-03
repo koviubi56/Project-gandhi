@@ -139,19 +139,16 @@ Your values become your destiny.""",
             content = msg.content
 
             # hjelp
-            gandhiHjelp = [
-                prefix + "hjelp",
-                prefix + "help",
-                "hjelp",
-
-                "@Gandhi",
-                "@Gandhi#0952",
-
-                "<@753651550047436902>",
-                "<@!753651550047436902>",
-                "<@&819912333241221161>"
-            ]
-            if content in gandhiHjelp:
+            if dc.cmd(msg, prefix, [
+                ["hjelp", True],
+                ["help", True],
+                ["hjelp", False],
+                ["@Gandhi", False],
+                ["@Gandhi#0952", False],
+                ["<@753651550047436902>", False],
+                ["<@!753651550047436902>", False],
+                ["<@&753651550047436902>", False]
+            ]):
                 if random.randrange(2) == 0:
                     await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                 elif random.randrange(2) == 0:

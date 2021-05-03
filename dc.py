@@ -61,7 +61,7 @@ def cmd(msg, prefix, commands):
         msg (disct): The message that discord gave
 
     Returns:
-        [type]: [description]
+        bool
     """
     for k in commands:
         if k[1] is True:
