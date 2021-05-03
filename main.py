@@ -193,6 +193,10 @@ while True:
                     name="kagi",
                     value=f":poop:\n__Szintaxis__: `{prefix}kagi`\n__PL__: `{prefix}kagi`"
                 )
+                embedHjelp.add_field(
+                    name="bajsz",
+                    value=f":bearded_person:\n__Szintaxis__: `{prefix}bajsz`\n__PL__: `{prefix}bajsz`"
+                )
 
                 await dc.embed(msg, embedHjelp)
 
@@ -391,6 +395,18 @@ while True:
                 quoteE.add_field(name="Bölcsesség Gandhi-tól",
                                  value=random.choice(gandhi))
                 await dc.embed(msg, quoteE)
+
+            # bajsz
+            if dc.cmd(msg, prefix, [
+                ["bajsz", True]
+            ]):
+                bajszLista = [
+                    ":disguised_face:",
+                    ":man:",
+                    ":bearded_person:",
+                    ":santa:"
+                ]
+                await dc.send(msg, random.choice(bajszLista))
 
         client.run(os.environ["BOT_TOKEN"])
 
