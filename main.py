@@ -61,18 +61,6 @@ while True:
             level=logging.INFO, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
 
-        try:
-            x = type(db["szerdak"])
-            if x is None:
-                print("Type of x: ".format(str(type(x))))
-                backup()
-                db["szerdak"] = 0
-        except Exception as e:
-            print(f"NOT_PROBLEM0 error: \"{e}\"")
-            db["szerdak"] = 0
-        finally:
-            inSet = False
-
         # ===SETTINGS===
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
@@ -92,6 +80,7 @@ while True:
 
         inGtn = False
         gtNum = 0
+        inSet = False
 
         gandhi = [
             "Be the change that you wish to see in the world.",
