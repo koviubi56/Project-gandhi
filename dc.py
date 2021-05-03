@@ -52,18 +52,25 @@ async def embed(msg, embedVar):
         logging.info("Embed elküldve! (CH: \"{}\")".format(msg.channel))
 
 
-def cmd(msg, prefix, command):
+def cmd(msg, prefix, commands):
     """Checks if the msg is a command
 
     Args:
         prefix (str): The prefix
-        command (str): The command
+        command (list): List of commands.
         msg (disct): The message that discord gave
 
     Returns:
         [type]: [description]
     """
-    if msg.content.lower().startswith(prefix.lower() + command.lower()):
-        return True
-    # // else:
+    for k in commands:
+        if k[1] is True:
+            if msg.content.lower().startswith(prefix.lower() + k[0].lower()):
+                return True
+        elif k[1] is False:
+            if msg.content.lower().startswith(k[0].lower()):
+                return True
+        else:
+            raise ValueError("BY ME: A k[1] se nem True, se nem False! :,(")
+
     return False
