@@ -253,7 +253,9 @@ Your values become your destiny.""",
                 await dc.send(msg, "Backup kész!")
 
             # resetBackup
-            if dc.cmd(msg, os.environ["KEY"], "resetbackup"):
+            if dc.cmd(msg, os.environ["KEY"], [
+                ["resetbackup", True]
+            ]):
                 logging.warning(
                     "\"{}\" resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
                 print("MOST: backup = \"{}\"".format(str(db["backup"])))
@@ -279,13 +281,17 @@ Your values become your destiny.""",
                     await dc.send(msg, "Nagyobb!")
 
             # getBackup
-            if dc.cmd(msg, prefix, "getbackup"):
+            if dc.cmd(msg, prefix, [
+                ["getbackup", True]
+            ]):
                 logging.warning(
                     "Valaki meg akarja nézni a biztonsági mentést!")
                 await dc.send(msg, "Backup:\n```json\n{}\n```".format(str(db["backup"])))
 
             # 8ball
-            if dc.cmd(msg, prefix, "8ball"):
+            if dc.cmd(msg, prefix, [
+                ["8ball", True]
+            ]):
                 if len(msg.content) > len(prefix) + len("8ball "):
                     lista8 = [
                         "ez pokolian nem",
@@ -329,7 +335,9 @@ Your values become your destiny.""",
                     await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
 
             # gtn
-            if dc.cmd(msg, prefix, "gtn"):
+            if dc.cmd(msg, prefix, [
+                ["gtn", True]
+            ]):
                 if len(msg.content) <= len(prefix) + len("gtn") + 1:
                     await dc.send(msg, "Mennyi legyen a max szám? He?!")
                     await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
@@ -341,7 +349,9 @@ Your values become your destiny.""",
                     await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
             # kagi
-            if dc.cmd(msg, prefix, "kagi"):
+            if dc.cmd(msg, prefix, [
+                ["kagi", True]
+            ]):
                 await dc.send(msg, ":poop:")
 
         client.run(os.environ["BOT_TOKEN"])
