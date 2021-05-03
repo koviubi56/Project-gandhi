@@ -204,7 +204,9 @@ Your values become your destiny.""",
                 await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
 
             # stop
-            if dc.cmd(msg, os.environ["KEY"], "stop"):
+            if dc.cmd(msg, os.environ["KEY"], [
+                ["stop", True]
+            ]):
                 await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
                 logging.info("Creating backup...")
                 try:
@@ -223,7 +225,9 @@ Your values become your destiny.""",
                 logging.info("Szerda beállítva! Mostani szerda: \"{most}\"  Backup: \"{bu}\"".format(
                     most=db["szerdak"], bu=str(db["backup"])))
 
-            if dc.cmd(msg, os.environ["KEY"], "set"):
+            if dc.cmd(msg, os.environ["KEY"], [
+                ["set", True]
+            ]):
                 await dc.send(msg, "K!")
                 inSet = True
                 backup("AUTO")
