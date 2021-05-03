@@ -354,6 +354,19 @@ Your values become your destiny.""",
             ]):
                 await dc.send(msg, ":poop:")
 
+            # bölcsesség
+            if dc.cmd(msg, prefix, [
+                ["bölcsesség", True],
+                ["bolcsesseg", True],
+                ["idézet", True],
+                ["idezet", True],
+                ["quote", True]
+            ]):
+                quoteE = discord.Embed()
+                quoteE.add_field(name="Bölcsesség Gandhi-tól",
+                                 value=random.choice(gandhi))
+                await dc.embed(msg, quoteE)
+
         client.run(os.environ["BOT_TOKEN"])
 
     except Exception as e:
