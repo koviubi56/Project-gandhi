@@ -19,30 +19,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-
-def backup(type, get=False):
-    if type == "CMD":
-        db["backup"]["CMDbackup"] = {
-            "szerdak": db["szerdak"],
-            "time": time.asctime()
-        }
-    elif type == "AUTO":
-        try:
-            db["backup"]["AUTObackup"] = {
-                "szerdak": db["szerdak"],
-                "time": time.asctime()
-            }
-        except Exception as e:
-            logging.error(str(e))
-            return False
-        else:
-            logging.info("AutoBackup kész!")
-            if get:
-                return db["backup"]
-            else:
-                return True
-
-
 while True:
     print("Starting...")
     try:
@@ -55,6 +31,7 @@ while True:
         import gchjelp
         import gfindszerda
         import gc56
+        import gcstop
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -157,7 +134,7 @@ while True:
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
 
-            backup("AUTO")
+            dc.backup("AUTO")
 
         @client.event
         async def on_message(message):
@@ -194,15 +171,7 @@ while True:
             if dc.cmd(msg, os.environ["KEY"], [
                 ["stop", True]
             ]):
-                await dc.send(msg, f'Szerdák: {str(db["szerdak"])}')
-                logging.info("Creating backup...")
-                try:
-                    backup("AUTO")
-                except Exception as e:
-                    logging.error(f"Can't create backup! Error code: {e}")
-                else:
-                    logging.info("Stopping...")
-                    exit()
+                gcstop.main(msg)
 
             # set
             global inSet
