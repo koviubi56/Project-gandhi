@@ -54,6 +54,7 @@ while True:
         # ===GC===
         import gchjelp
         import gfindszerda
+        import gc56
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -187,7 +188,7 @@ while True:
 
             # 56
             if content == "56":
-                await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
+                gc56.main(msg)
 
             # stop
             if dc.cmd(msg, os.environ["KEY"], [
