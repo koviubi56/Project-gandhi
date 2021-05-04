@@ -44,5 +44,9 @@ async def main(msg, prefix):
         name="bajsz",
         value=f":bearded_person:\n__Szintaxis__: `{prefix}bajsz`\n__PL__: `{prefix}bajsz`"
     )
+    embedHjelp.add_field(
+        name="bölcsesség",
+        value=f"Egy veri szpesöl idézet Gandhi-tól (igen, :gandhi:)\n__Szintaxis__: `{prefix}bölcsesség`\n__PL__: `{prefix}bölcsesség`"
+    )
 
     await dc.embed(msg, embedHjelp)
