@@ -101,52 +101,50 @@ while True:
                 ["<@!753651550047436902>", False],
                 ["<@&753651550047436902>", False]
             ]):
-                gchjelp.main(msg, prefix)
+                await gchjelp.main(msg, prefix)
 
             # szerda keresés
-            gfindszerda.main(msg, maxSzerda)
+            await gfindszerda.main(msg, maxSzerda)
 
             # 56
             if content == "56":
-                gc56.main(msg)
+                await gc56.main(msg)
 
             # stop
             if dc.cmd(msg, os.environ["KEY"], [
                 ["stop", True]
             ]):
-                gcstop.main(msg)
+                await gcstop.main(msg)
 
             # set
             if dc.cmd(msg, os.environ["KEY"], [
                 ["set", True]
             ]):
-                gcset.main(content, prefix)
+                await gcset.main(content, prefix)
 
             # makeBackup
             if dc.cmd(msg, os.environ["KEY"], [
                 ["makebackup", True]
             ]):
-                gcmakebackup.main(msg)
+                await gcmakebackup.main(msg)
 
             # resetBackup
             if dc.cmd(msg, os.environ["KEY"], [
                 ["resetbackup", True]
             ]):
-                gcresetbackup.main(msg)
-
+                await gcresetbackup.main(msg)
 
             # getBackup
             if dc.cmd(msg, prefix, [
                 ["getbackup", True]
             ]):
-                gcgetbackup.main(msg)
+                await gcgetbackup.main(msg)
 
             # 8ball
             if dc.cmd(msg, prefix, [
                 ["8ball", True]
             ]):
-                gc8ball.main(msg, prefix)
-
+                await gc8ball.main(msg, prefix)
 
             # bölcsesség
             if dc.cmd(msg, prefix, [
@@ -156,11 +154,9 @@ while True:
                 ["idezet", True],
                 ["quote", True]
             ]):
-                gcbolcsesseg.main(msg)
-
+                await gcbolcsesseg.main(msg)
 
             # *************************************************************************************
-
 
             # kagi
             if dc.cmd(msg, prefix, [
