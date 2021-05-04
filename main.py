@@ -33,6 +33,7 @@ while True:
         import gc56
         import gcstop
         import gcset
+        import gcmakebackup
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -184,19 +185,7 @@ while True:
             if dc.cmd(msg, os.environ["KEY"], [
                 ["makebackup", True]
             ]):
-                logging.warning(
-                    "\"{}\" szeretne csinálni egy biztonsági mentést! Infókat lásd alább:".format(msg.author))
-                print("MOST:szerdak = \"{szerda}\"; backup = \"{bu}\"".format(
-                    szerda=db["szerdak"], bu=db["backup"]))
-                BUlesz = db["backup"]
-                BUlesz["CMDbackup"] = {
-                    "szerdak": db["szerdak"],
-                    "time": time.asctime()
-                }
-                print("LESZ: backup = \"{}\"".format(str(BUlesz)))
-                backup("CMD")
-                logging.info("Backup kész!")
-                await dc.send(msg, "Backup kész!")
+                gcmakebackup.main(msg)
 
             # resetBackup
             if dc.cmd(msg, os.environ["KEY"], [
