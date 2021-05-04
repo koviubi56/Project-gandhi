@@ -35,6 +35,7 @@ while True:
         import gcset
         import gcmakebackup
         import gcresetbackup
+        import gcgetbackup
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -224,9 +225,7 @@ while True:
             if dc.cmd(msg, prefix, [
                 ["getbackup", True]
             ]):
-                logging.warning(
-                    "Valaki meg akarja nézni a biztonsági mentést!")
-                await dc.send(msg, "Backup:\n```json\n{}\n```".format(str(db["backup"])))
+                gcgetbackup.main(msg)
 
             # 8ball
             if dc.cmd(msg, prefix, [
