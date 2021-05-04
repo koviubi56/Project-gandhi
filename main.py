@@ -207,18 +207,18 @@ while True:
                 elif int(content) < int(gtNum):
                     await dc.send(msg, "Nagyobb!")
 
-                if dc.cmd(msg, prefix, [
-                    ["gtn", True]
-                ]):
-                    if len(msg.content) <= len(prefix) + len("gtn") + 1:
-                        await dc.send(msg, "Mennyi legyen a max szám? He?!")
-                        await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
-                        await dc.send(msg, f"PL: `{prefix}gtn 756`")
-                    else:
-                        gtNum = random.randrange(
-                            1, int(msg.content[len(prefix) + 4:]))
-                        inGtn = True
-                        await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
+            if dc.cmd(msg, prefix, [
+                ["gtn", True]
+            ]):
+                if len(msg.content) <= len(prefix) + len("gtn") + 1:
+                    await dc.send(msg, "Mennyi legyen a max szám? He?!")
+                    await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
+                    await dc.send(msg, f"PL: `{prefix}gtn 756`")
+                else:
+                    gtNum = random.randrange(
+                        1, int(msg.content[len(prefix) + 4:]))
+                    inGtn = True
+                    await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
             # getBackup
             if dc.cmd(msg, prefix, [
