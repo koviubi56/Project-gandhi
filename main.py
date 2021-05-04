@@ -159,6 +159,8 @@ while True:
             if message.author == client.user:
                 return
 
+            time.sleep(0.1)
+
             plus = 0
             msg = message
             content = msg.content
