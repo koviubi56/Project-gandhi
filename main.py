@@ -180,11 +180,7 @@ while True:
             if dc.cmd(msg, os.environ["KEY"], [
                 ["set", True]
             ]):
-                await dc.send(msg, "K!")
-                inSet = True
-                backup("AUTO")
-                logging.warning(
-                    "\"{}\" be akarja állítani a szerdák számát! Jelenleg \"{}\" szerda van! Jegyezd meg!".format(msg.author, db["szerdak"]))
+                gcset.main()
 
             # makeBackup
             if dc.cmd(msg, os.environ["KEY"], [

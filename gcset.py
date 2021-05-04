@@ -1,5 +1,5 @@
 """
-File for setting the szerdas.
+File for "set" command.
 Copyright (C) 2021  Koviubi56
 
 This program is free software: you can redistribute it and/or modify
@@ -16,18 +16,26 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 # * **************************** *
-# * This is NOT for the command! *
-# * This is for the setting!     *
+# * This is NOT for the setting! *
+# * This is for the command!     *
 # * **************************** *
 
 from replit import db
+import dc
 import logging
 logging = logging.getLogger(__name__)
 
 
-def main(inSet, content):
-    if inSet == True:
-        inSet = False
-        db["szerdak"] = int(content)
-        logging.info("Szerda beállítva! Mostani szerda: \"{most}\"  Backup: \"{bu}\"".format(
-            most=db["szerdak"], bu=str(db["backup"])))
+def buerror(errcode="The dc.backup(\"BACKUP\") function is NOT returned True (return != True)"):
+    print("[ERROR]")
+    logging.error(errcode)
+
+
+async def main(content, prefix):
+    if len(content) > len(prefix) + len("set "):
+        try:
+            if dc.backup("AUTO") is not True:
+                buerror()
+        except Exception as e:
+            buerror(e)
+        db["szerdak"] = int(content[len(prefix) + len("set "):])
