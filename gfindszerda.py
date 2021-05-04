@@ -15,6 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+from replit import db
 import dc
 import logging
 logging = logging.getLogger(__name__)
@@ -22,6 +23,7 @@ logging = logging.getLogger(__name__)
 
 async def main(msg, maxSzerda):
     content = msg.content
+    plus = 0
     try:
         for i, betu in enumerate(content):
             if plus > maxSzerda:
