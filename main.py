@@ -32,6 +32,7 @@ while True:
         import gfindszerda
         import gc56
         import gcstop
+        import gset
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -174,12 +175,7 @@ while True:
                 gcstop.main(msg)
 
             # set
-            global inSet
-            if inSet == True:
-                inSet = False
-                db["szerdak"] = int(content)
-                logging.info("Szerda beállítva! Mostani szerda: \"{most}\"  Backup: \"{bu}\"".format(
-                    most=db["szerdak"], bu=str(db["backup"])))
+            gset.main(inSet, content)
 
             if dc.cmd(msg, os.environ["KEY"], [
                 ["set", True]
