@@ -32,7 +32,7 @@ while True:
         import gfindszerda
         import gc56
         import gcstop
-        import gset
+        import gcset
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -175,12 +175,10 @@ while True:
                 gcstop.main(msg)
 
             # set
-            gset.main(inSet, content)
-
             if dc.cmd(msg, os.environ["KEY"], [
                 ["set", True]
             ]):
-                gcset.main()
+                gcset.main(content, prefix)
 
             # makeBackup
             if dc.cmd(msg, os.environ["KEY"], [
