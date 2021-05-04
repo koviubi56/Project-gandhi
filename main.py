@@ -51,6 +51,9 @@ while True:
         import random
         import dc
         import time
+        # ===GC===
+        import gchjelp
+        # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
             szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
@@ -176,31 +179,7 @@ while True:
                 ["<@!753651550047436902>", False],
                 ["<@&753651550047436902>", False]
             ]):
-                if random.randrange(2) == 0:
-                    await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
-                elif random.randrange(2) == 0:
-                    await dc.send(msg, "Lottószámok (hatos lottó): || {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
-                else:
-                    await dc.send(msg, "Lottószámok (skandináv lottó): || {} {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36)))
-                embedHjelp = discord.Embed()
-                embedHjelp.add_field(
-                    name="8ball",
-                    value=f"8ball/8labda\n__Szintaxis__: `{prefix}8ball `*<KÉRDÉS>*\n__PL__: `{prefix}8ball Szerda vanszk?`"
-                )
-                embedHjelp.add_field(
-                    name="gtn",
-                    value=f"Találd ki a számot\n__Szintaxis__: `{prefix}gtn `*<MAX SZÁM>*\n__PL__: `{prefix}gtn 756`"
-                )
-                embedHjelp.add_field(
-                    name="kagi",
-                    value=f":poop:\n__Szintaxis__: `{prefix}kagi`\n__PL__: `{prefix}kagi`"
-                )
-                embedHjelp.add_field(
-                    name="bajsz",
-                    value=f":bearded_person:\n__Szintaxis__: `{prefix}bajsz`\n__PL__: `{prefix}bajsz`"
-                )
-
-                await dc.embed(msg, embedHjelp)
+                gchjelp.main(msg, prefix)
 
             # szerda keresés
             try:
