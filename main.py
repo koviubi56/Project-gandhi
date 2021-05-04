@@ -53,6 +53,7 @@ while True:
         import time
         # ===GC===
         import gchjelp
+        import gfindszerda
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -182,32 +183,7 @@ while True:
                 gchjelp.main(msg, prefix)
 
             # szerda keresés
-            try:
-                for i, betu in enumerate(content):
-                    if plus > maxSzerda:
-                        logging.error("TÚL SOK SZERDA!")
-                        await dc.send(
-                            msg, f"Ez az üzenet annyira menő, hogy több mint {maxSzerda} szerda van benne.")
-                        await dc.send(
-                            msg, "|| Megjegyzés magamnak: *set*; szerdák: {szerdak} ||".format(szerdak=str(db["szerdak"])))
-                        plus = 0
-                        break
-                    if (
-                        betu.lower() == "s"
-                        and content[i + 1] == "z"
-                        and content[i + 2] == "e"
-                        and content[i + 3] == "r"
-                        and content[i + 4] == "d"
-                        and content[i + 5] in ["a", "á"]
-                    ):
-                        plus += 1
-                    continue
-            except IndexError:
-                pass
-
-            if plus > 0:
-                db["szerdak"] += plus
-                await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=db["szerdak"]))
+            gfindszerda.main(msg, maxSzerda)
 
             # 56
             if content == "56":
