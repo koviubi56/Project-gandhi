@@ -20,7 +20,7 @@ echo/
 choice /C YN /T 1 /D Y /M "Exit at end "
 set eae=%ERRORLEVEL%
 title Choice
-choice /C CSLTO /T 15 /D C /M "[C]ommit; Pu[s]h; Pu[l]l; S[t]atus; L[o]g"
+choice /C CSLTO /T 5 /D C /M "[C]ommit; Pu[s]h; Pu[l]l; S[t]atus; L[o]g"
 if %ERRORLEVEL% == 5 (
     title Log
     git log
@@ -47,7 +47,7 @@ if %ERRORLEVEL% == 1 (
     title Commit message?
     set /p msg="Commit message> "
     title Commiting...
-    git commit -am %msg%
+    git commit -am "%msg%"
     if %ERRORLEVEL% == 1 (
         title Pushing...
         git push
