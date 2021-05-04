@@ -43,7 +43,7 @@ if %ERRORLEVEL% == 2 (
 )
 if %ERRORLEVEL% == 1 (
     title Push after Y/N?
-    choice /C YN /T 3 /D Y /M "Push after"
+    choice /C YN /T 1 /D Y /M "Push after"
     title Commit message?
     set /p msg="Commit message> "
     title Commiting...

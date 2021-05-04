@@ -381,7 +381,8 @@ while True:
 
             # kagi
             if dc.cmd(msg, prefix, [
-                ["kagi", True]
+                ["kagi", True],
+                ["kaga", True]
             ]):
                 await dc.send(msg, ":poop:")
 
