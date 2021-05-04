@@ -34,6 +34,7 @@ while True:
         import gcstop
         import gcset
         import gcmakebackup
+        import gcresetbackup
         # ---GC---
         from replit import db
         print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
@@ -191,18 +192,9 @@ while True:
             if dc.cmd(msg, os.environ["KEY"], [
                 ["resetbackup", True]
             ]):
-                logging.warning(
-                    "\"{}\" resetelni akarja a backupot! Infókat lásd alább!".format(str(msg.author)))
-                print("MOST: backup = \"{}\"".format(str(db["backup"])))
-                print("LESZ: backup = \"{}\"".format(str(
-                    {"CMDbackup": {}, "AUTObackup": {}}
-                )))
-                db["backup"] = {
-                    "CMDbackup": {},
-                    "AUTObackup": {}
-                }
-                await dc.send(msg, "Kész!")
+                gcresetbackup.main(msg)
 
+            # gtn
             global inGtn
             if inGtn:
                 global gtNum
@@ -214,6 +206,19 @@ while True:
                     await dc.send(msg, "Kisebb!")
                 elif int(content) < int(gtNum):
                     await dc.send(msg, "Nagyobb!")
+
+                if dc.cmd(msg, prefix, [
+                    ["gtn", True]
+                ]):
+                    if len(msg.content) <= len(prefix) + len("gtn") + 1:
+                        await dc.send(msg, "Mennyi legyen a max szám? He?!")
+                        await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
+                        await dc.send(msg, f"PL: `{prefix}gtn 756`")
+                    else:
+                        gtNum = random.randrange(
+                            1, int(msg.content[len(prefix) + 4:]))
+                        inGtn = True
+                        await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
             # getBackup
             if dc.cmd(msg, prefix, [
@@ -268,20 +273,6 @@ while True:
                     await dc.send(msg, "Írjál má' kérdést te hónaljszagú ogre!")
                     await dc.send(msg, f"Így használd: `{prefix}8ball `*<KÉRDÉS>*")
                     await dc.send(msg, f"PL: `{prefix}8ball Szerda van?`")
-
-            # gtn
-            if dc.cmd(msg, prefix, [
-                ["gtn", True]
-            ]):
-                if len(msg.content) <= len(prefix) + len("gtn") + 1:
-                    await dc.send(msg, "Mennyi legyen a max szám? He?!")
-                    await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
-                    await dc.send(msg, f"PL: `{prefix}gtn 756`")
-                else:
-                    gtNum = random.randrange(
-                        1, int(msg.content[len(prefix) + 4:]))
-                    inGtn = True
-                    await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
 
             # kagi
             if dc.cmd(msg, prefix, [

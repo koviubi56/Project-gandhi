@@ -1,5 +1,5 @@
 """
-File for finding "szerda"s in messages.
+This file is for finding "szerda"s in messages.
 Copyright (C) 2021  Koviubi56
 
 This program is free software: you can redistribute it and/or modify
