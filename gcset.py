@@ -28,10 +28,14 @@ def buerror(errcode="The dc.backup(\"BACKUP\") function is NOT returned True (re
 
 
 async def main(content, prefix):
+    logging.warning(
+        "Valaki meg akarja változtatni a szerdák számát! Infókat lásd alább:")
     if len(content) > len(prefix) + len("set "):
         try:
             if dc.backup("AUTO") is not True:
                 buerror()
+                return False
         except Exception as e:
             buerror(e)
-        db["szerdak"] = int(content[len(prefix) + len("set "):])
+        else:
+            db["szerdak"] = int(content[len(prefix) + len("set "):])
