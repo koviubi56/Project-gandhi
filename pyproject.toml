@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "Project-gandhi"
-version = "1.4.0-beta.1"
+version = "1.4.0"
 description = "A discord bot"
 authors = ["koviubi56 <k56gandhibot@hash.fyi>"]
-license = "MPL-2.0"
+license = "AGPL-3.0-or-later"
 homepage = "https://gandhibot.betteruptime.com/"
 keywords = ["python", "discord", "bot", "discord.py", "python3"]
 
