@@ -46,7 +46,7 @@ async def main(msg, prefix):
     )
     embedHjelp.add_field(
         name="bölcsesség",
-        value=f"Egy veri szpesöl idézet Gandhi-tól (igen, :gandhi:)\n__Szintaxis__: `{prefix}bölcsesség`\n__PL__: `{prefix}bölcsesség`"
+        value=f"Egy veri szpesöl idézet Gandhi-tól \n__Szintaxis__: `{prefix}bölcsesség`\n__PL__: `{prefix}bölcsesség`"
     )
 
     await dc.embed(msg, embedHjelp)
