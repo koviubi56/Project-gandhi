@@ -27,6 +27,7 @@ while True:
         import random
         import dc
         import time
+        import ddos
         # ===GC===
         import gchjelp
         import gfindszerda
@@ -87,121 +88,126 @@ while True:
 
             time.sleep(0.1)
 
-            msg = message
-            content = msg.content
+            d = ddos.DDoS(3, 7)
+            if d.test(message.author):
+                msg = message
+                content = msg.content
 
-            # hjelp
-            if dc.cmd(msg, prefix, [
-                ["hjelp", True],
-                ["help", True],
-                ["hjelp", False],
-                ["@Gandhi", False],
-                ["@Gandhi#0952", False],
-                ["<@753651550047436902>", False],
-                ["<@!753651550047436902>", False],
-                ["<@&753651550047436902>", False]
-            ]):
-                await gchjelp.main(msg, prefix)
+                # hjelp
+                if dc.cmd(msg, prefix, [
+                    ["hjelp", True],
+                    ["help", True],
+                    ["hjelp", False],
+                    ["@Gandhi", False],
+                    ["@Gandhi#0952", False],
+                    ["<@753651550047436902>", False],
+                    ["<@!753651550047436902>", False],
+                    ["<@&753651550047436902>", False]
+                ]):
+                    await gchjelp.main(msg, prefix)
 
-            # szerda keresés
-            await gfindszerda.main(msg, maxSzerda)
+                # szerda keresés
+                await gfindszerda.main(msg, maxSzerda)
 
-            # 56
-            if content == "56":
-                await gc56.main(msg)
+                # 56
+                if content == "56":
+                    await gc56.main(msg)
 
-            # stop
-            if dc.cmd(msg, os.environ["KEY"], [
-                ["stop", True]
-            ]):
-                await gcstop.main(msg)
+                # stop
+                if dc.cmd(msg, os.environ["KEY"], [
+                    ["stop", True]
+                ]):
+                    await gcstop.main(msg)
 
-            # set
-            if dc.cmd(msg, os.environ["KEY"], [
-                ["set", True]
-            ]):
-                await gcset.main(content, os.environ["KEY"])
+                # set
+                if dc.cmd(msg, os.environ["KEY"], [
+                    ["set", True]
+                ]):
+                    await gcset.main(content, os.environ["KEY"])
 
-            # makeBackup
-            if dc.cmd(msg, os.environ["KEY"], [
-                ["makebackup", True]
-            ]):
-                await gcmakebackup.main(msg)
+                # makeBackup
+                if dc.cmd(msg, os.environ["KEY"], [
+                    ["makebackup", True]
+                ]):
+                    await gcmakebackup.main(msg)
 
-            # resetBackup
-            if dc.cmd(msg, os.environ["KEY"], [
-                ["resetbackup", True]
-            ]):
-                await gcresetbackup.main(msg)
+                # resetBackup
+                if dc.cmd(msg, os.environ["KEY"], [
+                    ["resetbackup", True]
+                ]):
+                    await gcresetbackup.main(msg)
 
-            # getBackup
-            if dc.cmd(msg, prefix, [
-                ["getbackup", True]
-            ]):
-                await gcgetbackup.main(msg)
+                # getBackup
+                if dc.cmd(msg, prefix, [
+                    ["getbackup", True]
+                ]):
+                    await gcgetbackup.main(msg)
 
-            # 8ball
-            if dc.cmd(msg, prefix, [
-                ["8ball", True]
-            ]):
-                await gc8ball.main(msg, prefix)
+                # 8ball
+                if dc.cmd(msg, prefix, [
+                    ["8ball", True]
+                ]):
+                    await gc8ball.main(msg, prefix)
 
-            # bölcsesség
-            if dc.cmd(msg, prefix, [
-                ["bölcsesség", True],
-                ["bolcsesseg", True],
-                ["idézet", True],
-                ["idezet", True],
-                ["quote", True]
-            ]):
-                await gcbolcsesseg.main(msg)
+                # bölcsesség
+                if dc.cmd(msg, prefix, [
+                    ["bölcsesség", True],
+                    ["bolcsesseg", True],
+                    ["idézet", True],
+                    ["idezet", True],
+                    ["quote", True]
+                ]):
+                    await gcbolcsesseg.main(msg)
 
-            # *************************************************************************************
+                # *************************************************************************************
 
-            # kagi
-            if dc.cmd(msg, prefix, [
-                ["kagi", True],
-                ["kaga", True]
-            ]):
-                await dc.send(msg, ":poop:")
+                # kagi
+                if dc.cmd(msg, prefix, [
+                    ["kagi", True],
+                    ["kaga", True]
+                ]):
+                    await dc.send(msg, ":poop:")
 
-            # bajsz
-            if dc.cmd(msg, prefix, [
-                ["bajsz", True]
-            ]):
-                bajszLista = [
-                    ":disguised_face:",
-                    ":man:",
-                    ":bearded_person:",
-                    ":santa:"
-                ]
-                await dc.send(msg, random.choice(bajszLista))
+                # bajsz
+                if dc.cmd(msg, prefix, [
+                    ["bajsz", True]
+                ]):
+                    bajszLista = [
+                        ":disguised_face:",
+                        ":man:",
+                        ":bearded_person:",
+                        ":santa:"
+                    ]
+                    await dc.send(msg, random.choice(bajszLista))
 
-            # gtn
-            global inGtn
-            if inGtn:
-                global gtNum
-                if int(content) == int(gtNum):
-                    inGtn = False
-                    await dc.send(msg, "Jippí!")
-                    await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
-                elif int(content) > int(gtNum):
-                    await dc.send(msg, "Kisebb!")
-                elif int(content) < int(gtNum):
-                    await dc.send(msg, "Nagyobb!")
+                # gtn
+                global inGtn
+                if inGtn:
+                    global gtNum
+                    if int(content) == int(gtNum):
+                        inGtn = False
+                        await dc.send(msg, "Jippí!")
+                        await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                    elif int(content) > int(gtNum):
+                        await dc.send(msg, "Kisebb!")
+                    elif int(content) < int(gtNum):
+                        await dc.send(msg, "Nagyobb!")
 
-            if dc.cmd(msg, prefix, [
-                ["gtn", True]
-            ]):
-                if len(msg.content) <= len(prefix) + len("gtn") + 1:
-                    await dc.send(msg, "Mennyi legyen a max szám? He?!")
-                    await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
-                    await dc.send(msg, f"PL: `{prefix}gtn 756`")
-                else:
-                    gtNum = random.randrange(
-                        1, int(msg.content[len(prefix) + 4:]))
-                    inGtn = True
-                    await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
+                if dc.cmd(msg, prefix, [
+                    ["gtn", True]
+                ]):
+                    if len(msg.content) <= len(prefix) + len("gtn") + 1:
+                        await dc.send(msg, "Mennyi legyen a max szám? He?!")
+                        await dc.send(msg, f"Így használd: `{prefix}gtn `*<MAX SZÁM>*")
+                        await dc.send(msg, f"PL: `{prefix}gtn 756`")
+                    else:
+                        gtNum = random.randrange(
+                            1, int(msg.content[len(prefix) + 4:]))
+                        inGtn = True
+                        await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
+
+            else:
+                time.sleep(0.2)
 
         client.run(os.environ["BOT_TOKEN"])
 
