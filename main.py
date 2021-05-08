@@ -120,7 +120,7 @@ while True:
             if dc.cmd(msg, os.environ["KEY"], [
                 ["set", True]
             ]):
-                await gcset.main(content, prefix)
+                await gcset.main(content, os.environ["KEY"])
 
             # makeBackup
             if dc.cmd(msg, os.environ["KEY"], [
