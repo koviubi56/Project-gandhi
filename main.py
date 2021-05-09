@@ -32,17 +32,15 @@ while True:
         import gchjelp
         import gfindszerda
         import gc56
-        import gcstop
         import gcset
-        import gcmakebackup
-        import gcresetbackup
-        import gcgetbackup
         import gc8ball
         import gcbolcsesseg
         # ---GC---
-        from replit import db
-        print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
-            szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
+        with open("db.txt") as f:
+            print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
+                szerdak=str(f.read()),
+                szerdakT=str(type(f.read()))
+            ))
 
         print("=====")
         import logging
@@ -113,35 +111,11 @@ while True:
                 if content == "56":
                     await gc56.main(msg)
 
-                # stop
-                if dc.cmd(msg, os.environ["KEY"], [
-                    ["stop", True]
-                ]):
-                    await gcstop.main(msg)
-
                 # set
                 if dc.cmd(msg, os.environ["KEY"], [
                     ["set", True]
                 ]):
                     await gcset.main(content, os.environ["KEY"])
-
-                # makeBackup
-                if dc.cmd(msg, os.environ["KEY"], [
-                    ["makebackup", True]
-                ]):
-                    await gcmakebackup.main(msg)
-
-                # resetBackup
-                if dc.cmd(msg, os.environ["KEY"], [
-                    ["resetbackup", True]
-                ]):
-                    await gcresetbackup.main(msg)
-
-                # getBackup
-                if dc.cmd(msg, prefix, [
-                    ["getbackup", True]
-                ]):
-                    await gcgetbackup.main(msg)
 
                 # 8ball
                 if dc.cmd(msg, prefix, [
