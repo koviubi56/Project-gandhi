@@ -26,4 +26,4 @@ async def main(content, prefix):
         "Valaki meg akarja változtatni a szerdák számát! Infókat lásd alább:")
     if len(content) > len(prefix) + len("set "):
         with open("db.txt", "w") as f:
-            f.write(int(content[len(prefix) + len("set "):]))
+            f.write(str(int(content[len(prefix) + len("set "):])))
