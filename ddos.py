@@ -104,11 +104,11 @@ class DDoS:
         if isinstance(self.warn, int):
             if self.warn > self.ddos:
                 logging.warning(
-                    "\033[1;31mMaybe DDoS? There are {req} requests!")
+                    "\033[1;31mMaybe DDoS? There are {req} requests!".format(req=self.ddos))
         if isinstance(self.critical, int):
             logging.critical("\033[1;37;41m*** DDOS!! ***")
             logging.critical(
-                "\033[1;37;41m* There are {req} requests in this second yet! *")
+                "\033[1;37;41m* There are {req} requests in this second yet! *".format(req=self.ddos))
             logging.critical("\033[1;37;41m* It CAN be a DDoS! *")
             logging.critical(
                 "\033[1;37;41m* For THIS second, we block EVERY request! *")
@@ -123,7 +123,8 @@ class DDoS:
                 logging.info("\033[1;37;41mIdentity: \"{id}\" have been blocked due to the {req} requests by EVERY user!".format(
                     id=goodIndentity, req=str(self.db[goodIndentity])))
                 return False
-            logging.debug("\033[32mIdentity: \"{id}\" have been accepted.")
+            logging.debug(
+                "\033[32mIdentity: \"{id}\" have been accepted.".format(id=goodIndentity))
             return True
 
 
