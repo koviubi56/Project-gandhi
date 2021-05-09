@@ -1,13 +1,6 @@
-echo UPTADING PIP
+echo -_-UPTADING PIP-_-
 pip install -U pip
-echo INSTALLING REQUESTS
-pip install requests
-echo Checking requests
-pip check requests
-echo INSTALLING DISCORD
-pip install discord
-echo Checking discord
-pip check discord
-echo RUNNING main.py
+echo -_-INSTALLING-_-
+pip install -r requirements.txt
+echo -_-RUNNING main.py-_-
 python main.py
-echo ...END OF RUNNING main.py...
