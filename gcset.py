@@ -21,21 +21,9 @@ import logging
 logging = logging.getLogger(__name__)
 
 
-def buerror(errcode="The dc.backup(\"BACKUP\") function is NOT returned True (return != True)"):
-    print("[ERROR]")
-    logging.error(errcode)
-
-
 async def main(content, prefix):
     logging.warning(
         "Valaki meg akarja változtatni a szerdák számát! Infókat lásd alább:")
     if len(content) > len(prefix) + len("set "):
-        try:
-            if dc.backup("AUTO") is not True:
-                buerror()
-                return False
-        except Exception as e:
-            buerror(e)
-        else:
-            with open("db.txt", "w") as f:
-                f.write(int(content[len(prefix) + len("set "):]))
+        with open("db.txt", "w") as f:
+            f.write(int(content[len(prefix) + len("set "):]))

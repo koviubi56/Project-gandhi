@@ -77,8 +77,6 @@ while True:
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
 
-            dc.backup("AUTO")
-
         @client.event
         async def on_message(message):
             if message.author == client.user:
