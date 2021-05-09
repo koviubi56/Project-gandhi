@@ -43,7 +43,6 @@ class DDoS:
         logging.basicConfig(
             level=logging.DEBUG, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
-        logging.info("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.")
         self.resetDB()
 
     def resetDB(self, dosdb=True, ddosdb=True):
