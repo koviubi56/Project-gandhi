@@ -37,7 +37,7 @@ while True:
         import gcbolcsesseg
         # ---GC---
         with open("db.txt") as f:
-            print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
+            print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"".format(
                 szerdak=str(f.read()),
                 szerdakT=str(type(f.read()))
             ))
