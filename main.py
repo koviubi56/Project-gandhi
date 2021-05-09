@@ -84,7 +84,7 @@ while True:
 
             time.sleep(0.1)
 
-            d = ddos.DDoS(3, 7)
+            d = ddos.DDoS(3, 7, 5, 15)
             if d.test(message.author):
                 msg = message
                 content = msg.content
