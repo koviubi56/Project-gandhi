@@ -16,7 +16,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from replit import db
 import dc
 import logging
 logging = logging.getLogger(__name__)
@@ -38,4 +37,5 @@ async def main(content, prefix):
         except Exception as e:
             buerror(e)
         else:
-            db["szerdak"] = int(content[len(prefix) + len("set "):])
+            with open("db.txt", "w") as f:
+                f.write(int(content[len(prefix) + len("set "):]))

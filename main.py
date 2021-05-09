@@ -32,17 +32,15 @@ while True:
         import gchjelp
         import gfindszerda
         import gc56
-        import gcstop
         import gcset
-        import gcmakebackup
-        import gcresetbackup
-        import gcgetbackup
         import gc8ball
         import gcbolcsesseg
         # ---GC---
-        from replit import db
-        print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
-            szerdak=str(db["szerdak"]), szerdakT=str(type(db["szerdak"])), bu=str(db["backup"]), buT=str(type(db["backup"]))))
+        with open("db.txt") as f:
+            print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"; backup = \"{bu}\"; type(backup) = \"{buT}\"".format(
+                szerdak=str(f.read()),
+                szerdakT=str(type(f.read()))
+            ))
 
         print("=====")
         import logging
@@ -56,7 +54,7 @@ while True:
         # Verzió
         version = "1.4.0"
         # Bármi más? PL: "-beta.1"?
-        pre = ""
+        pre = "-beta.2"
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
@@ -113,35 +111,11 @@ while True:
                 if content == "56":
                     await gc56.main(msg)
 
-                # stop
-                if dc.cmd(msg, os.environ["KEY"], [
-                    ["stop", True]
-                ]):
-                    await gcstop.main(msg)
-
                 # set
                 if dc.cmd(msg, os.environ["KEY"], [
                     ["set", True]
                 ]):
                     await gcset.main(content, os.environ["KEY"])
-
-                # makeBackup
-                if dc.cmd(msg, os.environ["KEY"], [
-                    ["makebackup", True]
-                ]):
-                    await gcmakebackup.main(msg)
-
-                # resetBackup
-                if dc.cmd(msg, os.environ["KEY"], [
-                    ["resetbackup", True]
-                ]):
-                    await gcresetbackup.main(msg)
-
-                # getBackup
-                if dc.cmd(msg, prefix, [
-                    ["getbackup", True]
-                ]):
-                    await gcgetbackup.main(msg)
 
                 # 8ball
                 if dc.cmd(msg, prefix, [
@@ -204,7 +178,7 @@ while True:
                         gtNum = random.randrange(
                             1, int(msg.content[len(prefix) + 4:]))
                         inGtn = True
-                        await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
+                        await dc.send(msg, f"Van a billentyűteted. Írj be egy számot 1 és {msg.content[len(prefix) + 4:]} között. Nyomd meg az [ENTER] gombot. Visszakapod azt hogy `Kisebb!`, `Nagyobb!`, vagy azt hogy `Jippí!`. Most már érted?!\n*A tájékoztatás nem teljeskörő. További infókért kérdezd meg anyádat.*")
 
             else:
                 time.sleep(0.2)

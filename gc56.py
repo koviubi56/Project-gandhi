@@ -16,8 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import dc
-from replit import db
 
 
 async def main(msg):
-    await dc.send(msg, f'Szerdák száma: {str(db["szerdak"])}')
+    with open("db.txt", "r") as f:
+        await dc.send(msg, f'Szerdák száma: {str(f.read())}')

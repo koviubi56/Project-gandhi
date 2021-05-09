@@ -16,7 +16,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from replit import db
 import time
 import discord
 import logging
@@ -76,26 +75,3 @@ def cmd(msg, prefix, commands):
             raise ValueError("BY ME: A k[1] se nem True, se nem False! :,(")
 
     return False
-
-
-def backup(type, get=False):
-    if type == "CMD":
-        db["backup"]["CMDbackup"] = {
-            "szerdak": db["szerdak"],
-            "time": time.asctime()
-        }
-    elif type == "AUTO":
-        try:
-            db["backup"]["AUTObackup"] = {
-                "szerdak": db["szerdak"],
-                "time": time.asctime()
-            }
-        except Exception as e:
-            logging.error(str(e))
-            return False
-        else:
-            logging.info("AutoBackup kész!")
-            if get:
-                return db["backup"]
-            else:
-                return True
