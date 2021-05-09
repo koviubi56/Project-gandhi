@@ -178,7 +178,7 @@ while True:
                         gtNum = random.randrange(
                             1, int(msg.content[len(prefix) + 4:]))
                         inGtn = True
-                        await dc.send(msg, "A nyeremény a lottó számok. Hajrá!")
+                        await dc.send(msg, f"Van a billentyűteted. Írj be egy számot 1 és {msg.content[len(prefix) + 4:]} között. Nyomd meg az [ENTER] gombot. Visszakapod azt hogy `Kisebb!`, `Nagyobb!`, vagy azt hogy `Jippí!`. Most már érted?!\n*A tájékoztatás nem teljeskörő. További infókért kérdezd meg anyádat.*")
 
             else:
                 time.sleep(0.2)
