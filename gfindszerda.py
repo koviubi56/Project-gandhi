@@ -48,4 +48,5 @@ async def main(msg, maxSzerda):
     if plus > 0:
         with open("db.txt", "r+") as f:
             f.write(str(int(f.read()) + plus))
+            print("DEBUG: [1] {}".format(str(f.readable)))
             await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=f.read()))
