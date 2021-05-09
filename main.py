@@ -54,7 +54,7 @@ while True:
         # Verzió
         version = "1.4.0"
         # Bármi más? PL: "-beta.1"?
-        pre = ""
+        pre = "-beta.2"
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
