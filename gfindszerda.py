@@ -52,4 +52,4 @@ async def main(msg, maxSzerda):
             f.write(str(szerda))
         with open("db.txt", "r") as f:
             print("DEBUG: [1] {}".format(f.read()))
-            await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=f.read()))
+            await dc.send(msg, f"+{plus} szerda (most: {str(f.read())})")
