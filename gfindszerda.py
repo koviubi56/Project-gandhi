@@ -15,7 +15,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from replit import db
 import dc
 import logging
 logging = logging.getLogger(__name__)
@@ -47,5 +46,6 @@ async def main(msg, maxSzerda):
         pass
 
     if plus > 0:
-        db["szerdak"] += plus
-        await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=db["szerdak"]))
+        with open("db.txt", "r+") as f:
+            f.write(int(f.read()) + plus)
+            await dc.send(msg, "+{plus} szerda (most: {szerdak})".format(plus=plus, szerdak=str(f.read())))
