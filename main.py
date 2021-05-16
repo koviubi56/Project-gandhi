@@ -54,7 +54,7 @@ while True:
         # Verzió
         version = "1.4.0"
         # Bármi más? PL: "-beta.1"?
-        pre = "-beta.2"
+        pre = "-beta.3"
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
@@ -182,16 +182,18 @@ while True:
                             print(f"Hiba kód: {e}")
                             print("Amivel próbálkoztunk: {}; típusa: {}".format(msg.content[len(
                                 prefix) + len("gtn "):], type(msg.content[len(prefix) + len("gtn "):])))
-                            dc.send(msg, "Bocs, de valszeg (99,9%) amit beírtál az nem egy szám. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
+                            await dc.send(
+                                msg, "Bocs, de valszeg (99,9%) amit beírtál az nem egy szám. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
                         else:
                             # egy int számot írt be ami 1<X<2.147.483.647 (2 MRD)
                             if msg.content[len(prefix) + len("gtn "):] > 1 and msg.content[len(prefix) + len("gtn "):] < 2_147_483_647:
-                                gtNum = random.randrange(1, int(msg.content[len(prefix) + len("gtn "):]) + 1)
+                                gtNum = random.randrange(
+                                    1, int(msg.content[len(prefix) + len("gtn "):]) + 1)
                                 inGtn = True
                                 await dc.send(msg, f"Van a billentyűteted. Írj be egy számot 1 és {msg.content[len(prefix) + 4:]} között. Nyomd meg az [ENTER] gombot. Visszakapod azt hogy `Kisebb!`, `Nagyobb!`, vagy azt hogy `Jippí!`. Most már érted?!\nIllusztráció: https://cdn.discordapp.com/attachments/741670562585247835/843095037079715930/unknown.png\n*A tájékoztatás nem teljeskörő. További infókért kérdezd meg anyádat.*")
                             else:
-                                dc.send(msg, "Bocs, de amit beírtál az nem okés. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
-                                
+                                await dc.send(
+                                    msg, "Bocs, de amit beírtál az nem okés. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
 
             else:
                 time.sleep(1)
