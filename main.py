@@ -156,6 +156,8 @@ while True:
                 global inGtn
                 if inGtn:
                     global gtNum
+                    if msg.content == "__gtn:end__":
+                        inGtn = False
                     if int(content) == int(gtNum):
                         inGtn = False
                         await dc.send(msg, "Jippí!")
@@ -195,8 +197,6 @@ while True:
                                 await dc.send(
                                     msg, "Bocs, de amit beírtál az nem okés. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
 
-                if msg.content == "__gtn:end__":
-                    inGtn = False
 
             else:
                 time.sleep(1)
