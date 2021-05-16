@@ -174,7 +174,7 @@ while True:
                         await dc.send(msg, f"PL: `{prefix}gtn 756`")
                     else:
                         gtNum = random.randrange(
-                            1, int(msg.content[len(prefix) + 4:]))
+                            1, int(msg.content[len(prefix) + 4:]) + 1)
                         inGtn = True
                         await dc.send(msg, f"Van a billentyűteted. Írj be egy számot 1 és {msg.content[len(prefix) + 4:]} között. Nyomd meg az [ENTER] gombot. Visszakapod azt hogy `Kisebb!`, `Nagyobb!`, vagy azt hogy `Jippí!`. Most már érted?!\nIllusztráció: https://cdn.discordapp.com/attachments/741670562585247835/843095037079715930/unknown.png\n*A tájékoztatás nem teljeskörő. További infókért kérdezd meg anyádat.*")
 
