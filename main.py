@@ -186,7 +186,7 @@ while True:
                                 msg, "Bocs, de valszeg (99,9%) amit beírtál az nem egy szám. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
                         else:
                             # egy int számot írt be ami 1<X<2.147.483.647 (2 MRD)
-                            if msg.content[len(prefix) + len("gtn "):] > 1 and msg.content[len(prefix) + len("gtn "):] < 2_147_483_647:
+                            if int(msg.content[len(prefix) + len("gtn "):]) > 1 and int(msg.content[len(prefix) + len("gtn "):]) < 2_147_483_647:
                                 gtNum = random.randrange(
                                     1, int(msg.content[len(prefix) + len("gtn "):]) + 1)
                                 inGtn = True
