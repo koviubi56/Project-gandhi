@@ -75,7 +75,7 @@ class DDoS:
         if not isinstance(identity, str):
             try:
                 goodIndentity = str(identity)
-            except:
+            except Exception:
                 logging.error("\033[1;4;37;41mCan't convert {} to string!".format(
                     str(type(identity))))
                 return "ERROR"
