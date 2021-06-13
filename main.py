@@ -35,6 +35,8 @@ while True:
         import gcset
         import gc8ball
         import gcbolcsesseg
+        import gcvalassz
+        import gckep
         # ---GC---
         with open("db.txt") as f:
             print("szerdak = \"{szerdak}\"; type(szerdak) = \"{szerdakT}\"".format(
@@ -130,6 +132,20 @@ while True:
                     ["quote", True]
                 ]):
                     await gcbolcsesseg.main(msg)
+
+                # válassz
+                if dc.cmd(msg, prefix, [
+                    ["válassz", True],
+                    ["valassz", True]
+                ]):
+                    await gcvalassz.main(msg, prefix)
+
+                # kép
+                if dc.cmd(msg, prefix, [
+                    ["kép", True],
+                    ["kep", True]
+                ]):
+                    await gckep.main(msg, prefix)
 
                 # *************************************************************************************
 
