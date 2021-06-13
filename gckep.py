@@ -58,6 +58,7 @@ def getText(prefix: str) -> str:
         "https://source.unsplash.com/collection/949734"
     ])
     id = url[38:]
+    global lastId
     lastId = id
     return f"{url} (`{prefix}kép report` | *{id}*)"
 
@@ -68,6 +69,7 @@ async def main(msg, prefix):
         if msg.content[len(f"{prefix}kép "):] == "cute":
             await dc.send(msg, getText(prefix))
         elif msg.content[len(f"{prefix}kép "):] == "report":
+            global lastId
             reportok.append({"id": lastId, "bejelento": str(msg.author)})
             await dc.send(msg, f"```py\n{reportok}\n```")
     else:
