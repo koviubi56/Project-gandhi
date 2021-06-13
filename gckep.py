@@ -90,7 +90,7 @@ def getText(prefix: str) -> str:
         "https://source.unsplash.com/collection/8297227",
         "https://source.unsplash.com/collection/949734"
     ]
-    if randint(0, 5) == 0:
+    if randint(0, 2) == 0:
         import requests
 
         def get_reddit(subreddit, listing, limit, timeframe):
@@ -99,13 +99,23 @@ def getText(prefix: str) -> str:
                 request = requests.get(base_url, headers={
                     'User-agent': 'yourbot'})
             except:
-                raise RuntimeError(f"{base_url=}; {request=}")
+                raise RuntimeError
             else:
                 return request.json()
-
+        global r
         r = get_reddit("aww", "random", "1", "hour")
-        url = r[0]["data"]["children"][0]["data"]["url"]
-        id = ""
+        # url = r[0]["data"]["children"][0]["data"]["url"]
+        try:
+            url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
+        except TypeError:
+            url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
+        except KeyError:
+            try:
+                url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
+            except KeyError:
+                url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
+        id = r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"]
+        return (url, id, r)
     else:
         url = choice(listUn)
         id = url[38:]
