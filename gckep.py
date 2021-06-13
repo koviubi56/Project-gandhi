@@ -114,7 +114,7 @@ def getText(prefix: str) -> str:
                 url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
             except KeyError:
                 url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-        id = r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"]
+        id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
     else:
         url = choice(listUn)
         id = url[38:]
