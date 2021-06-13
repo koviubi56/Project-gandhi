@@ -1,5 +1,5 @@
 """
-File for "válassz" command.
+File for "kép" command.
 Copyright (C) 2021  Koviubi56
 
 This program is free software: you can redistribute it and/or modify
