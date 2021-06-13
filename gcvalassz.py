@@ -21,6 +21,9 @@ from random import choice
 
 
 async def main(msg, prefix: str) -> None:
+    await dc.send(msg, "Bocs **N E M**")
+    return None
+    
     # PREFIXválassz ["asd", "dsa"]
     if len(msg.content) >= len(f"{prefix}válassz [\"1\", \"2\"]"):
         try:
