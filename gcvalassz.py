@@ -30,5 +30,5 @@ async def main(msg, prefix: str) -> None:
         else:
             await dc.send(msg, f"{choice(lista)}")
     else:
-        dc.send(
+        await dc.send(
             msg, f"*Te sivatagi holló fejű sivatagi rák!* \nOszt mibő' válasszak? He?! \nValami ilyemi: `{prefix}válassz [\"Én nagyon \", \"szeretem a \", \"tejet\"]`")
