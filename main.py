@@ -174,15 +174,14 @@ while True:
                     global gtNum
                     if msg.content == "__gtn:end__":
                         inGtn = False
-                    else:
-                        if int(content) == int(gtNum):
-                            inGtn = False
-                            await dc.send(msg, "Jippí!")
-                            await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
-                        elif int(content) > int(gtNum):
-                            await dc.send(msg, "Kisebb!")
-                        elif int(content) < int(gtNum):
-                            await dc.send(msg, "Nagyobb!")
+                    elif int(content) == int(gtNum):
+                        inGtn = False
+                        await dc.send(msg, "Jippí!")
+                        await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                    elif int(content) > int(gtNum):
+                        await dc.send(msg, "Kisebb!")
+                    elif int(content) < int(gtNum):
+                        await dc.send(msg, "Nagyobb!")
 
                 if dc.cmd(msg, prefix, [
                     ["gtn", True]
