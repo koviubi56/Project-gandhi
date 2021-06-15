@@ -114,7 +114,7 @@ def getText(what: str, prefix: str) -> str:
                             url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
                     id = "{}/{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"],
                                         url)
-                except:
+                except Exception:
                     continue
                 else:
                     break
@@ -147,7 +147,7 @@ def getText(what: str, prefix: str) -> str:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
                 id = "{}/{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"],
                                     url)
-            except:
+            except Exception:
                 continue
             else:
                 break
