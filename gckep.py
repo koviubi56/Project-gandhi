@@ -137,6 +137,9 @@ async def main(msg, prefix):
         elif msg.content[len(f"{prefix}kép "):] == "report":
             global lastId
             reportok.append({"id": lastId, "bejelento": str(msg.author)})
+            import time
+            with open(f"report-{str(time.time())}.json", "+") as f:
+                f.write(str(reportok))
             await dc.send(msg, f"```py\n{reportok}\n```")
     else:
         await dc.send(msg, "EEEEEEE! Oszt mit mutassak?!")
