@@ -99,9 +99,9 @@ def getText(what: str, prefix: str) -> str:
                 request = requests.get(base_url, headers={
                     'User-agent': 'yourbot'})
                 return request.json()
-            global r
             while True:
                 try:
+                    global r
                     r = get_reddit("aww", "random", "1", "hour")
                     try:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
@@ -132,9 +132,9 @@ def getText(what: str, prefix: str) -> str:
             request = requests.get(base_url, headers={
                 'User-agent': 'yourbot'})
             return request.json()
-        #global r
         while True:
             try:
+                global r
                 r = get_reddit("shiba", "random", "1", "hour")
                 try:
                     url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
