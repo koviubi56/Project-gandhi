@@ -35,7 +35,6 @@ while True:
         import gcset
         import gc8ball
         import gcbolcsesseg
-        import gcvalassz
         import gckep
         # ---GC---
         with open("db.txt") as f:
