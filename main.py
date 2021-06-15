@@ -54,9 +54,9 @@ while True:
         # Mennyi a maximális szerda amennyit elfogad egy üzenethez.
         maxSzerda = 510
         # Verzió
-        version = "1.4.0"
+        version = "1.5.0"
         # Bármi más? PL: "-beta.1"?
-        pre = ""
+        pre = "-beta.1"
         # Prefix
         prefix = "56!"
         # ---SETTINGS---
@@ -174,15 +174,14 @@ while True:
                     global gtNum
                     if msg.content == "__gtn:end__":
                         inGtn = False
-                    else:
-                        if int(content) == int(gtNum):
-                            inGtn = False
-                            await dc.send(msg, "Jippí!")
-                            await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
-                        elif int(content) > int(gtNum):
-                            await dc.send(msg, "Kisebb!")
-                        elif int(content) < int(gtNum):
-                            await dc.send(msg, "Nagyobb!")
+                    elif int(content) == int(gtNum):
+                        inGtn = False
+                        await dc.send(msg, "Jippí!")
+                        await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+                    elif int(content) > int(gtNum):
+                        await dc.send(msg, "Kisebb!")
+                    elif int(content) < int(gtNum):
+                        await dc.send(msg, "Nagyobb!")
 
                 if dc.cmd(msg, prefix, [
                     ["gtn", True]

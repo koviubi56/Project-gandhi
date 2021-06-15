@@ -48,5 +48,9 @@ async def main(msg, prefix):
         name="bölcsesség",
         value=f"Egy veri szpesöl idézet Gandhi-tól \n__Szintaxis__: `{prefix}bölcsesség`\n__PL__: `{prefix}bölcsesség`"
     )
+    embedHjelp.add_field(
+        name="kép",
+        value=f"Kapsz egy random képet\n__Szintaxis:__ `{prefix}kép `*cute*/*shiba*/*SAJÁT*\n__PL__: `{prefix}kép cute` `{prefix}kép shiba` `{prefix}kép asdf`"
+    )
 
     await dc.embed(msg, embedHjelp)
