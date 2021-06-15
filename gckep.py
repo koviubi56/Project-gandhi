@@ -90,7 +90,7 @@ def getText(prefix: str) -> str:
         "https://source.unsplash.com/collection/8297227",
         "https://source.unsplash.com/collection/949734"
     ]
-    if randint(0, 2) == 0:
+    if randint(0, 2) != 0:
         import requests
 
         def get_reddit(subreddit, listing, limit, timeframe):
