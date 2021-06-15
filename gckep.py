@@ -112,8 +112,7 @@ def getText(what: str, prefix: str) -> str:
                             url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                         except KeyError:
                             url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                    id = "{}/{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"],
-                                        url)
+                    id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
                 except Exception:
                     continue
                 else:
@@ -145,8 +144,7 @@ def getText(what: str, prefix: str) -> str:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                     except KeyError:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                id = "{}/{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"],
-                                    url)
+                id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
             except Exception:
                 continue
             else:
