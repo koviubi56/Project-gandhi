@@ -103,18 +103,24 @@ def getText(prefix: str) -> str:
             else:
                 return request.json()
         global r
-        r = get_reddit("aww", "random", "1", "hour")
-        # url = r[0]["data"]["children"][0]["data"]["url"]
-        try:
-            url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
-        except TypeError:
-            url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
-        except KeyError:
+        while True:
             try:
-                url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
-            except KeyError:
-                url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-        id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
+                r = get_reddit("aww", "random", "1", "hour")
+                try:
+                    url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
+                except TypeError:
+                    url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
+                except KeyError:
+                    try:
+                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
+                    except KeyError:
+                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
+                id = "{}".format(r[0]["data"]["children"][0]
+                                 ["data"]["subreddit_name_prefixed"])
+            except:
+                continue
+            else:
+                break
     else:
         url = choice(listUn)
         id = url[38:]
