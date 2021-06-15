@@ -134,7 +134,7 @@ def getText(what: str, prefix: str) -> str:
             return request.json()
         while True:
             try:
-                global r
+                #global r
                 r = get_reddit("shiba", "random", "1", "hour")
                 try:
                     url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
