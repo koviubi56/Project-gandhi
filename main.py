@@ -132,13 +132,6 @@ while True:
                 ]):
                     await gcbolcsesseg.main(msg)
 
-                # válassz
-                if dc.cmd(msg, prefix, [
-                    ["válassz", True],
-                    ["valassz", True]
-                ]):
-                    await gcvalassz.main(msg, prefix)
-
                 # kép
                 if dc.cmd(msg, prefix, [
                     ["kép", True],
