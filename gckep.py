@@ -123,7 +123,7 @@ def getText(prefix: str) -> str:
                 break
     else:
         url = choice(listUn)
-        id = url[38:]
+        id = f"unsplash/cute/{url[38:]}"
     global lastId
     lastId = id
     return f"{url} (`{prefix}kép report` | *{id}*)"
@@ -132,14 +132,18 @@ def getText(prefix: str) -> str:
 async def main(msg, prefix):
     # PREFIXkép [äđĐ]
     if len(msg.content) > len(f"{prefix}kép "):
-        if msg.content[len(f"{prefix}kép "):] == "cute":
+        kwd = msg.content[len(f"{prefix}kép "):]
+        if kwd == "cute":
             await dc.send(msg, getText(prefix))
-        elif msg.content[len(f"{prefix}kép "):] == "report":
+        elif kwd == "report":
             global lastId
             reportok.append({"id": lastId, "bejelento": str(msg.author)})
             import time
             with open(f"report-{str(time.time())}.json", "+") as f:
                 f.write(str(reportok))
             await dc.send(msg, f"```py\n{reportok}\n```")
+        else:
+            id = f"unsplash/custom/{kwd}"
+            await dc.send(msg, f"https://source.unsplash.com/featured/?{kwd} ({id})")
     else:
         await dc.send(msg, "EEEEEEE! Oszt mit mutassak?!")
