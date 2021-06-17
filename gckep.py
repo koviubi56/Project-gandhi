@@ -23,7 +23,7 @@ lastId = 0
 reportok = []
 
 
-def getText(what: str, prefix: str) -> str:
+async def getText(what: str, prefix: str) -> str:
     if what.lower() == "cute":
         listUn = [
             "https://source.unsplash.com/collection/1489913",
