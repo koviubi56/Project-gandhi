@@ -104,14 +104,14 @@ def getText(what: str, prefix: str) -> str:
                     global r
                     r = get_reddit("aww", "random", "1", "hour")
                     try:
-                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
+                        await url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
                     except TypeError:
-                        url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
+                        await url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
                     except KeyError:
                         try:
-                            url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
+                            await url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                         except KeyError:
-                            url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
+                            await url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
                     id = "{}".format(r[0]["data"]["children"]
                                      [0]["data"]["subreddit_name_prefixed"])
                 except Exception:
