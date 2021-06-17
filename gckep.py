@@ -152,6 +152,36 @@ def getText(what: str, prefix: str) -> str:
         #global lastId
         lastId = id
         return f"{url} (`{prefix}kép report` | *{id}*)"
+    elif what.startswith("r/"):
+        what = what[len("r/"):]
+        import requests
+
+        def get_reddit(subreddit, listing, limit, timeframe):
+            base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
+            request = requests.get(base_url, headers={
+                'User-agent': 'yourbot'})
+            return request.json()
+        while True:
+            try:
+                #global r
+                r = get_reddit(what, "random", "1", "hour")
+                try:
+                    url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
+                except TypeError:
+                    url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
+                except KeyError:
+                    try:
+                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
+                    except KeyError:
+                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
+                id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
+            except Exception:
+                continue
+            else:
+                break
+        #global lastId
+        lastId = id
+        return f"{url} (`{prefix}kép report` | *{id}*)"
     else:
         raise ValueError("{} is not in this list: {}".format(
             what, str(["cute", "shiba"])))
@@ -173,6 +203,8 @@ async def main(msg, prefix):
             with open(f"report-{str(time.time())}.json", "+") as f:
                 f.write(str(reportok))
             await dc.send(msg, f"```py\n{reportok}\n```")
+        elif kwd.startswith("r/"):
+            await dc.send(msg, getText(kwd, prefix))
         else:
             id = f"unsplash/custom/{kwd}"
             await dc.send(msg, f"https://source.unsplash.com/featured/?{kwd} (*{id}*)")
