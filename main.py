@@ -83,7 +83,7 @@ while True:
             if message.author == client.user:
                 return
 
-            time.sleep(0.1)
+            await time.sleep(0.1)
 
             d = ddos.DDoS(3, 7, 5, 15)
             if d.test(message.author):
@@ -206,7 +206,7 @@ while True:
                                     msg, "Bocs, de amit beírtál az nem okés. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
 
             else:
-                time.sleep(1)
+                await time.sleep(1)
 
         client.run(os.environ["BOT_TOKEN"])
 
