@@ -112,7 +112,8 @@ def getText(what: str, prefix: str) -> str:
                             url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                         except KeyError:
                             url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                    id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
+                    id = "{}".format(r[0]["data"]["children"]
+                                     [0]["data"]["subreddit_name_prefixed"])
                 except Exception:
                     continue
                 else:
@@ -144,7 +145,8 @@ def getText(what: str, prefix: str) -> str:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                     except KeyError:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
+                id = "{}".format(r[0]["data"]["children"][0]
+                                 ["data"]["subreddit_name_prefixed"])
             except Exception:
                 continue
             else:
@@ -152,8 +154,14 @@ def getText(what: str, prefix: str) -> str:
         #global lastId
         lastId = id
         return f"{url} (`{prefix}kép report` | *{id}*)"
-    elif what.startswith("r/"):
-        what = what[len("r/"):]
+    elif what.startswith("r/") or what.startswith("toph/r/") or what.startswith("topd/r/"):
+        if what.startswith("r/"):
+            what = what[len("r/"):]
+        elif what.startswith("toph/r/"):
+            what = what[len("toph/r/"):]
+        elif what.startswith("topd/r/"):
+            what = what[len("topd/r/"):]
+
         import requests
 
         def get_reddit(subreddit, listing, limit, timeframe):
@@ -164,7 +172,13 @@ def getText(what: str, prefix: str) -> str:
         while True:
             try:
                 #global r
-                r = get_reddit(what, "random", "1", "hour")
+                if what.startswith("r/"):
+                    r = get_reddit(what, "random", "1", "hour")
+                elif what.startswith("toph/r/"):
+                    r = get_reddit(what, "top", "1", "hour")
+                elif what.startswith("topd/r/"):
+                    r = get_reddit(what, "top", "1", "day")
+
                 try:
                     url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
                 except TypeError:
@@ -174,7 +188,8 @@ def getText(what: str, prefix: str) -> str:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                     except KeyError:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
+                id = "{}".format(r[0]["data"]["children"][0]
+                                 ["data"]["subreddit_name_prefixed"])
             except Exception:
                 continue
             else:
@@ -203,7 +218,7 @@ async def main(msg, prefix):
             with open(f"report-{str(time.time())}.json", "+") as f:
                 f.write(str(reportok))
             await dc.send(msg, f"```py\n{reportok}\n```")
-        elif kwd.startswith("r/"):
+        elif kwd.startswith("r/") or kwd.startswith("toph/r/") or kwd.startswith("topd/r/"):
             await dc.send(msg, getText(kwd, prefix))
         else:
             id = f"unsplash/custom/{kwd}"
