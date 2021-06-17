@@ -186,14 +186,14 @@ async def getText(what: str, prefix: str) -> str:
                     r = get_reddit(what, "top", "1", "day")
 
                 try:
-                    url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
+                    url = await r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
                 except TypeError:
-                    url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
+                    url = await r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
                 except KeyError:
                     try:
-                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
+                        url = await r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                     except KeyError:
-                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
+                        url = await r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
                 id = "{}".format(r[0]["data"]["children"][0]
                                  ["data"]["subreddit_name_prefixed"])
             except Exception:
