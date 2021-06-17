@@ -111,7 +111,7 @@ async def getText(what: str, prefix: str) -> str:
                         try:
                             url = await r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                         except KeyError:
-                            url = await r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
+                            url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
                     id = "{}".format(r[0]["data"]["children"]
                                      [0]["data"]["subreddit_name_prefixed"])
                 except Exception:
@@ -213,9 +213,9 @@ async def main(msg, prefix):
     if len(msg.content) > len(f"{prefix}kép "):
         kwd = msg.content[len(f"{prefix}kép "):]
         if kwd == "cute":
-            await dc.send(msg, getText("cute", prefix))
+            await dc.send(msg, await getText("cute", prefix))
         elif kwd == "shiba":
-            await dc.send(msg, getText("shiba", prefix))
+            await dc.send(msg, await getText("shiba", prefix))
 
         elif kwd == "report":
             global lastId
@@ -225,7 +225,7 @@ async def main(msg, prefix):
                 f.write(str(reportok))
             await dc.send(msg, f"```py\n{reportok}\n```")
         elif kwd.startswith("r/") or kwd.startswith("toph/r/") or kwd.startswith("topd/r/"):
-            await dc.send(msg, getText(kwd, prefix))
+            await dc.send(msg, await getText(kwd, prefix))
         else:
             id = f"unsplash/custom/{kwd}"
             await dc.send(msg, f"https://source.unsplash.com/featured/?{kwd} (*{id}*)")
