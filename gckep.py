@@ -164,11 +164,17 @@ def getText(what: str, prefix: str) -> str:
 
         import requests
 
-        def get_reddit(subreddit, listing, limit, timeframe):
+        async def get_reddit(subreddit, listing, limit, timeframe):
+            """
             base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
             request = requests.get(base_url, headers={
                 'User-agent': 'yourbot'})
             return request.json()
+            """
+            async with aiohttp.ClientSession() as session:
+                base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
+                async with session.get(base_url, headers={'User-agent': 'yourbot'}) as r:
+                    return await r.json()
         while True:
             try:
                 #global r
