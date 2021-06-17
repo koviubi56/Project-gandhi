@@ -24,6 +24,7 @@ while True:
     try:
         import os
         import discord
+        from discord.ext import commands
         import random
         import dc
         import time
@@ -69,6 +70,7 @@ while True:
         inGtn = False
         gtNum = 0
         inSet = False
+        bot = commands.Bot(prefix)
 
         @client.event
         async def on_ready():
@@ -78,8 +80,8 @@ while True:
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
 
-        @client.event
-        async def on_message(message):
+        @bot.listen('on_message')
+        async def MY_on_message(message):
             if message.author == client.user:
                 return
 
