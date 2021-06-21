@@ -212,6 +212,7 @@ while True:
 
     except Exception as e:
         print("\n\n[ERROR]")
-        print(f"Error code: \"{str(e)}\"")
+        import traceback
+        traceback.print_exc()
         print("Újraindítás...")
         continue
