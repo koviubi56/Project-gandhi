@@ -23,7 +23,7 @@ lastId = 0
 reportok = []
 
 
-async def getText(what: str, prefix: str) -> str:
+def getText(what: str, prefix: str) -> str:
     if what.lower() == "cute":
         listUn = [
             "https://source.unsplash.com/collection/1489913",
@@ -104,16 +104,15 @@ async def getText(what: str, prefix: str) -> str:
                     global r
                     r = get_reddit("aww", "random", "1", "hour")
                     try:
-                        url = await r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
+                        url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
                     except TypeError:
-                        url = await r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
+                        url = r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
                     except KeyError:
                         try:
-                            url = await r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
+                            url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                         except KeyError:
                             url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                    id = "{}".format(r[0]["data"]["children"]
-                                     [0]["data"]["subreddit_name_prefixed"])
+                    id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
                 except Exception:
                     continue
                 else:
@@ -145,57 +144,7 @@ async def getText(what: str, prefix: str) -> str:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                     except KeyError:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                id = "{}".format(r[0]["data"]["children"][0]
-                                 ["data"]["subreddit_name_prefixed"])
-            except Exception:
-                continue
-            else:
-                break
-        #global lastId
-        lastId = id
-        return f"{url} (`{prefix}kép report` | *{id}*)"
-    elif what.startswith("r/") or what.startswith("toph/r/") or what.startswith("topd/r/"):
-        if what.startswith("r/"):
-            what = what[len("r/"):]
-        elif what.startswith("toph/r/"):
-            what = what[len("toph/r/"):]
-        elif what.startswith("topd/r/"):
-            what = what[len("topd/r/"):]
-
-        import requests
-
-        async def get_reddit(subreddit, listing, limit, timeframe):
-            """
-            base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
-            request = requests.get(base_url, headers={
-                'User-agent': 'yourbot'})
-            return request.json()
-            """
-            async with aiohttp.ClientSession() as session:
-                base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
-                async with session.get(base_url, headers={'User-agent': 'yourbot'}) as r:
-                    return await r.json()
-        while True:
-            try:
-                #global r
-                if what.startswith("r/"):
-                    r = get_reddit(what, "random", "1", "hour")
-                elif what.startswith("toph/r/"):
-                    r = get_reddit(what, "top", "1", "hour")
-                elif what.startswith("topd/r/"):
-                    r = get_reddit(what, "top", "1", "day")
-
-                try:
-                    url = await r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
-                except TypeError:
-                    url = await r[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
-                except KeyError:
-                    try:
-                        url = await r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
-                    except KeyError:
-                        url = await r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                id = "{}".format(r[0]["data"]["children"][0]
-                                 ["data"]["subreddit_name_prefixed"])
+                id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
             except Exception:
                 continue
             else:
@@ -213,9 +162,9 @@ async def main(msg, prefix):
     if len(msg.content) > len(f"{prefix}kép "):
         kwd = msg.content[len(f"{prefix}kép "):]
         if kwd == "cute":
-            await dc.send(msg, await getText("cute", prefix))
+            await dc.send(msg, getText("cute", prefix))
         elif kwd == "shiba":
-            await dc.send(msg, await getText("shiba", prefix))
+            await dc.send(msg, getText("shiba", prefix))
 
         elif kwd == "report":
             global lastId
@@ -224,8 +173,6 @@ async def main(msg, prefix):
             with open(f"report-{str(time.time())}.json", "+") as f:
                 f.write(str(reportok))
             await dc.send(msg, f"```py\n{reportok}\n```")
-        elif kwd.startswith("r/") or kwd.startswith("toph/r/") or kwd.startswith("topd/r/"):
-            await dc.send(msg, await getText(kwd, prefix))
         else:
             id = f"unsplash/custom/{kwd}"
             await dc.send(msg, f"https://source.unsplash.com/featured/?{kwd} (*{id}*)")
