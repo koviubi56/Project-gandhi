@@ -24,7 +24,6 @@ while True:
     try:
         import os
         import discord
-        from discord.ext import commands
         import random
         import dc
         import time
@@ -70,7 +69,6 @@ while True:
         inGtn = False
         gtNum = 0
         inSet = False
-        bot = commands.Bot(prefix)
 
         @client.event
         async def on_ready():
@@ -80,8 +78,8 @@ while True:
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
 
-        @bot.listen('on_message')
-        async def MY_on_message(message):
+        @client.event
+        async def on_message(message):
             if message.author == client.user:
                 return
 
@@ -208,7 +206,7 @@ while True:
                                     msg, "Bocs, de amit beírtál az nem okés. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
 
             else:
-                await time.sleep(1)
+                time.sleep(1)
 
         client.run(os.environ["BOT_TOKEN"])
 
