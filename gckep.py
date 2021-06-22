@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import dc
 from random import choice, randint
+from discord_components import DiscordComponents, Button
+DiscordComponents()
 
 lastId = 0
 reportok = []
@@ -168,11 +170,18 @@ async def main(msg, prefix):
 
         elif kwd == "report":
             global lastId
-            reportok.append({"id": lastId, "bejelento": str(msg.author)})
-            import time
-            with open(f"report-{str(time.time())}.json", "+") as f:
-                f.write(str(reportok))
-            await dc.send(msg, f"```py\n{reportok}\n```")
+            confirmMsg = await msg.channel.send("Biztosan akarod jelenteni? Bejelentéskor ennyit fogunk látni: `{}`.".format(lastId), components=[Button(label="Igen", style=4)])
+            try:
+                interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("Igen"), timeout=10)
+            except Exception:
+                await confirmMsg.edit("Nem lett jelentve.", components=[Button(label="Igen", style=2, disabled=True)])
+            else:
+                await confirmMsg.edit("Jelentve!", components=[Button(label="Igen", style=3, disabled=True)])
+                reportok.append({"id": lastId, "bejelento": str(msg.author)})
+                import time
+                with open(f"report-{str(time.time())}.json", "+") as f:
+                        f.write(str(reportok))
+                await dc.send(msg, f"```py\n{reportok}\n```")
         else:
             id = f"unsplash/custom/{kwd}"
             await dc.send(msg, f"https://source.unsplash.com/featured/?{kwd} (*{id}*)")
