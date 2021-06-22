@@ -137,7 +137,7 @@ while True:
                     ["kép", True],
                     ["kep", True]
                 ]):
-                    await gckep.main(msg, prefix)
+                    await gckep.main(msg, prefix, client)
 
                 # *************************************************************************************
 
