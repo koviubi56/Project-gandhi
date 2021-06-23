@@ -1,9 +1,9 @@
 import discord
 import random
 import dc
+from discord_components import DiscordComponents, Button
 
-
-async def main(msg):
+async def main(msg, client):
     gandhi = [
         "Be the change that you wish to see in the world.",
         "Live as if you were to die tomorrow. Learn as if you were to live forever.",
@@ -66,7 +66,15 @@ async def main(msg):
         "I call him religious who understands the suffering of others."
     ]
 
-    quoteE = discord.Embed()
-    quoteE.add_field(name="Bölcsesség Gandhi-tól",
-                     value=random.choice(gandhi))
-    await dc.embed(msg, quoteE)
+    DiscordComponents(client)
+    while True:
+        try:
+            quoteE = discord.Embed()
+            quoteE.add_field(name="Bölcsesség Gandhi-tól", value=random.choice(gandhi))
+            myMsg = await msg.channel.send(embed=quoteE, components=[Button(label="Idézz", style=1)])
+            interaction = await client.wait_for("button_click", check = lambda i: i.component.label.startswith("Idézz"), timeout=56)
+        except Exception:
+            await myMsg.edit(embed=quoteE, components=[Button(label="Idézz", style=2, disabled=True)])
+            break
+        else:
+            await myMsg.edit(embed=quoteE, components=[Button(label="Idézz", style=3, disabled=True)])

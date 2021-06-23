@@ -130,7 +130,7 @@ while True:
                     ["idezet", True],
                     ["quote", True]
                 ]):
-                    await gcbolcsesseg.main(msg)
+                    await gcbolcsesseg.main(msg, client)
 
                 # kép
                 if dc.cmd(msg, prefix, [
