@@ -23,6 +23,7 @@ while True:
     print("Starting...")
     try:
         import os
+        from asyncio import sleep
         import discord
         import random
         import dc
@@ -62,9 +63,20 @@ while True:
 
         client = discord.Client()
 
+        from discord_components import DiscordComponents, Button
+        DiscordComponents(client)
+
         for _ in range(80):
             print("\n")
         print("{:=^63}".format(f"GANDHI BOT {version}{pre}"))
+
+        class gtnMsg:
+            msg = None
+            def MYget():
+                return gtnMsg.msg
+            def MYset(what):
+                logging.info(f"{what = };; {type(what) = }")
+                gtnMsg.msg = what
 
         inGtn = False
         gtNum = 0
@@ -77,9 +89,12 @@ while True:
             print("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.")
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
+            
+            
 
         @client.event
         async def on_message(message):
+            
             if message.author == client.user:
                 return
 
@@ -161,6 +176,8 @@ while True:
                     await dc.send(msg, random.choice(bajszLista))
 
                 # gtn
+                gtnStop = [Button(label="Stop", style=4, id="gtnStop")]
+                gtnUjra = [Button(label="Mégegyszer", id="gtnUjra")]
                 global inGtn
                 if inGtn:
                     global gtNum
@@ -168,12 +185,12 @@ while True:
                         inGtn = False
                     elif int(content) == int(gtNum):
                         inGtn = False
-                        await dc.send(msg, "Jippí!")
+                        await msg.channel.send("Jippí", components=gtnUjra)
                         await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
                     elif int(content) > int(gtNum):
-                        await dc.send(msg, "Kisebb!")
+                        await msg.channel.send("Kisebb!", components=gtnStop)
                     elif int(content) < int(gtNum):
-                        await dc.send(msg, "Nagyobb!")
+                        await msg.channel.send("Nagyobb!", components=gtnStop)
 
                 if dc.cmd(msg, prefix, [
                     ["gtn", True]
@@ -197,6 +214,15 @@ while True:
                         else:
                             # egy int számot írt be ami 1<X<2.147.483.647 (2 MRD)
                             if int(msg.content[len(prefix) + len("gtn "):]) > 1 and int(msg.content[len(prefix) + len("gtn "):]) < 2_147_483_647:
+                                try:
+                                    gtnMsg.MYset(msg.content)
+                                except Exception:
+                                    from traceback import print_exc
+                                    logging.error("*** Nem sikerült! ***")
+                                    print_exc()
+                                else:
+                                    logging.info(f"gtnMsg (not class) = {gtnMsg.MYget()}")
+                                    logging.info(f"{msg.content = }")
                                 gtNum = random.randrange(
                                     1, int(msg.content[len(prefix) + len("gtn "):]) + 1)
                                 inGtn = True
@@ -204,6 +230,24 @@ while True:
                             else:
                                 await dc.send(
                                     msg, "Bocs, de amit beírtál az nem okés. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
+                @client.event
+                async def on_button_click(interaction):
+                    
+                    i = interaction
+                    if i.responded:
+                        return
+                    iid = i.component.id
+                    if iid == "gtnStop":
+                        try:
+                            global inGtn
+                        finally:
+                            inGtn = False
+                            await i.respond("Akkor nem.")
+                    elif iid == "gtnUjra":
+                        tmpmsg = gtnMsg.MYget()
+                        gtNum = random.randint(1, int(str(tmpmsg)[len(f"{prefix}gtn "):]))
+                        await i.respond("Hajrá!")
+                        inGtn = True
 
             else:
                 time.sleep(1)

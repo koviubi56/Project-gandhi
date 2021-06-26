@@ -50,7 +50,7 @@ async def main(msg, prefix):
     )
     embedHjelp.add_field(
         name="kép",
-        value=f"Kapsz egy random képet\n__Szintaxis:__ `{prefix}kép `*cute*/*shiba*/*SAJÁT*\n__PL__: `{prefix}kép cute` `{prefix}kép shiba` `{prefix}kép asdf`"
+        value=f"Kapsz egy random képet\n__Szintaxis:__ `{prefix}kép`\n__PL__: `{prefix}kép`"
     )
 
     await dc.embed(msg, embedHjelp)

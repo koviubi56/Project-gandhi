@@ -19,14 +19,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import dc
 from random import choice, randint
 from discord_components import DiscordComponents, Button
+from functools import lru_cache
 
-lastId = 0
-reportok = []
-
-import time
-timeId = hash(time.time())
-
-def getText(what: str, prefix: str) -> str:
+def getText(what: str) -> str:
     if what.lower() == "cute":
         listUn = [
             "https://source.unsplash.com/collection/1489913",
@@ -122,10 +117,7 @@ def getText(what: str, prefix: str) -> str:
                     break
         else:
             url = choice(listUn)
-            id = f"unsplash/cute/{url[38:]}"
-        global lastId
-        lastId = id
-        return f"{url} (`{prefix}kép report` | *{id}*)"
+        return f"{url}"
     elif what == "shiba":
         import requests
 
@@ -147,45 +139,30 @@ def getText(what: str, prefix: str) -> str:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["url"]
                     except KeyError:
                         url = r[0]["data"]["children"][0]["data"]["secure_media"]["oembed"]["thumbnail_url"]
-                id = "{}".format(r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"])
             except Exception:
                 continue
             else:
                 break
-        #global lastId
-        lastId = id
-        return f"{url} (`{prefix}kép report` | *{id}*)"
-    else:
-        raise ValueError("{} is not in this list: {}".format(
-            what, str(["cute", "shiba"])))
+        return f"{url}"
 
+@lru_cache
+def comp(s1: int, s2: int, d1=False, d2=False):
+    return [[Button(label="Cuki", id="kepCute", style=s1, disabled=d1), Button(label="Shiba", id="kepShiba", style=s2, disabled=d2)]]
 
 async def main(msg, prefix, client):
-    # PREFIXkép [äđĐ]
-    if len(msg.content) > len(f"{prefix}kép "):
-        kwd = msg.content[len(f"{prefix}kép "):]
-        if kwd == "cute":
-            await dc.send(msg, getText("cute", prefix))
-        elif kwd == "shiba":
-            await dc.send(msg, getText("shiba", prefix))
+    async def kuld():
+        i = await client.wait_for("button_click", check = lambda i: i.component.id.startswith("kep"))
+        if i.responded:
+            return
+        iid = i.component.id
+        if iid == "kepCute":
+            await i.respond(content=getText("cute"), components=comp(s1=1, s2=2))
+        elif iid == "kepShiba":
+            await i.respond(content=getText("shiba"), components=comp(s1=2, s2=1))
+        await kuld()
 
-        elif kwd == "report":
-            DiscordComponents(client)
-            global lastId
-            confirmMsg = await msg.channel.send("Biztosan akarod jelenteni? Bejelentéskor ennyit fogunk látni: `{}`.".format(lastId), components=[Button(label="Igen", style=4)])
-            try:
-                interaction = await client.wait_for("button_click", check = lambda i: i.component.label.startswith("Igen"), timeout=10)
-            except Exception:
-                await confirmMsg.edit("Nem lett jelentve.", components=[Button(label="Igen", style=2, disabled=True)])
-            else:
-                await confirmMsg.edit("Jelentve!", components=[Button(label="Igen", style=3, disabled=True)])
-                reportok.append({"id": lastId, "bejelento": str(msg.author)})
-                import time
-                with open(f"report-{str(timeId)}.json", "w+") as f:
-                        f.write(str(reportok))
-                await dc.send(msg, f"```py\n{reportok}\n```")
-        else:
-            id = f"unsplash/custom/{kwd}"
-            await dc.send(msg, f"https://source.unsplash.com/featured/?{kwd} (*{id}*)")
-    else:
-        await dc.send(msg, "EEEEEEE! Oszt mit mutassak?!")
+    global c
+    c = client
+    DiscordComponents(c)
+    await msg.reply("Mit akarsz?", components=[[Button(label="Cuki", id="kepCute"), Button(label="Shiba", id="kepShiba")]])
+    await kuld()

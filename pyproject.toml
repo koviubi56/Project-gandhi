@@ -9,6 +9,7 @@ python = "^3.8"
 colorama = "^0.4.4"
 discord = "^1.0.1"
 discord-components = "^1.0.0"
+myelin = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 
