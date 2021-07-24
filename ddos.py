@@ -41,7 +41,6 @@ class DDoS:
         self.time = int(time.time())
         logging.basicConfig(
             level=logging.DEBUG, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
-        logging = logging.getLogger(__name__)
         self.resetDB()
 
     def resetDB(self, dosdb=True, ddosdb=True):
