@@ -39,7 +39,6 @@ class DDoS:
         self.warn = warn
         self.critical = critical
         self.time = int(time.time())
-        import logging
         logging.basicConfig(
             level=logging.DEBUG, format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s")
         logging = logging.getLogger(__name__)
