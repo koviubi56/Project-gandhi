@@ -92,7 +92,7 @@ def comp(s1: int, s2: int, d1=False, d2=False):
 
 async def main(msg, prefix, client):
     async def kuld():
-        i = await client.wait_for("button_click", check = lambda i: i.component.id.startswith("kep"))
+        i = await client.wait_for("button_click", check=lambda i: i.component.id.startswith("kep"))
         if i.responded:
             return
         iid = i.component.id
