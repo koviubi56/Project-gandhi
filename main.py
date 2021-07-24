@@ -71,8 +71,10 @@ while True:
 
         class gtnMsg:
             msg = None
+
             def MYget():
                 return gtnMsg.msg
+
             def MYset(what):
                 logging.info(f"{what = };; {type(what) = }")
                 gtnMsg.msg = what
