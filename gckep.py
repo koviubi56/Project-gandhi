@@ -24,7 +24,8 @@ import aiohttp
 from asyncio import sleep
 
 class MyErros:
-    class StatusCodeError(Exception): pass
+    class StatusCodeError(Exception):
+        pass
 
 async def get_reddit(subreddit, listing, limit, timeframe):
     base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
@@ -62,7 +63,7 @@ async def getText(what: str) -> str:
     for x in range(50):
         try:
             global r
-            r = await get_reddit(choice(cuteSubs) if what is "cute" else "shiba", "random", "1", "day")
+            r = await get_reddit(choice(cuteSubs) if what == "cute" else "shiba", "random", "1", "day")
             try:
                 url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
             except TypeError:
