@@ -2,6 +2,7 @@ import discord
 import random
 from discord_components import DiscordComponents, Button
 
+
 async def main(msg, client):
     gandhi = [
         "Be the change that you wish to see in the world.",
