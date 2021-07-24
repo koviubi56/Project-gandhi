@@ -27,7 +27,6 @@ while True:
         import discord
         import random
         import dc
-        import time
         import ddos
         # ===GC===
         import gchjelp
@@ -98,7 +97,7 @@ while True:
             if message.author == client.user:
                 return
 
-            time.sleep(0.1)
+            await sleep(0.1)
 
             d = ddos.DDoS(3, 7, 5, 15)
             if d.test(message.author):
@@ -250,11 +249,11 @@ while True:
                         inGtn = True
 
             else:
-                time.sleep(1)
+                await sleep(1)
 
         client.run(os.environ["BOT_TOKEN"])
 
-    except Exception as e:
+    except Exception:
         print("\n\n[ERROR]")
         import traceback
         traceback.print_exc()
