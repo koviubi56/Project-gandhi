@@ -71,7 +71,7 @@ async def main(msg, client):
             quoteE = discord.Embed()
             quoteE.add_field(name="Bölcsesség Gandhi-tól", value=random.choice(gandhi))
             myMsg = await msg.channel.send(embed=quoteE, components=[Button(label="Idézz", style=1)])
-            await client.wait_for("button_click", check = lambda i: i.component.label.startswith("Idézz"), timeout=56)
+            await client.wait_for("button_click", check=lambda i: i.component.label.startswith("Idézz"), timeout=56)
         except Exception:
             await myMsg.edit(embed=quoteE, components=[Button(label="Idézz", style=2, disabled=True)])
             break
