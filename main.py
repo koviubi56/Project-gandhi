@@ -90,8 +90,7 @@ while True:
             print("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.")
 
             logging.info('Bejelentkezve: "{0.user}"'.format(client))
-            
-            
+
 
         @client.event
         async def on_message(message):
@@ -231,6 +230,7 @@ while True:
                             else:
                                 await dc.send(
                                     msg, "Bocs, de amit beírtál az nem okés. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!")
+
                 @client.event
                 async def on_button_click(interaction):
                     
