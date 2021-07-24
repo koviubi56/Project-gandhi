@@ -34,11 +34,13 @@ async def get_reddit(subreddit, listing, limit, timeframe):
                 return await r.json()
             raise MyErrors.StatusCodeError("r.status is {}".format(str(r.status)))
 
+@lru_cache
 def myfind(inWhat: str, forWhat: tuple):
     for j in forWhat:
         if inWhat.find(j) != -1:
             return True
     return False
+
 
 async def getText(what: str) -> str:
     cuteSubs = [
@@ -86,9 +88,11 @@ async def getText(what: str) -> str:
         return "**HIBA!** 50-szer próbálkoztunk, de nem találnunk egy képet. *Sad Gamdhi noises*"
     return f"{url} `({sub} | {tries})`"
 
+
 @lru_cache
 def comp(s1: int, s2: int, d1=False, d2=False):
     return [[Button(label="Cuki", id="kepCute", style=s1, disabled=d1), Button(label="Shiba", id="kepShiba", style=s2, disabled=d2)]]
+
 
 async def main(msg, prefix, client):
     async def kuld():
