@@ -21,18 +21,22 @@ from discord_components import DiscordComponents, Button
 from functools import lru_cache
 import aiohttp
 from asyncio import sleep
+from secrets import token_urlsafe
 
-class MyErros:
+
+class MyErrors:
     class StatusCodeError(Exception):
         pass
 
 async def get_reddit(subreddit, listing, limit, timeframe):
     base_url = f'https://www.reddit.com/r/{subreddit}/{listing}.json?limit={limit}&t={timeframe}'
     async with aiohttp.ClientSession() as session:
-        async with session.get(base_url) as r:
+        async with session.get(base_url, headers={'User-agent': token_urlsafe()}) as r:
+            with open("output.txt", "w") as f:
+                f.write(await r.text())
             if r.status < 400:  # OK
                 return await r.json()
-            raise MyErrors.StatusCodeError("r.status is {}".format(str(r.status)))
+            raise MyErrors.StatusCodeError(r.status)
 
 def myfind(inWhat: str, forWhat: tuple):
     for j in forWhat:
@@ -57,12 +61,13 @@ async def getText(what: str) -> str:
     # 0.055     | 2.75
     # COMPONENT-NEK
     # 3 MP-EN BELÜL
-    # VÁLASZOLNIA KELL
-    SLEEPTIME = 0.055
-    for x in range(50):
+    # VÁLASZOLNIA KELL 
+    SLEEPTIME = 0
+    for x in range(20):
         try:
             global r
             r = await get_reddit(choice(cuteSubs) if what == "cute" else "shiba", "random", "1", "day")
+            return f"Debug: {r = }"
             try:
                 url = r[0]["data"]["children"][0]["data"]["secure_media"]["reddit_video"]["fallback_url"]
             except TypeError:
@@ -75,15 +80,21 @@ async def getText(what: str) -> str:
             if myfind(url, ("gallery", "people.com")):
                 sleep(SLEEPTIME)
                 continue
+        except MyErrors.StatusCodeError as e:
+            print("[ERROR] StatusCodeError:", e)
+            await sleep(SLEEPTIME)
+            continue
         except Exception:
-            sleep(SLEEPTIME)
+            from traceback import print_exc
+            print_exc()
+            await sleep(SLEEPTIME)
             continue
         else:
             sub = r[0]["data"]["children"][0]["data"]["subreddit_name_prefixed"]
             tries = x + 1
             break
     else:
-        return "**HIBA!** 50-szer próbálkoztunk, de nem találnunk egy képet. *Sad Gamdhi noises*"
+        return "**HIBA!** 20-szor próbálkoztunk, de nem találnunk egy képet se. *Sad Gamdhi noises*"
     return f"{url} `({sub} | {tries})`"
 
 @lru_cache
@@ -91,18 +102,21 @@ def comp(s1: int, s2: int, d1=False, d2=False):
     return [[Button(label="Cuki", id="kepCute", style=s1, disabled=d1), Button(label="Shiba", id="kepShiba", style=s2, disabled=d2)]]
 
 async def main(msg, prefix, client):
+    # msg.reply("429")
+    # return 1
     async def kuld():
         i = await client.wait_for("button_click", check = lambda i: i.component.id.startswith("kep"))
-        if i.responded:
-            return
-        iid = i.component.id
-        try:
-            if iid == "kepCute":
-                await i.respond(content=await getText("cute"), components=comp(s1=1, s2=2))
-            elif iid == "kepShiba":
-                await i.respond(content=await getText("shiba"), components=comp(s1=2, s2=1))
-        except MyErrors.StatusCodeError as e:
-            await i.respond("**Hiba!** `({})`".format(e))
+        with msg.channel.typing():
+            if i.responded:
+                return
+            iid = i.component.id
+            try:
+                if iid == "kepCute":
+                    await i.respond(content=await getText("cute"), components=comp(s1=1, s2=2))
+                elif iid == "kepShiba":
+                    await i.respond(content=await getText("shiba"), components=comp(s1=2, s2=1))
+            except MyErrors.StatusCodeError as e:
+                await i.respond("**Hiba!** `({})`".format(hash(e)))
         await kuld()
 
 
