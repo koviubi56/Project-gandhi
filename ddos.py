@@ -98,19 +98,17 @@ class DDoS:
         logging.debug(
             f"AFTER: id=\"{identity}\"; dosdb=\"{self.db}\"; ddosdb=\"{self.ddos}\"")
 
-        if isinstance(self.warn, int):
-            if self.ddos > self.warn:
-                logging.warning(
-                    "\033[1;31mMaybe DDoS? There are {req} requests!".format(req=self.ddos))
-        if isinstance(self.critical, int):
-            if self.ddos > self.critical:
-                logging.critical("\033[1;37;41m*** DDOS!! ***")
-                logging.critical(
-                    "\033[1;37;41m* There are {req} requests in this second yet! *".format(req=self.ddos))
-                logging.critical("\033[1;37;41m* It CAN be a DDoS! *")
-                logging.critical(
-                    "\033[1;37;41m* For THIS second, we block EVERY request! *")
-                logging.critical("\033[1;37;41m******")
+        if isinstance(self.warn, int) and self.ddos > self.warn:
+            logging.warning(
+                "\033[1;31mMaybe DDoS? There are {req} requests!".format(req=self.ddos))
+        if isinstance(self.critical, int) and self.ddos > self.critical:
+            logging.critical("\033[1;37;41m*** DDOS!! ***")
+            logging.critical(
+                "\033[1;37;41m* There are {req} requests in this second yet! *".format(req=self.ddos))
+            logging.critical("\033[1;37;41m* It CAN be a DDoS! *")
+            logging.critical(
+                "\033[1;37;41m* For THIS second, we block EVERY request! *")
+            logging.critical("\033[1;37;41m******")
 
         if self.db[goodIndentity] > self.max:
             logging.info("\033[1;31mIdentity: \"{id}\" have been blocked due to the {req} requests by this person/bot.".format(
