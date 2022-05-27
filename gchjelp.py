@@ -22,11 +22,23 @@ import discord
 
 async def main(msg, prefix):
     if random.randrange(2) == 0:
-        await dc.send(msg, "Lottószámok (ötös lottó): || {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+        await dc.send(
+            msg,
+            f"Lottószámok (ötös lottó): || {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} ||... vagy nem ezt kérdezed?",
+        )
+
     elif random.randrange(2) == 0:
-        await dc.send(msg, "Lottószámok (hatos lottó): || {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46), random.randrange(1, 46)))
+        await dc.send(
+            msg,
+            f"Lottószámok (hatos lottó): || {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} ||... vagy nem ezt kérdezed?",
+        )
+
     else:
-        await dc.send(msg, "Lottószámok (skandináv lottó): || {} {} {} {} {} {} {} ||... vagy nem ezt kérdezed?".format(random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36), random.randrange(1, 36)))
+        await dc.send(
+            msg,
+            f"Lottószámok (skandináv lottó): || {random.randrange(1, 36)} {random.randrange(1, 36)} {random.randrange(1, 36)} {random.randrange(1, 36)} {random.randrange(1, 36)} {random.randrange(1, 36)} {random.randrange(1, 36)} ||... vagy nem ezt kérdezed?",
+        )
+
     embedHjelp = discord.Embed()
     embedHjelp.add_field(
         name="8ball",

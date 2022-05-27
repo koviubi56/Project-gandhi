@@ -48,15 +48,13 @@ async def get_reddit(subreddit, listing, limit, timeframe):
                 f.write(await r.text())
             if r.status < 400:  # OK
                 return await r.json()
-            raise MyErrors.StatusCodeError(r.status)
+            raise MyErrors.StatusCodeError(f"r.status is {str(r.status)}")
 
 
 @lru_cache
 def myfind(inWhat: str, forWhat: tuple):
-    for j in forWhat:
-        if inWhat.find(j) != -1:
-            return True
-    return False
+    return any(j in inWhat for j in forWhat)
+
 
 
 async def getText(what: str) -> str:
@@ -179,6 +177,7 @@ def comp(s1: int, s2: int, d1=False, d2=False):
     ]
 
 
+
 async def main(msg, prefix, client):
     # msg.reply("429")
     # return 1
@@ -187,23 +186,17 @@ async def main(msg, prefix, client):
             "button_click",
             check=lambda i: i.component.id.startswith("kep"),
         )
-        with msg.channel.typing():
-            if i.responded:
-                return
-            iid = i.component.id
-            try:
-                if iid == "kepCute":
-                    await i.respond(
-                        content=await getText("cute"),
-                        components=comp(s1=1, s2=2),
-                    )
-                elif iid == "kepShiba":
-                    await i.respond(
-                        content=await getText("shiba"),
-                        components=comp(s1=2, s2=1),
-                    )
-            except MyErrors.StatusCodeError as e:
-                await i.respond("**Hiba!** `({})`".format(hash(e)))
+        i = await client.wait_for("button_click", check=lambda i: i.component.id.startswith("kep"))
+        if i.responded:
+            return
+        iid = i.component.id
+        try:
+            if iid == "kepCute":
+                await i.respond(content=await getText("cute"), components=comp(s1=1, s2=2))
+            elif iid == "kepShiba":
+                await i.respond(content=await getText("shiba"), components=comp(s1=2, s2=1))
+        except MyErrors.StatusCodeError as e:
+            await i.respond(f"**Hiba!** `({e})`")
         await kuld()
 
     global c
