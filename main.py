@@ -19,10 +19,32 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+import os
+
+if os.environ.get("KEEPALIVE", "0") == "1":
+    from fastapi import FastAPI
+    from fastapi.middleware.cors import CORSMiddleware
+    import uvicorn
+    from threading import Thread
+        
+    app = FastAPI()
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_methods=["*"],
+        allow_headers=["*"],
+        allow_credentials=True,
+    )
+        
+    @app.get("/")
+    def index():
+        return 200
+            
+    Thread(target=lambda: uvicorn.run(app, host="0.0.0.0", port=8000), daemon=True).start()
+
 while True:
     print("Starting...")
     try:
-        import os
         from asyncio import sleep
         import discord
         import random

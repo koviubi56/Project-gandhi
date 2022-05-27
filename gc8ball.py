@@ -51,7 +51,9 @@ async def main(msg, prefix):
             # ˇ1.4.0-beta,1
             "π + 7^5 / 6",
             "-. . ...- . .-. / --. --- -. .- / --. .. ...- . / -.-- --- ..- / ..- .--. -.-.--",
-            "4E 45 56 45 72 / 47 4F 4E 4E 41 / 4C 45 54 / 59 4F 55 / 44 4F 57 4E"
+            "4E 45 56 45 72 / 47 4F 4E 4E 41 / 4C 45 54 / 59 4F 55 / 44 4F 57 4E",
+            #
+            "a cigányok nem emberek skrrrrrr"
         ]
         embed8ball = discord.Embed()
         #       0123456789
