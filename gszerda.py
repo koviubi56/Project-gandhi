@@ -59,5 +59,5 @@ async def loop(client: discord.Client) -> None:
 
 def run_thread(client: discord.Client) -> None:
     return threading.Thread(
-        target=functools.partial(run, loop), args=(client,)
+        target=functools.partial(run, loop(client))
     ).start()
