@@ -186,17 +186,23 @@ async def main(msg, prefix, client):
             "button_click",
             check=lambda i: i.component.id.startswith("kep"),
         )
-        i = await client.wait_for("button_click", check=lambda i: i.component.id.startswith("kep"))
-        if i.responded:
-            return
-        iid = i.component.id
-        try:
-            if iid == "kepCute":
-                await i.respond(content=await getText("cute"), components=comp(s1=1, s2=2))
-            elif iid == "kepShiba":
-                await i.respond(content=await getText("shiba"), components=comp(s1=2, s2=1))
-        except MyErrors.StatusCodeError as e:
-            await i.respond(f"**Hiba!** `({e})`")
+        with msg.channel.typing():
+            if i.responded:
+                return
+            iid = i.component.id
+            try:
+                if iid == "kepCute":
+                    await i.respond(
+                        content=await getText("cute"),
+                        components=comp(s1=1, s2=2),
+                    )
+                elif iid == "kepShiba":
+                    await i.respond(
+                        content=await getText("shiba"),
+                        components=comp(s1=2, s2=1),
+                    )
+            except MyErrors.StatusCodeError as e:
+                await i.respond(f"**Hiba!** `({hash(e)})`")
         await kuld()
 
     global c
