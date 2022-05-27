@@ -203,7 +203,7 @@ async def main(msg, prefix, client):
                         components=comp(s1=2, s2=1),
                     )
             except MyErrors.StatusCodeError as e:
-                await i.respond("**Hiba!** `({})`".format(hash(e)))
+                await i.respond(f"**Hiba!** `({hash(e)})`")
         await kuld()
 
     global c
