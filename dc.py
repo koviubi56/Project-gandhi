@@ -31,7 +31,7 @@ async def send(msg, text):
     try:
         await msg.channel.send(text)
     except Exception as e:
-        logging.error("[ERROR] " + str(e))
+        logging.error(f"[ERROR] {str(e)}")
     else:
         logging.info("Üzenet elküldve! (CH: \"{ch}\"; MSG: \"{msg}\")".format(
             ch=msg.channel, msg=text))
@@ -49,7 +49,7 @@ async def embed(msg, embedVar):
     except Exception as e:
         logging.error(str(e))
     else:
-        logging.info("Embed elküldve! (CH: \"{}\")".format(msg.channel))
+        logging.info(f'Embed elküldve! (CH: "{msg.channel}")')
 
 
 def cmd(msg, prefix, commands):

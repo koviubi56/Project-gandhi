@@ -48,15 +48,13 @@ async def get_reddit(subreddit, listing, limit, timeframe):
                 f.write(await r.text())
             if r.status < 400:  # OK
                 return await r.json()
-            raise MyErrors.StatusCodeError(r.status)
+            raise MyErrors.StatusCodeError(f"r.status is {str(r.status)}")
 
 
 @lru_cache
 def myfind(inWhat: str, forWhat: tuple):
-    for j in forWhat:
-        if inWhat.find(j) != -1:
-            return True
-    return False
+    return any(j in inWhat for j in forWhat)
+
 
 
 async def getText(what: str) -> str:
@@ -177,6 +175,7 @@ def comp(s1: int, s2: int, d1=False, d2=False):
             ),
         ]
     ]
+
 
 
 async def main(msg, prefix, client):
