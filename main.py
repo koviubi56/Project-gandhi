@@ -87,9 +87,7 @@ while True:
         from discord_components import DiscordComponents, Button
         DiscordComponents(client)
 
-        for _ in range(80):
-            print("\n")
-        print("{:=^63}".format(f"GANDHI BOT {version}{pre}"))
+        print("\n{:=^63}".format(f"GANDHI BOT {version}{pre}"))
 
         class gtnMsg:
             msg = None
