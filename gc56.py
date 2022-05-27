@@ -19,5 +19,5 @@ import dc
 
 
 async def main(msg):
-    with open("db.txt", "r") as f:
+    with open("db.txt") as f:
         await dc.send(msg, f'Szerdák száma: {str(f.read())}')

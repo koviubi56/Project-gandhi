@@ -1,0 +1,4 @@
+asyncio
+colorama
+discord
+discord_components
