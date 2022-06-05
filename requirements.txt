@@ -1,4 +1,7 @@
-asyncio
+pip
+setuptools
+wheel
+
 colorama
 discord
 discord_components

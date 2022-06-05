@@ -65,6 +65,11 @@ async def getText(what: str) -> str:
         "brushybrushy",
         "catpictures",
         "AnimalsBeingBros",
+        "catpics",
+        "catfaceplant",
+        "catsonkeyboards",
+        "awww",
+        "cats"
     ]
     # MAX várakozás
     # SLEEPTIME | Sec
@@ -107,7 +112,7 @@ async def getText(what: str) -> str:
                         url = r[0]["data"]["children"][0]["data"][
                             "secure_media"
                         ]["oembed"]["thumbnail_url"]
-                if myfind(url, ("gallery", "people.com", "bbc")):
+                if myfind(url, ("gallery", "people.com", "bbc")): #***************
                     await sleep(SLEEPTIME)
                     continue
             else:
@@ -130,11 +135,7 @@ async def getText(what: str) -> str:
                     if not (r := await www_get(url)).ok:
                         raise MyErrors.StatusCodeError(r.status)
 
-                t = Thread(target=lambda: asyncrun(__()))
-                t.start()
-                t.join(timeout=SLEEPTIME)
-                if t.is_alive():
-                    raise TimeoutError("-1; thread timed out")
+                t = await __()
         except MyErrors.StatusCodeError as e:
             print("[ERROR] StatusCodeError:", e)
             await sleep(SLEEPTIME)

@@ -69,7 +69,8 @@ while True:
 
         logging.basicConfig(
             level=logging.INFO,
-            format="[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s",
+            format=
+            "[%(levelname)s %(name)s %(asctime)s line: %(lineno)d] %(message)s",
         )
         logging = logging.getLogger(__name__)
 
@@ -85,8 +86,6 @@ while True:
         from discord_components import DiscordComponents, Button
 
         DiscordComponents(client)
-
-        gszerda.run_thread(client)
 
         print("\n{:=^63}".format(f"GANDHI BOT"))
 
@@ -108,10 +107,13 @@ while True:
 
         @client.event
         async def on_ready():
+            logging.debug("Szőr...")
             await client.change_presence(
                 activity=discord.Game("Szőr"),
                 status=discord.Status.online,
             )
+            logging.debug("Szőr! Szerda...")
+            await gszerda.loop(client)
             print("-----")
             print(
                 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details."
@@ -135,8 +137,8 @@ while True:
 
             # hjelp
             if dc.cmd(
-                msg,
-                prefix,
+                    msg,
+                    prefix,
                 [
                     ["hjelp", True],
                     ["help", True],
@@ -167,8 +169,8 @@ while True:
 
             # bölcsesség
             if dc.cmd(
-                msg,
-                prefix,
+                    msg,
+                    prefix,
                 [
                     ["bölcsesség", True],
                     ["bolcsesseg", True],
@@ -209,28 +211,20 @@ while True:
                     inGtn = False
                 elif int(content) == int(gtNum):
                     inGtn = False
-                    await msg.channel.send(
-                        "Jippí", components=gtnUjra
-                    )
+                    await msg.channel.send("Jippí", components=gtnUjra)
                     await dc.send(
                         msg,
                         f"Lottószámok (ötös lottó): || {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} {random.randrange(1, 46)} ||",
                     )
                 elif int(content) > int(gtNum):
-                    await msg.channel.send(
-                        "Kisebb!", components=gtnStop
-                    )
+                    await msg.channel.send("Kisebb!", components=gtnStop)
                 elif int(content) < int(gtNum):
-                    await msg.channel.send(
-                        "Nagyobb!", components=gtnStop
-                    )
+                    await msg.channel.send("Nagyobb!", components=gtnStop)
 
             if dc.cmd(msg, prefix, [["gtn", True]]):
                 # beírt egyáltalán valamit?
                 if len(msg.content) <= len(prefix) + len("gtn") + 1:
-                    await dc.send(
-                        msg, "Mennyi legyen a max szám? He?!"
-                    )
+                    await dc.send(msg, "Mennyi legyen a max szám? He?!")
                     await dc.send(
                         msg,
                         f"Így használd: `{prefix}gtn `*<MAX SZÁM>*",
@@ -239,44 +233,24 @@ while True:
                 else:
                     # számot írt be?
                     try:
-                        _ = int(
-                            msg.content[len(prefix) + len("gtn ") :]
-                        )
+                        _ = int(msg.content[len(prefix) + len("gtn "):])
                     except Exception as e:
                         logging.error("Nem sikerült a konvertálás!")
                         print(f"Hiba kód: {e}")
-                        print(
-                            "Amivel próbálkoztunk: {}; típusa: {}".format(
-                                msg.content[
-                                    len(prefix) + len("gtn ") :
-                                ],
-                                type(
-                                    msg.content[
-                                        len(prefix) + len("gtn ") :
-                                    ]
-                                ),
-                            )
-                        )
+                        print("Amivel próbálkoztunk: {}; típusa: {}".format(
+                            msg.content[len(prefix) + len("gtn "):],
+                            type(msg.content[len(prefix) + len("gtn "):]),
+                        ))
                         await dc.send(
                             msg,
                             "Bocs, de valszeg (99,9%) amit beírtál az nem egy szám. Adj meg egy EGÉSZ számot, ami NAGYOBB mint 1, de KISEBB mint 2.147.483.647!",
                         )
                     else:
                         # egy int számot írt be ami 1<X<2.147.483.647 (2 MRD)
-                        if (
-                            int(
-                                msg.content[
-                                    len(prefix) + len("gtn ") :
-                                ]
-                            )
-                            > 1
-                            and int(
-                                msg.content[
-                                    len(prefix) + len("gtn ") :
-                                ]
-                            )
-                            < 2_147_483_647
-                        ):
+                        if (int(msg.content[len(prefix) + len("gtn "):]) > 1
+                                and
+                                int(msg.content[len(prefix) + len("gtn "):]) <
+                                2_147_483_647):
                             try:
                                 gtnMsg.MYset(msg.content)
                             except Exception:
@@ -286,17 +260,12 @@ while True:
                                 print_exc()
                             else:
                                 logging.info(
-                                    f"gtnMsg (not class) = {gtnMsg.MYget()}"
-                                )
+                                    f"gtnMsg (not class) = {gtnMsg.MYget()}")
                                 logging.info(f"{msg.content = }")
                             gtNum = random.randrange(
                                 1,
-                                int(
-                                    msg.content[
-                                        len(prefix) + len("gtn ") :
-                                    ]
-                                )
-                                + 1,
+                                int(msg.content[len(prefix) + len("gtn "):]) +
+                                1,
                             )
                             inGtn = True
                             await dc.send(
@@ -321,14 +290,14 @@ while True:
                         global inGtn
                     finally:
                         inGtn = False
-                        await i.respond("Akkor nem.")
+                        await i.respond()
                 elif iid == "gtnUjra":
                     tmpmsg = gtnMsg.MYget()
                     gtNum = random.randint(
                         1,
-                        int(str(tmpmsg)[len(f"{prefix}gtn ") :]),
+                        int(str(tmpmsg)[len(f"{prefix}gtn "):]),
                     )
-                    await i.respond("Hajrá!")
+                    await i.respond()
                     inGtn = True
 
         client.run(os.environ["BOT_TOKEN"])

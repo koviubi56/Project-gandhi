@@ -34,11 +34,11 @@ async def main(msg, maxSzerda):
                 break
             if (
                 betu.lower() == "s"
-                and content[i + 1] == "z"
-                and content[i + 2] == "e"
-                and content[i + 3] == "r"
-                and content[i + 4] == "d"
-                and content[i + 5] in ["a", "á"]
+                and content[i + 1].lower() == "z"
+                and content[i + 2].lower() == "e"
+                and content[i + 3].lower() == "r"
+                and content[i + 4].lower() == "d"
+                and content[i + 5].lower() in ["a", "á"]
             ):
                 plus += 1
             continue
